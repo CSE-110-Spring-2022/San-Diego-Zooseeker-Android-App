@@ -3,49 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="64dp">
 
-    <Button
-        android:id="@+id/add_todo_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SEARCH"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.996"
-        app:layout_constraintStart_toStartOf="parent"
-        android:onClick="onSearchBarClicked"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.046" />
-
-    <EditText
-        android:id="@+id/new_todo_text"
+    <TextView
+        android:id="@+id/exhibit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="100dp"
-        android:hint="Enter an exhibit..."
-        android:inputType="text"
         android:maxLines="1"
+        android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.046" />
+        app:layout_constraintVertical_bias="0.2" />
 
-    <Button
-        android:id="@+id/plan_btn"
+    <CheckBox
+        android:id="@+id/chosen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="PLAN"
+        android:onClick="onCheckBoxClicked"
+        android:text=""
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.01"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.688" />
-
-
+        app:layout_constraintVertical_bias="0.1"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
