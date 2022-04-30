@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/layout/activity_open_exhibit_list.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_to_add_exhibit.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_to_add_exhibits.xml" value="0.2" />
       </map>
