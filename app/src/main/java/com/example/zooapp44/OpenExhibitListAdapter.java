@@ -37,12 +37,12 @@ public class OpenExhibitListAdapter extends RecyclerView.Adapter<OpenExhibitList
 
     @Override
     public void onBindViewHolder(@NonNull OpenExhibitListAdapter.ViewHolder holder, int position) {
-
+        holder.setToaddExhibits(toaddExhibits.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return toaddExhibits.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -74,7 +74,7 @@ public class OpenExhibitListAdapter extends RecyclerView.Adapter<OpenExhibitList
             this.toaddExhibits = toaddExhibits;
             this.TVAnimalName.setText(toaddExhibits.id);
             // Please notice that distance does exist in current list
-            this.TVDistance.setText(toaddExhibits.distance);
+            // this.TVDistance.setText(toaddExhibits.distance);
         }
     }
 }

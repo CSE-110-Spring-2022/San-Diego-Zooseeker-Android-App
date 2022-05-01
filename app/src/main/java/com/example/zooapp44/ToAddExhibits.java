@@ -2,6 +2,10 @@ package com.example.zooapp44;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -13,15 +17,16 @@ import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.List;
 
+@Entity(tableName = "toadd_exhibits")
 public class ToAddExhibits {
 
-
+    @NonNull
     public String id;
     public String itemType;
     public List<String> tags;
 
     //Constructor for each exhibit in json
-    ToAddExhibits(String id, String itemType,List<String> tags){
+    ToAddExhibits(@NonNull String id, String itemType,List<String> tags){
         this.id=id;
         this.itemType=itemType;
         this.tags=tags;
