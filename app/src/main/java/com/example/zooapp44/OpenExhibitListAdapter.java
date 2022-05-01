@@ -10,21 +10,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.function.BiConsumer;
+//import java.util.function.BiConsumer;
 
 public class OpenExhibitListAdapter extends RecyclerView.Adapter<OpenExhibitListAdapter.ViewHolder> {
-    private List<ToAddExhibits> toaddExhibits = Collections.emptyList();
-    private BiConsumer<ToAddExhibits, String> onTextEditedHandler;
+//    private List<ToAddExhibits> toaddExhibits = Collections.emptyList();
+    private ExhibitRoute route;
+//    private BiConsumer<ToAddExhibits, String> onTextEditedHandler;
 
-    public void setToaddExhibits(List<ToAddExhibits> newToaddExhibits){
-        this.toaddExhibits.clear();
-        this.toaddExhibits = newToaddExhibits;
-        notifyDataSetChanged();
+    public OpenExhibitListAdapter(ExhibitRoute route){
+        this.route = route;
     }
 
-    public void setOnTextEditedHandler(BiConsumer<ToAddExhibits, String> onTextEdited){
-        this.onTextEditedHandler = onTextEdited;
-    }
+//    public void setToaddExhibits(List<ToAddExhibits> newToaddExhibits){
+//        this.toaddExhibits.clear();
+//        this.toaddExhibits = newToaddExhibits;
+//        notifyDataSetChanged();
+//    }
+
+//    public void setOnTextEditedHandler(BiConsumer<ToAddExhibits, String> onTextEdited){
+//        this.onTextEditedHandler = onTextEdited;
+//    }
 
     @NonNull
     @Override
@@ -37,44 +42,49 @@ public class OpenExhibitListAdapter extends RecyclerView.Adapter<OpenExhibitList
 
     @Override
     public void onBindViewHolder(@NonNull OpenExhibitListAdapter.ViewHolder holder, int position) {
-        holder.setToaddExhibits(toaddExhibits.get(position));
+        holder.setExhibitDistance(route.getExhibit(position), route.getDistance(position));
     }
 
     @Override
     public int getItemCount() {
-        return toaddExhibits.size();
+        return route.getSize();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView TVAnimalName;
         private final TextView TVDistance;
-        private ToAddExhibits toaddExhibits;
+//        private ExhibitRoute route;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             this.TVAnimalName = itemView.findViewById(R.id.animal_name);
             this.TVDistance = itemView.findViewById(R.id.distance);
 
-            this.TVAnimalName.setOnFocusChangeListener((view, hasFocus) -> {
-                if(!hasFocus){
-                    onTextEditedHandler.accept(toaddExhibits, TVAnimalName.getText().toString());
-                }
-            });
+//            this.TVAnimalName.setOnFocusChangeListener((view, hasFocus) -> {
+//                if(!hasFocus){
+//                    onTextEditedHandler.accept(toaddExhibits, TVAnimalName.getText().toString());
+//                }
+//            });
 
-            this.TVDistance.setOnFocusChangeListener((view, hasFocus) -> {
-                if(!hasFocus){
-                    onTextEditedHandler.accept(toaddExhibits, TVDistance.getText().toString());
-                }
-            });
+//            this.TVDistance.setOnFocusChangeListener((view, hasFocus) -> {
+//                if(!hasFocus){
+//                    onTextEditedHandler.accept(toaddExhibits, TVDistance.getText().toString());
+//                }
+//            });
         }
 
-        public ToAddExhibits getToaddExhibits(){ return toaddExhibits; }
+//        public ToAddExhibits getToaddExhibits(){ return toaddExhibits; }
 
-        public void setToaddExhibits(ToAddExhibits toaddExhibits){
-            this.toaddExhibits = toaddExhibits;
-            this.TVAnimalName.setText(toaddExhibits.id);
-            // Please notice that distance does exist in current list
-            // this.TVDistance.setText(toaddExhibits.distance);
+//        public void setToaddExhibits( String distance){
+//            this.toaddExhibits = toaddExhibits;
+//            this.TVAnimalName.setText(toaddExhibits.id);
+//            // Please notice that distance does exist in current list
+//            // this.TVDistance.setText(toaddExhibits.distance);
+//        }
+
+        public void setExhibitDistance(String exhibitName, String distance){
+            this.TVAnimalName.setText(exhibitName);
+            this.TVDistance.setText(distance);
         }
     }
 }

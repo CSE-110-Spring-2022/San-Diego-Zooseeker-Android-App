@@ -21,11 +21,11 @@ public class OpenExhibitListActivity extends AppCompatActivity {
 
         viewModel = new ViewModelProvider(this)
                 .get(ToAddExhibitsViewModel.class);
-        OpenExhibitListAdapter adapter = new OpenExhibitListAdapter();
+        OpenExhibitListAdapter adapter = new OpenExhibitListAdapter(new ExhibitRoute());
         adapter.setHasStableIds(true);
-        viewModel.getToaddExhibits().observe(this, adapter::setToaddExhibits);
+//        viewModel.getToaddExhibits().observe(this, adapter::setToaddExhibits);
 
-        recyclerView = findViewById(R.id.toadd_exhibits);
+        recyclerView = findViewById(R.id.route);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }
