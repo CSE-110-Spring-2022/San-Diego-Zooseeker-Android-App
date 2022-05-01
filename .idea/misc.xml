@@ -3,13 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/xushu/Desktop/CSE110/Project/zooseeker-cse-110-team-44/app/src/main/res/layout/activity_open_exhibit_list.xml" value="0.18931159420289856" />
+        <entry key="..\:/Users/xushu/Desktop/CSE110/Project/zooseeker-cse-110-team-44/app/src/main/res/layout/activity_open_exhibit_list.xml" value="0.335" />
         <entry key="..\:/Users/xushu/Desktop/CSE110/Project/zooseeker-cse-110-team-44/app/src/main/res/layout/exhibit_item.xml" value="0.18931159420289856" />
-        <entry key="app/src/main/res/layout/activity_open_exhibit_list.xml" value="0.3016304347826087" />
-        <entry key="app/src/main/res/layout/activity_to_add_exhibit.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_to_add_exhibit.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_to_add_exhibits.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/exhibit_item.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/list_exhibits.xml" value="0.1766304347826087" />
       </map>
     </option>
   </component>
@@ -18,12 +15,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.22" />
-      </ProjectState>
-    </option>
   </component>
 </project>

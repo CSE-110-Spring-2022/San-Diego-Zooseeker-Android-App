@@ -12,13 +12,13 @@
         android:id="@+id/back_button"
         android:layout_width="105dp"
         android:layout_height="62dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="#83A300"
+        android:onClick="onGoBackClicked"
         android:text="Back"
         android:textAllCaps="false"
         android:textSize="24sp"
-        android:onClick="onGoBackClicked"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_editor_absoluteX="16dp" />
@@ -40,6 +40,7 @@
         android:id="@+id/route"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="120dp" />
+        android:layout_marginTop="100dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="32dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
