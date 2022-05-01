@@ -29,6 +29,7 @@ public class ToAddExhibits {
     @NonNull
     public String itemType;
     public String id;
+    public boolean selected;
 
 
 
@@ -37,6 +38,7 @@ public class ToAddExhibits {
     ToAddExhibits(String id, String itemType){
         this.id=id;
         this.itemType=itemType;
+        this.selected=false;
     }
 
     public static List<ToAddExhibits> loadJSON(Context context, String path){
