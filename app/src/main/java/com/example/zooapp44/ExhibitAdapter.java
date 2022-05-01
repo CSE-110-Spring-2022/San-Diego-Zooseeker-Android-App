@@ -1,4 +1,5 @@
 package com.example.zooapp44;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,7 @@ public class ExhibitAdapter extends RecyclerView.Adapter<ExhibitAdapter.ViewHold
 
     @Override
     public int getItemCount() {
+        System.out.println(exhibits.size());
         return exhibits.size();
     }
 
