@@ -29,16 +29,20 @@ public class ToAddExhibits {
     @NonNull
     public String itemType;
     public String id;
-    public boolean selected;
+    public String name;
+    public List<String> tags;
+//    public boolean selected;
 
 
 
 
     //Constructor for each exhibit in json
-    ToAddExhibits(String id, String itemType){
+    ToAddExhibits(String id, String itemType, String name, List<String> tags){
         this.id=id;
         this.itemType=itemType;
-        this.selected=false;
+        this.name = name;
+//        this.selected=false;
+        this.tags = tags;
     }
 
     public static List<ToAddExhibits> loadJSON(Context context, String path){
