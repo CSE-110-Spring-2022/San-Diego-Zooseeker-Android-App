@@ -30,20 +30,20 @@ public class ToAddExhibits {
     @NonNull
     public String itemType;
     public String id;
+    public boolean selected;
     public String name;
-    public List<String> tags;
-//    public boolean selected;
+//    public List<String> tags;
 
 
 
 
     //Constructor for each exhibit in json
-    ToAddExhibits(String id, String itemType, String name, List<String> tags){
-        this.id=id;
-        this.itemType=itemType;
+    ToAddExhibits(String id, String itemType, String name) {
+        this.id = id;
+        this.itemType = itemType;
         this.name = name;
-//        this.selected=false;
-        this.tags = tags;
+        this.selected = false;
+//        this.tags = tags;
     }
 
     public static List<ToAddExhibits> loadJSON(Context context, String path){
@@ -64,7 +64,9 @@ public class ToAddExhibits {
         return "ToAddExhibits{" +
                 "identification='" + identification + '\'' +
                 ", itemType='" + itemType + '\'' +
+                ", selected='" + selected + '\'' +
                 ", id='" + id + '\'' +
                 '}';
     }
+
 }

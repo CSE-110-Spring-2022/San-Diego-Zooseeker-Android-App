@@ -1,5 +1,6 @@
 package com.example.zooapp44;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -13,8 +14,15 @@ public interface ToAddExhibitDao {
     @Insert
     long insert(ToAddExhibits toAddExhibit);
 
+    @Insert
+    List<Long> insertAll(List<ToAddExhibits> toAddExhibits);
+
     @Query("SELECT * FROM  `exhibit_items` WHERE `id`=:id")
     ToAddExhibits get(long id);
+
+    @Query("SELECT * FROM `exhibit_items`")
+    LiveData<List<ToAddExhibits>> getAllLive();
+
 
     @Query("SELECT * FROM `exhibit_items` ORDER BY `itemType`")
     List<ToAddExhibits> getAll();
@@ -24,4 +32,5 @@ public interface ToAddExhibitDao {
 
     @Delete
     int delete(ToAddExhibits toAddExhibit);
+
 }
