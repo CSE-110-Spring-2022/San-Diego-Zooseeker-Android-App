@@ -20,7 +20,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.List;
 import java.util.concurrent.Executors;
 
-@Database(entities={ToAddExhibits.class},version=2)
+@Database(entities={ToAddExhibits.class},version=1)
 @TypeConverters({Converter.class})
 public abstract class ToAddDatabase extends RoomDatabase {
     private static ToAddDatabase singleton = null;
