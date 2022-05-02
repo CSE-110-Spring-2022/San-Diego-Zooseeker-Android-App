@@ -32,7 +32,11 @@ public class ToAddExhibitsActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
-        //adapter.setExhibitListItems(ToAddExhibits.loadJSON(this,"sample_node_info.json"));
+//        ToAddDatabase db = ToAddDatabase.getSingleton(this);
+//        ToAddExhibitDao toAddExhibitDao = db.toAddExhibitDao();
+//        List<ToAddExhibits> exhibitlist = ToAddExhibits.loadJSON(this, "sample_node_info.json");
+
+//        toAddExhibitDao.insertAll(exhibitlist);
 
     }
     public void onGoBackMainClicked(View view) {

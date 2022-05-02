@@ -24,7 +24,7 @@ public interface ToAddExhibitDao {
     LiveData<List<ToAddExhibits>> getAllLive();
 
 
-    @Query("SELECT * FROM `exhibit_items` ORDER BY `itemType`")
+    @Query("SELECT * FROM `exhibit_items` ORDER BY `kind`")
     List<ToAddExhibits> getAll();
 
     @Update

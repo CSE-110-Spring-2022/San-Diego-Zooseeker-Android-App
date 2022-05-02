@@ -55,7 +55,7 @@ public class ExhibitAdapter extends RecyclerView.Adapter<ExhibitAdapter.ViewHold
 
 
     public String getItemType(int position){
-        return exhibits.get(position).itemType;
+        return exhibits.get(position).kind;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

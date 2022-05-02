@@ -42,4 +42,12 @@ public class ExhibitRoute {
         ExhibitRoute route = gson.fromJson(s, ExhibitRoute.class);
         return route;
     }
+
+    @Override
+    public String toString() {
+        return "ExhibitRoute{" +
+                "exhibits=" + exhibits +
+                ", Distance=" + Distance +
+                '}';
+    }
 }
