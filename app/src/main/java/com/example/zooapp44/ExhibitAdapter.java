@@ -88,6 +88,7 @@ public class ExhibitAdapter extends RecyclerView.Adapter<ExhibitAdapter.ViewHold
         public void setExhibit(ToAddExhibits toAdd){
             this.toAdd=toAdd;
             this.textView.setText(toAdd.id);
+            this.checkBox.setChecked(toAdd.selected);
         }
     }
 
