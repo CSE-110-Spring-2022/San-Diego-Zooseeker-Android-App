@@ -35,12 +35,13 @@ public class ToAddExhibits {
 
 
 
+
     //Constructor for each exhibit in json
-    ToAddExhibits(String id, String itemType, String name){
-        this.id=id;
-        this.itemType=itemType;
+    ToAddExhibits(String id, String itemType, String name) {
+        this.id = id;
+        this.itemType = itemType;
         this.name = name;
-        this.selected=false;
+        this.selected = false;
 //        this.tags = tags;
     }
 

@@ -16,6 +16,7 @@ public class ToAddExhibitsActivity extends AppCompatActivity {
 
     public RecyclerView recyclerView;
     private ToAddExhibitsViewModel viewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -23,6 +23,7 @@ public interface ToAddExhibitDao {
     @Query("SELECT * FROM `exhibit_items`")
     LiveData<List<ToAddExhibits>> getAllLive();
 
+
     @Query("SELECT * FROM `exhibit_items` ORDER BY `itemType`")
     List<ToAddExhibits> getAll();
 
@@ -31,6 +32,5 @@ public interface ToAddExhibitDao {
 
     @Delete
     int delete(ToAddExhibits toAddExhibit);
-
 
 }

@@ -1,5 +1,6 @@
 [
   {
+<<<<<<< HEAD
     "id": "entrance-exit-gate-1",
     "itemType": "gate",
     "tags": [
@@ -11,6 +12,30 @@
   {
     "id": "gorilla-viewpoint-1",
     "itemType": "exhibit",
+=======
+    "id": "entrance_exit_gate",
+    "kind": "gate",
+    "name": "Entrance and Exit Gate",
+    "tags": [
+      "enter",
+      "leave",
+      "start",
+      "begin",
+      "entrance",
+      "exit"
+    ]
+  },
+  {
+    "id": "entrance_plaza",
+    "kind": "intersection",
+    "name": "Entrance Plaza",
+    "tags": []
+  },
+  {
+    "id": "gorillas",
+    "kind": "exhibit",
+    "name": "Gorillas",
+>>>>>>> main
     "tags": [
       "gorilla",
       "monkey",
@@ -19,8 +44,14 @@
     ]
   },
   {
+<<<<<<< HEAD
     "id": "gator-viewpoint-1",
     "itemType": "exhibit",
+=======
+    "id": "gators",
+    "kind": "exhibit",
+    "name": "Alligators",
+>>>>>>> main
     "tags": [
       "alligator",
       "reptile",
@@ -28,6 +59,7 @@
     ]
   },
   {
+<<<<<<< HEAD
     "id": "elephant-odyssey",
     "itemType": "exhibit",
     "tags": [
@@ -38,11 +70,38 @@
   {
     "id": "arctic-fox-viewpoint",
     "itemType": "exhibit",
+=======
+    "id": "lions",
+    "kind": "exhibit",
+    "name": "Lions",
+    "tags": [
+      "lions",
+      "cats",
+      "mammal",
+      "africa"
+    ]
+  },
+  {
+    "id": "elephant_odyssey",
+    "kind": "exhibit",
+    "name": "Elephant Odyssey",
+    "tags": [
+      "elephant",
+      "mammal",
+      "africa"
+    ]
+  },
+  {
+    "id": "arctic_foxes",
+    "kind": "exhibit",
+    "name": "Arctic Foxes",
+>>>>>>> main
     "tags": [
       "arctic",
       "fox",
       "mammal"
     ]
+<<<<<<< HEAD
   },
   {
     "id": "elephant-fox-intersection",
@@ -53,5 +112,7 @@
       "intersection",
       "middle"
     ]
+=======
+>>>>>>> main
   }
 ]
