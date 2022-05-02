@@ -28,8 +28,8 @@ public class ToAddExhibits {
     public int identification;
 
     @NonNull
-    public String itemType;
     public String id;
+    public String kind;
     public boolean selected;
     public String name;
 //    public List<String> tags;
@@ -38,9 +38,9 @@ public class ToAddExhibits {
 
 
     //Constructor for each exhibit in json
-    ToAddExhibits(String id, String itemType, String name) {
+    ToAddExhibits(String id, String kind, String name) {
         this.id = id;
-        this.itemType = itemType;
+        this.kind = kind;
         this.name = name;
         this.selected = false;
 //        this.tags = tags;
@@ -63,7 +63,7 @@ public class ToAddExhibits {
     public String toString() {
         return "ToAddExhibits{" +
                 "identification='" + identification + '\'' +
-                ", itemType='" + itemType + '\'' +
+                ", itemType='" + kind + '\'' +
                 ", selected='" + selected + '\'' +
                 ", id='" + id + '\'' +
                 '}';
