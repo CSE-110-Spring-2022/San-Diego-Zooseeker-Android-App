@@ -7,12 +7,15 @@ import androidx.annotation.VisibleForTesting;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverter;
+import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import java.util.List;
 import java.util.concurrent.Executors;
 
-@Database(entities={ToAddExhibits.class},version=1)
+@Database(entities={ToAddExhibits.class},version=2)
+@TypeConverters({Converter.class})
 public abstract class ToAddDatabase extends RoomDatabase {
     private static ToAddDatabase singleton = null;
 

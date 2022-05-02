@@ -42,8 +42,8 @@ public class ToAddDatabaseTest {
 
         String[] two ={"Alligator"};
 
-        ToAddExhibits item1 = new ToAddExhibits("R301","exhibit");
-        ToAddExhibits item2 = new ToAddExhibits("R99","exhibit");
+        ToAddExhibits item1 = new ToAddExhibits("R301","exhibit","no" );
+        ToAddExhibits item2 = new ToAddExhibits("R99","exhibit", "yes");
 
         long id1=dao.insert(item1);
         long id2=dao.insert(item2);

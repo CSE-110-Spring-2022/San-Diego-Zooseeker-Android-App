@@ -31,7 +31,7 @@ public class ToAddExhibits {
     public String id;
     public boolean selected;
     public String name;
-    //public List<String> tags;
+//    public List<String> tags;
 
 
 
@@ -41,7 +41,7 @@ public class ToAddExhibits {
         this.itemType=itemType;
         this.name = name;
         this.selected=false;
-        //this.tags = tags;
+//        this.tags = tags;
     }
 
     public static List<ToAddExhibits> loadJSON(Context context, String path){
