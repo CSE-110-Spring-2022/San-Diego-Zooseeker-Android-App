@@ -19,14 +19,6 @@ jobs:
       - name: Unit Test
         run: ./gradlew testDebugUnitTest
         
-      - name: Story Test
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 29
-          target: default
-          arch: x86
-          profile: Nexus 6
-          script: ./gradlew connectedCheck --stacktrace
 
       # Report the results
       - name: Android Test Report
