@@ -25,11 +25,13 @@ public class ToAddExhibitsActivity extends AppCompatActivity {
         ExhibitAdapter adapter = new ExhibitAdapter();
         adapter.setHasStableIds(true);
         adapter.setOnCheckBoxClickedHandler(viewModel::toggleSelected);
+
+        viewModel.getTodoListItems().observe(this, adapter::setExhibitListItems);
         recyclerView = findViewById(R.id.exhibit_items);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
-        adapter.setExhibitListItems(ToAddExhibits.loadJSON(this,"sample_node_info.json"));
+        //adapter.setExhibitListItems(ToAddExhibits.loadJSON(this,"sample_node_info.json"));
 
     }
     public void onGoBackMainClicked(View view) {

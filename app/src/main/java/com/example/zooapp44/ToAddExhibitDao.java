@@ -20,7 +20,7 @@ public interface ToAddExhibitDao {
     @Query("SELECT * FROM  `exhibit_items` WHERE `id`=:id")
     ToAddExhibits get(long id);
 
-    @Query("SELECT * FROM `exhibit_items` ORDER BY `itemType`")
+    @Query("SELECT * FROM `exhibit_items`")
     LiveData<List<ToAddExhibits>> getAllLive();
 
     @Query("SELECT * FROM `exhibit_items` ORDER BY `itemType`")

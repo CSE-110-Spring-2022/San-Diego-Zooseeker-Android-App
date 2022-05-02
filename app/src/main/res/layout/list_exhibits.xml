@@ -5,12 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="64dp">
 
+    <CheckBox
+        android:id="@+id/chosen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="7dp"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:id="@+id/exhibit"
+        android:id="@+id/exhibits"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="100dp"
+        android:hint="Enter a todo here..."
         android:maxLines="1"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,21 +29,5 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2" />
-
-    <CheckBox
-        android:id="@+id/chosen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onCheckBoxClicked"
-        android:text=""
-        tools:layout_editor_absoluteX="5dp"
-        tools:layout_editor_absoluteY="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.01"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1"
-        />
+        app:layout_constraintVertical_bias="0.93" />
 </androidx.constraintlayout.widget.ConstraintLayout>
