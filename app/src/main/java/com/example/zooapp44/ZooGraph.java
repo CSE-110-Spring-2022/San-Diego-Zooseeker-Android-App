@@ -140,7 +140,7 @@ public class ZooGraph {
      * @param start The starting entrance in form of string
      * @param exhibits All selected exhibits in a list of strings
      *
-     * @return ExhibitRoute(List<Vertex>,List<Edges>,List<Double>)
+     * @return ExhibitRoute(List<Vertex>,List<Edges>,List<Double>weights from vertex to vertex,List<String>selected exhibits)
      */
     public ExhibitRoute getOptimalPath(String start, List<String> exhibits){
 
