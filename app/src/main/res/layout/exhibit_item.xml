@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:backgroundTint="#83A300"
+    android:backgroundTint="#F8F1E9"
     >
 
 <!--    <androidx.cardview.widget.CardView-->

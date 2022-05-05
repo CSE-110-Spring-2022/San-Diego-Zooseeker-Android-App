@@ -10,7 +10,8 @@ import androidx.room.Update;
 import java.util.List;
 
 @Dao
-public interface ToAddExhibitDao {
+public interface
+ToAddExhibitDao {
     @Insert
     long insert(ToAddExhibits toAddExhibit);
 

@@ -16,7 +16,7 @@
             android:name=".ToAddExhibitsActivity"
             android:exported="false" />
         <activity
-            android:name=".ToAddExhibitActivity"
+            android:name=".ToAddExhibitsActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
