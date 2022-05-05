@@ -7,6 +7,9 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 
 import org.jgrapht.Graph;
+import org.jgrapht.GraphPath;
+import org.jgrapht.alg.interfaces.ShortestPathAlgorithm;
+import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import org.jgrapht.graph.DefaultUndirectedWeightedGraph;
 import org.jgrapht.nio.json.JSONImporter;
 
@@ -14,7 +17,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.lang.reflect.Array;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -124,9 +129,87 @@ public class ZooGraph {
 
     public class Vertex{
         public String id;
-        public Kind kind;
+        public String kind;
         public String name;
         public List<String> tags;
+        public boolean selected;
+    }
+
+    /**
+     *
+     * @param start The starting entrance in form of string
+     * @param exhibits All selected exhibits in a list of strings
+     *
+     * @return ExhibitRoute(List<Vertex>,List<Edges>,List<Double>)
+     */
+    public ExhibitRoute getOptimalPath(String start, List<String> exhibits){
+
+        DijkstraShortestPath<String,IdentifiedWeightedEdge> algorithm = new DijkstraShortestPath<>(graph);
+        ShortestPathAlgorithm.SingleSourcePaths<String,IdentifiedWeightedEdge> allPaths=algorithm.getPaths(start);
+        List<String> toRemove=exhibits;
+
+        double smallestWeight=0;
+        //Weight from one vertex to another
+        List<Double> weights=new ArrayList<>();
+
+        //Used to hold edges that are in the optimal path
+        List<IdentifiedWeightedEdge> shortestEdges=new ArrayList<>();
+
+        //Used to hold vertices that are in the optimal path
+        List<String> shortestVertex= new ArrayList<>();
+
+        GraphPath<String,IdentifiedWeightedEdge> temp;
+
+
+        //Find the shortest path from beginning node to another
+        //Want to loop through the list of exhibits until it is empty
+        //When we find the shortest path one one vertex to another, remove the ending vertex from exhibits
+        //Use that ending vertex to run getPaths
+        while(toRemove.size()>0) {
+            temp=allPaths.getPath(exhibits.get(0));
+            //Runs through all exhibits we need to go to see which one is shortest
+            smallestWeight=10000000;
+            //Runs through all exhibits we need to go to see which one is shortest
+            for (int i = 0; i < exhibits.size(); i++) {
+                //If path is shorter than the current stored
+                //Store path in temp
+                //Store shortest weight in smallestWeight
+                if(smallestWeight>allPaths.getPath(exhibits.get(i)).getWeight()){
+                    smallestWeight=allPaths.getPath(exhibits.get(i)).getWeight();
+                    temp=allPaths.getPath(exhibits.get(i));
+                }
+                //Set smallestWeight again
+                //Set edges list
+                //Set Vertices
+                //Set new search graph path using removed ending vertex
+                //Remove ending vertex
+                smallestWeight=10000000;
+                shortestEdges.addAll(temp.getEdgeList());
+                shortestVertex.addAll(temp.getVertexList());
+                toRemove.remove(temp.getEndVertex());
+                weights.add(temp.getWeight());
+                allPaths=algorithm.getPaths(temp.getEndVertex());
+            }
+        }
+        //Have shortestEdges,shortestVertex,exhibits selected
+        //List<String>=shortestVertex,List<Identified>=shortestEdges,List<String>
+
+        //Change List<String> of vertices to List<Vertex>
+        //Use for loop
+        List<Vertex> toPassV=new ArrayList<>();
+            for(int where=0;where<shortestVertex.size();where++){
+                toPassV.add(vInfo.get(shortestVertex.get(where)));
+            }
+
+        //Change List<String> of Identified to List<Edges>
+        List<Edge> toPassE=new ArrayList<>();
+        for(int where=0;where<shortestVertex.size();where++){
+            toPassE.add(eInfo.get(shortestEdges.get(where).getId()));
+        }
+
+        // Return ExhibitRoute
+        // which includes List<Vertex>, List<edge>, list<double> which is distance
+        return new ExhibitRoute(toPassV,toPassE,weights,exhibits);
     }
 
 }

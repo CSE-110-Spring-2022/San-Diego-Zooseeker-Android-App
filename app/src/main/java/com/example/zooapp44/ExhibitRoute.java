@@ -7,8 +7,12 @@ import java.util.List;
 
 public class ExhibitRoute {
     List<String> exhibits;
-    List<String> Distance;
+    //List<String> Distance;
+    List<ZooGraph.Edge> edges;
+    List<ZooGraph.Vertex> vertices;
+    List<Double> weight;
 
+    /*
     public ExhibitRoute(List<String> exhibits, List<String> Distance){
         this.exhibits = exhibits;
         this.Distance = Distance;
@@ -18,13 +22,35 @@ public class ExhibitRoute {
         this.exhibits = new ArrayList<>();
         this.Distance = new ArrayList<>();
     }
+    */
 
+
+    /**
+     *
+     * @param vertices
+     * @param edges
+     * @param weight
+     * @param exhibit
+     */
+
+    public ExhibitRoute(List<ZooGraph.Vertex> vertices,List<ZooGraph.Edge> edges,List<Double> weight,List<String> exhibit){
+        this.edges=edges;
+        this.exhibits=exhibit;
+        this.vertices=vertices;
+        this.weight=weight;
+    }
+
+    /**
+     *
+     * @param i index of exhibit that is to be returned
+     * @return exhibit by index
+     */
     public String getExhibit(int i){
         return exhibits.get(i);
     }
 
     public String getDistance(int i){
-        return Distance.get(i);
+        return weight.get(i).toString();
     }
 
     public int getSize(){
@@ -47,7 +73,9 @@ public class ExhibitRoute {
     public String toString() {
         return "ExhibitRoute{" +
                 "exhibits=" + exhibits +
-                ", Distance=" + Distance +
+                ", edges=" + edges +
+                ", vertices=" + vertices +
+                ", weight=" + weight +
                 '}';
     }
 }
