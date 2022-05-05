@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".OpenExhibitListActivity"
-    android:background="#E7EED0"
+    android:background="#F8F1E9"
     >
 
     <Button
