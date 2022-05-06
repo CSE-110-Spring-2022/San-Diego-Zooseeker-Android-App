@@ -17,13 +17,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class ZooGraph {
     private static ZooGraph singleton = null;
@@ -125,14 +126,34 @@ public class ZooGraph {
     public class Edge {
         public String id;
         public String street;
+
+        Edge(){ id = ""; street = "";}
+        Edge(String id, String street){
+            this.id = id; this.street = street;
+        }
+    }
+
+    public Edge getEdge(String id, String street){
+        return new Edge(id, street);
     }
 
     public class Vertex{
         public String id;
-        public String kind;
+        public Kind kind;
         public String name;
         public List<String> tags;
         public boolean selected;
+
+        Vertex(){}
+        Vertex(String name, Kind kind, boolean selected){
+            this.name = name;
+            this.kind = kind;
+            this.selected = selected;
+        }
+    }
+
+    public Vertex getVertex(String name, Kind kind, boolean selected){
+        return new Vertex(name, kind, selected);
     }
 
     /**
@@ -209,7 +230,7 @@ public class ZooGraph {
 
         // Return ExhibitRoute
         // which includes List<Vertex>, List<edge>, list<double> which is distance
-        return new ExhibitRoute(toPassV,toPassE,weights,exhibits);
+        return new ExhibitRoute(toPassV,toPassE, weights.stream().map(Objects::toString).collect(Collectors.toList()), exhibits);
     }
 
 }

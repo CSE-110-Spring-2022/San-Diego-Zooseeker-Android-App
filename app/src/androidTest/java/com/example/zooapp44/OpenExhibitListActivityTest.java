@@ -1,28 +1,17 @@
 package com.example.zooapp44;
 
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.lifecycle.Lifecycle;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.core.app.ApplicationProvider;
-import androidx.test.espresso.intent.rule.IntentsTestRule;
-import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.google.gson.Gson;
-
-import org.junit.After;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -52,9 +41,18 @@ public class OpenExhibitListActivityTest {
     @Test
     public void testOpenExhibitListActivityNoneEmptyList(){
         Intent intent = new Intent(ApplicationProvider.getApplicationContext(), OpenExhibitListActivity.class);
-        List<String> exhibits = Arrays.asList("Tiger", "Bear", "Dog", "Elephant");
-        List<String> distance = Arrays.asList("300ft", "500ft", "200ft", "100ft");
-        intent.putExtra("Route", ExhibitRoute.serialize(new ExhibitRoute(exhibits, distance)));
+        ZooGraph graph = ZooGraph.getSingleton(ApplicationProvider.getApplicationContext());
+
+        List<ZooGraph.Vertex> vertices =
+                                Arrays.asList(graph.getVertex("entrance gate", ZooGraph.Kind.GATE, true),
+                                                graph.getVertex("tiger", ZooGraph.Kind.EXHIBIT, true),
+                                                graph.getVertex("intersaction", ZooGraph.Kind.INTERSECTION, true),
+                                                graph.getVertex("bird", ZooGraph.Kind.EXHIBIT, false),
+                                                graph.getVertex("lion", ZooGraph.Kind.EXHIBIT, true));
+        List<ZooGraph.Edge> edges = Arrays.asList(graph.eInfo.get("edge-0"), graph.eInfo.get("edge-1"), graph.eInfo.get("edge-2"), graph.eInfo.get("edge-3"));
+        List<String> distance = Arrays.asList("300ft", "500ft");
+        List<String> exhibits = Arrays.asList("tiger", "lion");
+        intent.putExtra("Route", ExhibitRoute.serialize(new ExhibitRoute(vertices, edges, distance, exhibits)));
 
         ActivityScenario<OpenExhibitListActivity> scenario = ActivityScenario.launch(intent);
         scenario.moveToState(Lifecycle.State.CREATED);

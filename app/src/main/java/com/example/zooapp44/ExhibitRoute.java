@@ -2,7 +2,6 @@ package com.example.zooapp44;
 
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ExhibitRoute {
@@ -10,7 +9,7 @@ public class ExhibitRoute {
     //List<String> Distance;
     List<ZooGraph.Edge> edges;
     List<ZooGraph.Vertex> vertices;
-    List<Double> weight;
+    List<String> weight;
 
     /*
     public ExhibitRoute(List<String> exhibits, List<String> Distance){
@@ -33,7 +32,7 @@ public class ExhibitRoute {
      * @param exhibit
      */
 
-    public ExhibitRoute(List<ZooGraph.Vertex> vertices,List<ZooGraph.Edge> edges,List<Double> weight,List<String> exhibit){
+    public ExhibitRoute(List<ZooGraph.Vertex> vertices,List<ZooGraph.Edge> edges,List<String> weight,List<String> exhibit){
         this.edges=edges;
         this.exhibits=exhibit;
         this.vertices=vertices;

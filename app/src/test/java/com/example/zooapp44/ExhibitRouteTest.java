@@ -1,10 +1,9 @@
 package com.example.zooapp44;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
@@ -58,7 +57,7 @@ public class ExhibitRouteTest {
          */
         List<ZooGraph.Edge> edges= Arrays.asList(oneToTwo,twoToThree);
 
-        List<Double> weights= Arrays.asList(300.0,200.0);
+        List<String> weights= Arrays.asList("300ft", "200ft");
 
         ExhibitRoute exhibitRoute = new ExhibitRoute(vertices,edges,weights,exhibits);
         String encoded = ExhibitRoute.serialize(exhibitRoute);
