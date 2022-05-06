@@ -29,4 +29,9 @@ public class MainActivity extends AppCompatActivity {
 //        intent.putExtra("Route", ExhibitRoute.serialize(route));
 //        startActivity(intent);
     }
+
+    public void onPlanClicked(View view){
+        Intent intent = new Intent(this, OpenExhibitListActivity.class);
+        startActivity(intent);
+    }
 }
