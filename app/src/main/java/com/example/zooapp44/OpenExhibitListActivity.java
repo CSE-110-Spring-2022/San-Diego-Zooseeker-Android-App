@@ -36,4 +36,9 @@ public class OpenExhibitListActivity extends AppCompatActivity {
     public void onGoBackClicked(View view){
         finish();
     }
+
+    public void onGetDirectionClicked(View view){
+        Intent intent = new Intent(this, GetDirectionActivity.class);
+        startActivity(intent);
+    }
 }

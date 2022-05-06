@@ -31,6 +31,7 @@
         android:layout_marginBottom="32dp"
         android:backgroundTint="#83A300"
         android:text="Get Direction!"
+        android:onClick="onGetDirectionClicked"
         android:textAllCaps="false"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
