@@ -50,9 +50,10 @@ public class OpenExhibitListActivityTest {
                                                 graph.getVertex("bird", ZooGraph.Kind.EXHIBIT, false),
                                                 graph.getVertex("lion", ZooGraph.Kind.EXHIBIT, true));
         List<ZooGraph.Edge> edges = Arrays.asList(graph.eInfo.get("edge-0"), graph.eInfo.get("edge-1"), graph.eInfo.get("edge-2"), graph.eInfo.get("edge-3"));
+        List<Double> distance_double = Arrays.asList(300.0, 200.0);
         List<String> distance = Arrays.asList("300ft", "500ft");
         List<String> exhibits = Arrays.asList("tiger", "lion");
-        intent.putExtra("Route", ExhibitRoute.serialize(new ExhibitRoute(vertices, edges, distance, exhibits)));
+        intent.putExtra("Route", ExhibitRoute.serialize(new ExhibitRoute(vertices, edges, distance_double, exhibits)));
 
         ActivityScenario<OpenExhibitListActivity> scenario = ActivityScenario.launch(intent);
         scenario.moveToState(Lifecycle.State.CREATED);

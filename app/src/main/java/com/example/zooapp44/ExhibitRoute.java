@@ -9,7 +9,7 @@ public class ExhibitRoute {
     //List<String> Distance;
     List<ZooGraph.Edge> edges;
     List<ZooGraph.Vertex> vertices;
-    List<String> weight;
+    List<Double> weight;
 
     /*
     public ExhibitRoute(List<String> exhibits, List<String> Distance){
@@ -32,7 +32,7 @@ public class ExhibitRoute {
      * @param exhibit
      */
 
-    public ExhibitRoute(List<ZooGraph.Vertex> vertices,List<ZooGraph.Edge> edges,List<String> weight,List<String> exhibit){
+    public ExhibitRoute(List<ZooGraph.Vertex> vertices,List<ZooGraph.Edge> edges,List<Double> weight,List<String> exhibit){
         this.edges=edges;
         this.exhibits=exhibit;
         this.vertices=vertices;
@@ -49,7 +49,10 @@ public class ExhibitRoute {
     }
 
     public String getDistance(int i){
-        return weight.get(i).toString();
+        int sum = 0;
+        for(int j = 0; j <= i; j++)
+            sum += weight.get(j);
+        return sum + "ft";
     }
 
     public int getSize(){

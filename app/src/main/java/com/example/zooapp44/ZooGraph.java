@@ -23,8 +23,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class ZooGraph {
     private static ZooGraph singleton = null;
@@ -230,7 +228,7 @@ public class ZooGraph {
 
         // Return ExhibitRoute
         // which includes List<Vertex>, List<edge>, list<double> which is distance
-        return new ExhibitRoute(toPassV,toPassE, weights.stream().map(Objects::toString).collect(Collectors.toList()), exhibits);
+        return new ExhibitRoute(toPassV,toPassE, weights, exhibits);
     }
 
 }
