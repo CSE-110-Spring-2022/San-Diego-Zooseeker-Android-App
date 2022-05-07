@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.SearchView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,5 +31,24 @@ public class MainActivity extends AppCompatActivity {
 //        Intent intent = new Intent(this, OpenExhibitListActivity.class);
 //        intent.putExtra("Route", ExhibitRoute.serialize(route));
 //        startActivity(intent);
+    }
+
+    public void onPlanClicked(View view){
+        Intent intent = new Intent(this, OpenExhibitListActivity.class);
+        ZooGraph g = ZooGraph.getSingleton(getApplicationContext());
+
+        ToAddDatabase db = ToAddDatabase.getSingleton(getApplicationContext());
+        ToAddExhibitDao dao = db.toAddExhibitDao();
+        List<ToAddExhibits> exhibits = dao.getSelected();
+
+        List<String> exhibitIds = new ArrayList<>();
+        for (ToAddExhibits toAddExhibits : exhibits) {
+            String id = toAddExhibits.id;
+            exhibitIds.add(id);
+        }
+        String start = "entrance_exit_gate";
+        ExhibitRoute route = g.getOptimalPath(start, exhibitIds);
+        intent.putExtra("Route", ExhibitRoute.serialize(route));
+        startActivity(intent);
     }
 }

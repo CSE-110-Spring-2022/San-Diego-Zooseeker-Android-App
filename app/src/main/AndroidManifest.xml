@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ZooApp44">
         <activity
+            android:name=".GetDirectionActivity"
+            android:exported="false" />
+        <activity
             android:name=".OpenExhibitListActivity"
             android:exported="false" />
         <activity

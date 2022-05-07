@@ -63,6 +63,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#83A300"
         android:text="PLAN"
+        android:onClick="onPlanClicked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

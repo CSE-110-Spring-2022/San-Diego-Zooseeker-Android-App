@@ -14,7 +14,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -59,6 +58,28 @@ public class ToAddDatabaseTest {
         long id2=dao.insert(item2);
 
         assertNotEquals(id1,id2);
+    }
+
+    @Test
+    public void testGetSelected(){
+        List<String> tags1 = Arrays.asList("tag1", "tag2", "tag3");
+        List<String> tags2 = Arrays.asList("tag4", "tag5", "tag6");
+
+        ToAddExhibits item1 = new ToAddExhibits("R301","exhibit","no" , tags1);
+        ToAddExhibits item2 = new ToAddExhibits("R99","exhibit", "yes", tags2);
+        ToAddExhibits item3 = new ToAddExhibits("Longbow", "intersection", "no", tags2);
+
+        item1.selected = false;
+        item2.selected = true;
+        item3.selected = true;
+
+        dao.insert(item1);
+        dao.insert(item2);
+        dao.insert(item3);
+
+        List<ToAddExhibits> selected = dao.getSelected();
+        assert(selected.size() == 2);
+        return;
     }
 //    @Test
 //    public void testInsert(){

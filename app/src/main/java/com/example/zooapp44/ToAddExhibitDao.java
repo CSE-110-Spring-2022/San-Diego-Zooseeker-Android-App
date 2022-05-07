@@ -24,6 +24,9 @@ ToAddExhibitDao {
     @Query("SELECT * FROM `exhibit_items`")
     LiveData<List<ToAddExhibits>> getAllLive();
 
+    @Query("SELECT * FROM `exhibit_items` WHERE `selected`=1")
+    List<ToAddExhibits> getSelected();
+
 
     @Query("SELECT * FROM `exhibit_items` ORDER BY `kind`")
     List<ToAddExhibits> getAll();
