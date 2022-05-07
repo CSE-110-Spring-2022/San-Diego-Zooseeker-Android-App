@@ -165,7 +165,7 @@ public class ZooGraph {
 
         DijkstraShortestPath<String,IdentifiedWeightedEdge> algorithm = new DijkstraShortestPath<>(graph);
         ShortestPathAlgorithm.SingleSourcePaths<String,IdentifiedWeightedEdge> allPaths=algorithm.getPaths(start);
-        List<String> toRemove=exhibits;
+        List<String> toRemove = new ArrayList<>(exhibits);
 
         double smallestWeight=0;
         //Weight from one vertex to another
@@ -178,6 +178,9 @@ public class ZooGraph {
         List<String> shortestVertex= new ArrayList<>();
 
         GraphPath<String,IdentifiedWeightedEdge> temp;
+
+        //Store exhibit in order
+        List<String> exhibitInOrder = new ArrayList<>();
 
 
         //Find the shortest path from beginning node to another
@@ -205,13 +208,21 @@ public class ZooGraph {
                 smallestWeight=10000000;
                 shortestEdges.addAll(temp.getEdgeList());
                 shortestVertex.addAll(temp.getVertexList());
+                //get rid of duplicates
+                shortestVertex.remove(shortestVertex.size() - 1);
                 toRemove.remove(temp.getEndVertex());
+                exhibitInOrder.add(temp.getEndVertex());
                 weights.add(temp.getWeight());
                 allPaths=algorithm.getPaths(temp.getEndVertex());
             }
         }
         //Have shortestEdges,shortestVertex,exhibits selected
         //List<String>=shortestVertex,List<Identified>=shortestEdges,List<String>
+
+        //go back to the gate
+        temp = allPaths.getPath(start);
+        shortestEdges.addAll(temp.getEdgeList());
+        shortestVertex.addAll(temp.getVertexList());
 
         //Change List<String> of vertices to List<Vertex>
         //Use for loop
@@ -222,13 +233,13 @@ public class ZooGraph {
 
         //Change List<String> of Identified to List<Edges>
         List<Edge> toPassE=new ArrayList<>();
-        for(int where=0;where<shortestVertex.size();where++){
+        for(int where=0;where<shortestEdges.size();where++){
             toPassE.add(eInfo.get(shortestEdges.get(where).getId()));
         }
 
         // Return ExhibitRoute
         // which includes List<Vertex>, List<edge>, list<double> which is distance
-        return new ExhibitRoute(toPassV,toPassE, weights, exhibits);
+        return new ExhibitRoute(toPassV,toPassE, weights, exhibitInOrder);
     }
 
 }
