@@ -38,7 +38,6 @@
             android:layout_height="37dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="40dp"
-
             android:layout_marginBottom="16dp"
             android:text="Distance"
             android:textColor="@color/white"
@@ -115,6 +114,7 @@
         android:text="NEXT"
         android:textColor="#000000"
         android:textSize="24sp"
+        android:onClick="onNextClicked"
         app:layout_constraintBottom_toTopOf="@+id/stop_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -131,6 +131,7 @@
         android:backgroundTint="#F56C6C"
         android:text="STOP NAVIGATION"
         android:textSize="24sp"
+        android:onClick="onStopClicked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

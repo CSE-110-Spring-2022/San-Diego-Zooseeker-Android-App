@@ -16,4 +16,10 @@ public class GetDirectionActivity extends AppCompatActivity {
     public void onHomeClicked(View view){
         finish();
     }
+
+    public void onNextClicked(View view) {
+        //display the direction for the next animal
+    }
+
+    public void onStopClicked(View view) { finish(); }
 }
