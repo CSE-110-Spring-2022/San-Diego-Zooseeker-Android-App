@@ -19,6 +19,9 @@ public interface ToAddExhibitsDao{
     @Query("SELECT * FROM `toadd_exhibits` WHERE `id`=:id")
     ToAddExhibits get(String id);
 
+    @Query("SELECT * FROM `toadd_exhibits` WHERE `selected`=1")
+    List<ToAddExhibits> getSelected();
+
     @Update
     int update(ToAddExhibits todoListItem);
 
