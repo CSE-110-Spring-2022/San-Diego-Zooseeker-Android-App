@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F8F1E9"
     tools:context=".ToAddExhibitsActivity">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -26,19 +27,17 @@
         android:id="@+id/go_back_main_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#83A300"
         android:onClick="onGoBackMainClicked"
         android:text="GO BACK"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.413"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.638" />
+        app:layout_constraintVertical_bias="0.771" />
 
 
-
-
-<!--    <androidx.recyclerview.widget.RecyclerView-->
+    <!--    <androidx.recyclerview.widget.RecyclerView-->
 <!--        android:id="@+id/exhibit_items"-->
 <!--        android:layout_width="409dp"-->
 <!--        android:layout_height="729dp"-->
