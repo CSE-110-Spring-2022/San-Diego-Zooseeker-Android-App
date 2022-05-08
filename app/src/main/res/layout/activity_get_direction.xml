@@ -133,6 +133,7 @@
         android:backgroundTint="#F56C6C"
         android:text="STOP NAVIGATION"
         android:textSize="24sp"
+        android:onClick="onStopClicked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

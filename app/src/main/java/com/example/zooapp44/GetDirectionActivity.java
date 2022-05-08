@@ -60,5 +60,6 @@ public class GetDirectionActivity extends AppCompatActivity {
         }
         updateText();
     }
-    
+
+    public void onStopClicked(View view) { finish(); }
 }
