@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         ToAddExhibitDao toAddExhibitDao = ToAddDatabase.getSingleton(this).toAddExhibitDao();
         List<ToAddExhibits> exhibitItems = toAddExhibitDao.getAll();
 
-        //List<ToAddExhibits> filteredItems = exhibitItems;
+
         adapter = new ExhibitAdapter();
         adapter.setHasStableIds(true);
         adapter.setOnCheckBoxClickedHandler(new Consumer<ToAddExhibits>() {
@@ -48,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                //query_item stores the user's input
                 List<ToAddExhibits> filteredItems = new ArrayList<ToAddExhibits>();
+                //query_item stores the user's input
                 String query_item = searchView.getQuery().toString();
                 Log.i("query item", query_item);
 
@@ -74,29 +74,12 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-
-        //adapter.setExhibitListItems(filteredItems);
-        //adapter.setExhibitListItems(exhibitItems);
-
         recyclerView = findViewById(R.id.exhibit_items);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
     }
 
-    public void onSearchBarClicked(View view) {
-        Intent intent = new Intent(this,ToAddExhibitsActivity.class);
-
-//        Intent intent = new Intent(this,ToAddExhibitsActivity.class);
-        startActivity(intent);
-
-//        List<String> exhibits = Arrays.asList("Tiger", "Bear", "Dog", "Elephant");
-//        List<String> distance = Arrays.asList("300ft", "500ft", "200ft", "100ft");
-//        ExhibitRoute route = new ExhibitRoute(exhibits, distance);
-//        Intent intent = new Intent(this, OpenExhibitListActivity.class);
-//        intent.putExtra("Route", ExhibitRoute.serialize(route));
-//        startActivity(intent);
-    }
 
     public void onPlanClicked(View view){
         Intent intent = new Intent(this, OpenExhibitListActivity.class);
