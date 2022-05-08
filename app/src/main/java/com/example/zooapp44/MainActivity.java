@@ -69,19 +69,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void onSearchBarClicked(View view) {
-        Intent intent = new Intent(this,ToAddExhibitsActivity.class);
-
-//        Intent intent = new Intent(this,ToAddExhibitsActivity.class);
-        startActivity(intent);
-
-//        List<String> exhibits = Arrays.asList("Tiger", "Bear", "Dog", "Elephant");
-//        List<String> distance = Arrays.asList("300ft", "500ft", "200ft", "100ft");
-//        ExhibitRoute route = new ExhibitRoute(exhibits, distance);
-//        Intent intent = new Intent(this, OpenExhibitListActivity.class);
-//        intent.putExtra("Route", ExhibitRoute.serialize(route));
-//        startActivity(intent);
-    }
 
     public void onPlanClicked(View view){
         Intent intent = new Intent(this, OpenExhibitListActivity.class);
