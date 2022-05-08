@@ -14,9 +14,9 @@
 <!--        app:layout_constraintTop_toTopOf="parent"-->
 <!--        >-->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_width="424dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="64dp"
         android:background="#83A300"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

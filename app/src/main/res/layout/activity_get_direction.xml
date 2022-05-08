@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/next_exhibit"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_width="424dp"
+        android:layout_height="66dp"
         android:layout_marginBottom="20dp"
         android:background="#83A300"
         app:layout_constraintBottom_toTopOf="@+id/next_btn"
@@ -21,8 +21,8 @@
         android:id="@+id/next_animal"
         android:layout_width="224dp"
         android:layout_height="44dp"
-        android:layout_marginTop="346dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginTop="370dp"
+        android:layout_marginBottom="26dp"
         android:text=" Next animal"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -31,30 +31,34 @@
         app:layout_constraintEnd_toEndOf="@+id/next_exhibit"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/next_exhibit"
-        app:layout_constraintTop_toBottomOf="@+id/current_exhibit" />
+        app:layout_constraintTop_toBottomOf="@+id/current_exhibit"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/next_message"
         android:layout_width="163dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="308dp"
         android:layout_marginEnd="124dp"
         android:layout_marginBottom="85dp"
-        android:background="#C4C4C4"
+        android:background="#C0D6E4"
         android:text="Next coming up"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/next_btn"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/current_exhibit" />
+        app:layout_constraintTop_toBottomOf="@+id/current_exhibit"
+        app:layout_constraintVertical_bias="0.294" />
 
     <LinearLayout
+
         android:id="@+id/current_exhibit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="424dp"
+        android:layout_height="66dp"
         android:layout_marginTop="13dp"
         android:background="#83A300"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,14 +91,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+    </LinearLayout
+        >
 
     <Button
         android:id="@+id/home_btn"
-        android:layout_width="110dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="130dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="#83A300"
         android:onClick="onHomeClicked"
         android:text="HOME"
@@ -112,11 +117,12 @@
         android:layout_marginTop="125dp"
         android:layout_marginEnd="39dp"
         android:layout_marginBottom="1dp"
-        android:backgroundTint="#B2F194"
+        android:backgroundTint="#C0D6E4"
         android:onClick="onNextClicked"
         android:text="NEXT"
+        android:textAlignment="center"
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="24dp"
         app:layout_constraintBottom_toTopOf="@+id/stop_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -125,14 +131,16 @@
     <Button
         android:id="@+id/stop_btn"
         android:layout_width="330dp"
-        android:layout_height="45dp"
+        android:layout_height="50dp"
         android:layout_marginStart="39dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="39dp"
         android:layout_marginBottom="31dp"
-        android:backgroundTint="#F56C6C"
+        android:backgroundTint="#d76483"
         android:text="STOP NAVIGATION"
-        android:textSize="24sp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24dp"
         android:onClick="onStopClicked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -144,14 +152,17 @@
         android:layout_width="347dp"
         android:layout_height="295dp"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="31dp"
         android:width="350dp"
         android:height="200dp"
         android:background="#9F9EB150"
         android:text="The shortest path from 'elephant_odyssey' to 'entrance_exit_gate' is:   \n1. Walk 200 meters along Africa Rocks Street from 'Lions' to 'Elephant Odyssey'.   \n2. Walk 200 meters along Sharp Teeth Shortcut from 'Alligators' to 'Lions'.   \n3. Walk 100 meters along Reptile Road from 'Entrance Plaza' to 'Alligators'.  \n4. Walk 10 meters along Entrance Way from 'Entrance and Exit Gate' to 'Entrance Plaza'."
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/current_exhibit" />
 
