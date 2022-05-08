@@ -20,13 +20,13 @@ public class ToAddExhibitsViewModel extends AndroidViewModel {
         toAddExhibitDao = db.toAddExhibitDao();
     }
 
-    public LiveData<List<ToAddExhibits>> getTodoListItems() {
+    public LiveData<List<ToAddExhibits>> getToAddExhibits() {
         if (toAddExhibits == null) {
-            loadUsers();
+            loadExhibits();
         }
         return toAddExhibits;
     }
-    public void loadUsers() {
+    public void loadExhibits() {
         toAddExhibits= toAddExhibitDao.getAllLive();
     }
 

@@ -1,45 +1,55 @@
 package com.example.zooapp44;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.function.Consumer;
 
 public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     SearchView searchView;
     ExhibitAdapter adapter;
+    ToAddExhibitsViewModel exhibitsViewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        exhibitsViewModel = new ViewModelProvider(this).get(ToAddExhibitsViewModel.class);
+
         searchView = findViewById(R.id.search_view);
 
         ToAddExhibitDao toAddExhibitDao = ToAddDatabase.getSingleton(this).toAddExhibitDao();
         List<ToAddExhibits> exhibitItems = toAddExhibitDao.getAll();
 
-        List<ToAddExhibits> filteredItems = new ArrayList<ToAddExhibits>();
         //List<ToAddExhibits> filteredItems = exhibitItems;
         adapter = new ExhibitAdapter();
         adapter.setHasStableIds(true);
+        adapter.setOnCheckBoxClickedHandler(new Consumer<ToAddExhibits>() {
+            @Override
+            public void accept(ToAddExhibits toAddExhibits) {
+                toAddExhibits.selected = !toAddExhibits.selected;
+                toAddExhibitDao.update(toAddExhibits);
+            }
+        });
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 //query_item stores the user's input
+                List<ToAddExhibits> filteredItems = new ArrayList<ToAddExhibits>();
                 String query_item = searchView.getQuery().toString();
                 Log.i("query item", query_item);
 

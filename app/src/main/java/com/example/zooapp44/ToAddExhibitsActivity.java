@@ -1,16 +1,13 @@
 package com.example.zooapp44;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-
-import java.util.List;
 
 public class ToAddExhibitsActivity extends AppCompatActivity {
 
@@ -27,7 +24,7 @@ public class ToAddExhibitsActivity extends AppCompatActivity {
         adapter.setHasStableIds(true);
         adapter.setOnCheckBoxClickedHandler(viewModel::toggleSelected);
 
-        viewModel.getTodoListItems().observe(this, adapter::setExhibitListItems);
+//        viewModel.getTodoListItems().observe(this, adapter::setExhibitListItems);
         recyclerView = findViewById(R.id.exhibit_items);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
