@@ -31,7 +31,7 @@ public class OpenExhibitListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }
-    public void onGoBackClicked(View view){
+    public void onHomeClicked(View view){
         finish();
     }
 
