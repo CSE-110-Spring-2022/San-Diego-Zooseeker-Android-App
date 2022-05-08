@@ -1,19 +1,17 @@
 package com.example.zooapp44;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import java.util.concurrent.Future;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class OpenExhibitListActivity extends AppCompatActivity {
     public RecyclerView recyclerView;
 //    private ToAddExhibitsViewModel viewModel;
+    ExhibitRoute route;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +19,7 @@ public class OpenExhibitListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_open_exhibit_list);
 
         Intent intent = getIntent();
-        ExhibitRoute route = ExhibitRoute.deserialize(intent.getStringExtra("Route"));
+        route = ExhibitRoute.deserialize(intent.getStringExtra("Route"));
 
 //        viewModel = new ViewModelProvider(this)
 //                .get(ToAddExhibitsViewModel.class);
@@ -39,6 +37,7 @@ public class OpenExhibitListActivity extends AppCompatActivity {
 
     public void onGetDirectionClicked(View view){
         Intent intent = new Intent(this, GetDirectionActivity.class);
+        intent.putExtra("Route", ExhibitRoute.serialize(route));
         startActivity(intent);
     }
 }

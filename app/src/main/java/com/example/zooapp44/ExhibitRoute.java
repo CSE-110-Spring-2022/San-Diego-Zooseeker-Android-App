@@ -45,10 +45,20 @@ public class ExhibitRoute {
      * @return exhibit by index
      */
     public String getExhibit(int i){
+        if(i == getSize()){
+            return "entrance gate";
+        }
         return exhibits.get(i);
     }
 
-    public String getDistance(int i){
+    /**
+     *
+     * @param i index of exhibit that is to be returned
+     * @param flg whether do accumulate
+     * @return exhibit by index
+     */
+    public String getDistance(int i, boolean flg){
+        if(flg == false) return weight.get(i) + "ft";
         int sum = 0;
         for(int j = 0; j <= i; j++)
             sum += weight.get(j);
@@ -80,4 +90,45 @@ public class ExhibitRoute {
                 ", weight=" + weight +
                 '}';
     }
+
+
+
+    public String getInstruction(int current) {
+        String current_location;
+        if(current == 0)
+            current_location = vertices.get(0).id;  //set current location to entrance
+        else current_location = exhibits.get(current - 1);
+
+        String target_location;
+        if(current == getSize())
+            target_location = vertices.get(0).id;
+        else target_location = exhibits.get(current);
+
+        return findPathBetween(current_location, target_location);
+
+
+    }
+
+    private String findPathBetween(String current_location, String target_location) {
+        int s = 0;
+        while(!vertices.get(s).id.equals(current_location))
+            s++;
+        int t = s;
+        while(!vertices.get(t).id.equals(target_location))
+            t++;
+
+        String ret = String.format("The shortest path from %s to %s is:\n\n", vertices.get(s).name, vertices.get(t).name);
+
+        int num = 0;
+        for(int i = s; i < t; i++){
+            num++;
+            ret += num + ". ";
+            ret += String.format("Walk %s meters along %s from %s to %s.\n\n",
+                    edges.get(i).weight + "ft", edges.get(i).street, vertices.get(i).name, vertices.get(i + 1).name);
+        }
+
+        return ret;
+    }
+
+
 }
