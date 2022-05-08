@@ -5,25 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E7EED0">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/instruction"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="200dp" />
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="300dp"
+        app:layout_constraintBottom_toTopOf="@+id/next_exhibit"
+        app:layout_constraintTop_toBottomOf="@+id/current_exhibit"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="0dp" />
 
     <LinearLayout
         android:id="@+id/next_exhibit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
         android:layout_marginBottom="39dp"
         android:background="#83A300"
         app:layout_constraintBottom_toTopOf="@+id/next_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/next_message"
+        app:layout_constraintTop_toBottomOf="@+id/current_exhibit"
         app:layout_constraintVertical_bias="1.0">
 
         <TextView
@@ -40,49 +44,61 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/next_message"
+            android:layout_width="163dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="248dp"
+            android:background="#C4C4C4"
+            android:text="Next coming up"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
     </LinearLayout>
 
     <LinearLayout
-            android:id="@+id/current_exhibit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="45dp"
-            android:layout_marginBottom="388dp"
-            android:background="#83A300"
-            app:layout_constraintBottom_toTopOf="@+id/next_btn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+        android:id="@+id/current_exhibit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="388dp"
+        android:background="#83A300"
+        app:layout_constraintBottom_toTopOf="@+id/next_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_btn"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/current_distance"
+            android:layout_width="272dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Animal Name"
+            android:textColor="@color/white"
+            android:textSize="24dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/home_btn">
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/current_distance"
-                android:layout_width="272dp"
-                android:layout_height="37dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="Animal Name"
-                android:textColor="@color/white"
-                android:textSize="24dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/direction"
+            android:layout_width="100dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="16dp"
+            android:text="Distance"
+            android:textColor="@color/white"
+            android:textSize="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/direction"
-                android:layout_width="100dp"
-                android:layout_height="37dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="40dp"
-                android:layout_marginBottom="16dp"
-                android:text="Distance"
-                android:textColor="@color/white"
-                android:textSize="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
 
-        </LinearLayout>
-
-        <Button
+    <Button
             android:id="@+id/home_btn"
             android:layout_width="120dp"
             android:layout_height="60dp"
@@ -129,22 +145,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/next_btn" />
-
-    <TextView
-        android:id="@+id/next_message"
-        android:layout_width="163dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="248dp"
-        android:background="#C4C4C4"
-        android:text="Next coming up"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="784dp" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
