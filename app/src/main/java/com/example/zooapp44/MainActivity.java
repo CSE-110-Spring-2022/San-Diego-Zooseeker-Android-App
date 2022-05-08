@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -19,25 +20,57 @@ import java.util.stream.Collectors;
 public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     SearchView searchView;
+    ExhibitAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //searchView = findViewById(R.id.search_view);
+        searchView = findViewById(R.id.search_view);
 
         ToAddExhibitDao toAddExhibitDao = ToAddDatabase.getSingleton(this).toAddExhibitDao();
         List<ToAddExhibits> exhibitItems = toAddExhibitDao.getAll();
 
-        ExhibitAdapter adapter = new ExhibitAdapter();
+        List<ToAddExhibits> filteredItems = new ArrayList<ToAddExhibits>();
+        //List<ToAddExhibits> filteredItems = exhibitItems;
+        adapter = new ExhibitAdapter();
         adapter.setHasStableIds(true);
-        adapter.setExhibitListItems(exhibitItems);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //query_item stores the user's input
+                String query_item = searchView.getQuery().toString();
+                Log.i("query item", query_item);
+
+                for(int i = 0; i < exhibitItems.size(); i ++){
+                    List<String> tags = exhibitItems.get(i).tags;
+                    Log.i("tags", tags.toString());
+                    for(int j = 0; j < tags.size(); j ++){
+                        if(query_item.equals(tags.get(j))){
+                            filteredItems.add(exhibitItems.get(i));
+                        }
+                    }
+                }
+                adapter.setExhibitListItems(filteredItems);
+                Log.i("filtered items", filteredItems.toString());
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+
+        });
+
+
+        //adapter.setExhibitListItems(filteredItems);
+        //adapter.setExhibitListItems(exhibitItems);
 
         recyclerView = findViewById(R.id.exhibit_items);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-
-
 
     }
 

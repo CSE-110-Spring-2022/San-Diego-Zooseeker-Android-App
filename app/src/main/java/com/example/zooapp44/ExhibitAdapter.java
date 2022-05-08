@@ -67,10 +67,10 @@ public class ExhibitAdapter extends RecyclerView.Adapter<ExhibitAdapter.ViewHold
             super(itemView);
             this.textView=itemView.findViewById(R.id.exhibits);
             this.checkBox = itemView.findViewById(R.id.chosen);
-            /*this.checkBox.setOnClickListener(view -> {
+            this.checkBox.setOnClickListener(view -> {
                 if (onCheckBoxClicked == null) return;
                 onCheckBoxClicked.accept(toAdd);
-            });*/
+            });
             this.textView.setOnFocusChangeListener((view, hasFocus) ->{
                         if (!hasFocus) {
                             onTextEditedHandler.accept(toAdd, textView.getText().toString());
