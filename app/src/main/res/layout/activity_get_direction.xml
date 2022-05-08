@@ -149,7 +149,7 @@
         android:height="200dp"
         android:background="#9F9EB150"
         android:text="The shortest path from 'elephant_odyssey' to 'entrance_exit_gate' is:   \n1. Walk 200 meters along Africa Rocks Street from 'Lions' to 'Elephant Odyssey'.   \n2. Walk 200 meters along Sharp Teeth Shortcut from 'Alligators' to 'Lions'.   \n3. Walk 100 meters along Reptile Road from 'Entrance Plaza' to 'Alligators'.  \n4. Walk 10 meters along Entrance Way from 'Entrance and Exit Gate' to 'Entrance Plaza'."
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
