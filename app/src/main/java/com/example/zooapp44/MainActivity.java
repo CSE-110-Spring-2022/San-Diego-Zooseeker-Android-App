@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         ToAddExhibitDao toAddExhibitDao = ToAddDatabase.getSingleton(this).toAddExhibitDao();
         List<ToAddExhibits> exhibitItems = toAddExhibitDao.getAll();
         TextView msg = findViewById(R.id.message);
-        count = toAddExhibitDao.getSelected().size()-2;
+        count = toAddExhibitDao.getSelected().size();
         String temp = "There are "+Integer.toString(count)+" animals selected.";
         msg.setText(temp);
         adapter = new ExhibitAdapter();
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             public void accept(ToAddExhibits toAddExhibits) {
                 toAddExhibits.selected = !toAddExhibits.selected;
                 toAddExhibitDao.update(toAddExhibits);
-                count = toAddExhibitDao.getSelected().size()-2;
+                count = toAddExhibitDao.getSelected().size();
                 String current= "There are "+Integer.toString(count)+" animals selected.";
                 msg.setText(current);
             }
