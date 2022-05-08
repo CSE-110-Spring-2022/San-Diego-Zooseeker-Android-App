@@ -28,10 +28,10 @@
         android:layout_width="wrap_content"
         android:layout_height="58dp"
         android:layout_marginStart="100dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="15dp"
         android:backgroundTint="#83A300"
-        android:text="Get Direction!"
         android:onClick="onGetDirectionClicked"
+        android:text="Get Direction!"
         android:textAllCaps="false"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,6 +42,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="100dp"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="32dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
