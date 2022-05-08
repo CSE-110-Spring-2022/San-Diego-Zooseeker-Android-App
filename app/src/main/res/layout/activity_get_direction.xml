@@ -4,8 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8F1E9">
-
+    android:background="#E7EED0">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/instruction"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="83dp"
+        tools:layout_editor_absoluteY="200dp" />
 
     <LinearLayout
         android:id="@+id/next_exhibit"
@@ -16,28 +21,18 @@
         android:background="#83A300"
         app:layout_constraintBottom_toTopOf="@+id/next_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/next_message">
+        app:layout_constraintTop_toBottomOf="@+id/next_message"
+        app:layout_constraintVertical_bias="1.0">
 
         <TextView
-            android:id="@+id/animal_name"
-            android:layout_width="272dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="Next Animal"
-            android:textColor="@color/white"
-            android:textSize="24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/distance"
+            android:id="@+id/next_distance"
             android:layout_width="100dp"
             android:layout_height="37dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="40dp"
+
             android:layout_marginBottom="16dp"
             android:text="Distance"
             android:textColor="@color/white"
@@ -48,117 +43,97 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/next_exhibit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
-        android:layout_marginBottom="388dp"
-        android:background="#83A300"
-        app:layout_constraintBottom_toTopOf="@+id/next_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_btn">
-
-        <TextView
-            android:id="@+id/animal_name"
-            android:layout_width="272dp"
-            android:layout_height="37dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="Animal Name"
-            android:textColor="@color/white"
-            android:textSize="24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/distance"
-            android:layout_width="100dp"
-            android:layout_height="37dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginBottom="16dp"
-            android:text="Distance"
-            android:textColor="@color/white"
-            android:textSize="24dp"
+            android:id="@+id/current_exhibit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:layout_marginBottom="388dp"
+            android:background="#83A300"
+            app:layout_constraintBottom_toTopOf="@+id/next_btn"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/home_btn">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/current_distance"
+                android:layout_width="272dp"
+                android:layout_height="37dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Animal Name"
+                android:textColor="@color/white"
+                android:textSize="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/home_btn"
-        android:layout_width="120dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="#83A300"
-        android:onClick="onHomeClicked"
-        android:text="HOME"
-        android:textAllCaps="false"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_editor_absoluteX="16dp" />
+            <TextView
+                android:id="@+id/direction"
+                android:layout_width="100dp"
+                android:layout_height="37dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="16dp"
+                android:text="Distance"
+                android:textColor="@color/white"
+                android:textSize="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/next_btn"
-        android:layout_width="333dp"
-        android:layout_height="63dp"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="502dp"
-        android:layout_marginEnd="39dp"
-        android:layout_marginBottom="1dp"
-        android:backgroundTint="#C0D6E4"
-        android:text="NEXT"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:onClick="onNextClicked"
-        app:layout_constraintBottom_toTopOf="@+id/stop_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_btn" />
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/stop_btn"
-        android:layout_width="333dp"
-        android:layout_height="63dp"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="39dp"
-        android:layout_marginBottom="31dp"
-        android:backgroundTint="#FFA500"
-        android:text="STOP NAVIGATION"
-        android:textSize="24sp"
-        android:onClick="onStopClicked"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/next_btn" />
+        <Button
+            android:id="@+id/home_btn"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#83A300"
+            android:onClick="onHomeClicked"
+            android:text="HOME"
+            android:textAllCaps="false"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_editor_absoluteX="16dp" />
 
-    <TextView
-        android:id="@+id/directions"
-        android:layout_width="341dp"
-        android:layout_height="160dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="37dp"
-        android:layout_marginBottom="53dp"
-        android:background="#C0D6E4"
-        android:text="Direction List"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/next_message"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/next_exhibit" />
+        <Button
+            android:id="@+id/next_btn"
+            android:layout_width="333dp"
+            android:layout_height="63dp"
+            android:layout_marginStart="39dp"
+            android:layout_marginTop="502dp"
+            android:layout_marginEnd="39dp"
+            android:layout_marginBottom="1dp"
+            android:backgroundTint="#B2F194"
+            android:text="NEXT"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/stop_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/home_btn" />
+
+        <Button
+            android:id="@+id/stop_btn"
+            android:layout_width="333dp"
+            android:layout_height="63dp"
+            android:layout_marginStart="39dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="39dp"
+            android:layout_marginBottom="31dp"
+            android:backgroundTint="#F56C6C"
+            android:text="STOP NAVIGATION"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/next_btn" />
 
     <TextView
         android:id="@+id/next_message"
         android:layout_width="163dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="53dp"
         android:layout_marginEnd="248dp"
         android:background="#C4C4C4"
         android:text="Next coming up"
@@ -168,7 +143,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/directions" />
+        tools:layout_editor_absoluteY="784dp" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
