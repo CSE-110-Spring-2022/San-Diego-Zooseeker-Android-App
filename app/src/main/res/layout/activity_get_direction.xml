@@ -6,17 +6,6 @@
     android:layout_height="match_parent"
     android:background="#E7EED0">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/instruction"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="200dp"
-        android:layout_marginBottom="300dp"
-        app:layout_constraintBottom_toTopOf="@+id/next_exhibit"
-        app:layout_constraintTop_toBottomOf="@+id/current_exhibit"
-        app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="0dp" />
-
     <LinearLayout
         android:id="@+id/next_exhibit"
         android:layout_width="match_parent"
@@ -145,6 +134,25 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/next_btn" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="32dp"
+        android:width="350dp"
+        android:height="200dp"
+        android:background="#83A300"
+        android:text="The shortest path from 'elephant_odyssey' to 'entrance_exit_gate' is:   \n1. Walk 200 meters along Africa Rocks Street from 'Lions' to 'Elephant Odyssey'.   \n2. Walk 200 meters along Sharp Teeth Shortcut from 'Alligators' to 'Lions'.   \n3. Walk 100 meters along Reptile Road from 'Entrance Plaza' to 'Alligators'.  \n4. Walk 10 meters along Entrance Way from 'Entrance and Exit Gate' to 'Entrance Plaza'."
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/next_exhibit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/current_exhibit" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -34,9 +34,9 @@ public class GetDirectionActivity extends AppCompatActivity {
         adapter.setHasStableIds(true);
 //      viewModel.getToaddExhibits().observe(this, adapter::setToaddExhibits);
 
-        recyclerView = findViewById(R.id.instruction);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+        // recyclerView = findViewById(R.id.instruction);
+        // recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        // recyclerView.setAdapter(adapter);
     }
 
     public void onHomeClicked(View view){
