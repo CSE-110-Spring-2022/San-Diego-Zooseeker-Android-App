@@ -26,18 +26,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //searchView = findViewById(R.id.search_view);
 
+        ToAddExhibitDao toAddExhibitDao = ToAddDatabase.getSingleton(this).toAddExhibitDao();
+        List<ToAddExhibits> exhibitItems = toAddExhibitDao.getAll();
+
         ExhibitAdapter adapter = new ExhibitAdapter();
         adapter.setHasStableIds(true);
+        adapter.setExhibitListItems(exhibitItems);
 
         recyclerView = findViewById(R.id.exhibit_items);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
-        List<ToAddExhibits> exhibits= Collections.emptyList();
-        adapter.setExhibitListItems(exhibits);
 
-        //CharSequence s = searchView.getQuery();
-        //System.out.println(s);
 
     }
 
