@@ -75,8 +75,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/exhibit_items"
-        android:layout_width="340dp"
-        android:layout_height="350dp"
+        android:layout_width="344dp"
+        android:layout_height="314dp"
         android:layout_marginStart="35dp"
         android:layout_marginEnd="36dp"
         android:hint="todo list item"
