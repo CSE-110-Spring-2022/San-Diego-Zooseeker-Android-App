@@ -1,11 +1,13 @@
 package com.example.zooapp44;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.SearchView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,12 +15,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity {
+    List<String> animalList;
+    RecyclerView recyclerView;
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        searchView = findViewById(R.id.search_view);
+
     }
+    
     public void onSearchBarClicked(View view) {
         Intent intent = new Intent(this,ToAddExhibitsActivity.class);
 
