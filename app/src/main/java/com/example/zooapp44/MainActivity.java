@@ -31,14 +31,13 @@ public class MainActivity extends AppCompatActivity {
         ToAddExhibitDao toAddExhibitDao = ToAddDatabase.getSingleton(this).toAddExhibitDao();
         List<ToAddExhibits> exhibitItems = toAddExhibitDao.getAll();
 
-        List<ToAddExhibits> filteredItems = new ArrayList<ToAddExhibits>();
-        //List<ToAddExhibits> filteredItems = exhibitItems;
         adapter = new ExhibitAdapter();
         adapter.setHasStableIds(true);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                List<ToAddExhibits> filteredItems = new ArrayList<ToAddExhibits>();
                 //query_item stores the user's input
                 String query_item = searchView.getQuery().toString();
                 Log.i("query item", query_item);
@@ -63,10 +62,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
-
-        //adapter.setExhibitListItems(filteredItems);
-        //adapter.setExhibitListItems(exhibitItems);
 
         recyclerView = findViewById(R.id.exhibit_items);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
