@@ -3,6 +3,7 @@ package com.example.zooapp44;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -11,11 +12,11 @@ import android.view.View;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity {
-    List<String> animalList;
     RecyclerView recyclerView;
     SearchView searchView;
 
@@ -23,10 +24,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        searchView = findViewById(R.id.search_view);
+        //searchView = findViewById(R.id.search_view);
+
+        ExhibitAdapter adapter = new ExhibitAdapter();
+        adapter.setHasStableIds(true);
+
+        recyclerView = findViewById(R.id.exhibit_items);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+
+        List<ToAddExhibits> exhibits= Collections.emptyList();
+        adapter.setExhibitListItems(exhibits);
+
+        //CharSequence s = searchView.getQuery();
+        //System.out.println(s);
 
     }
-    
+
     public void onSearchBarClicked(View view) {
         Intent intent = new Intent(this,ToAddExhibitsActivity.class);
 

@@ -7,29 +7,7 @@
     android:background="#F8F1E9"
     tools:context=".MainActivity">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
-         <androidx.appcompat.widget.SearchView
-             android:id="@+id/search_view"
-             android:layout_margin="8dp"
-             android:layout_width="match_parent"
-             android:layout_height="60dp">
-
-         </androidx.appcompat.widget.SearchView>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_main"
-            android:layout_margin="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </androidx.recyclerview.widget.RecyclerView>
-
-    </RelativeLayout>
-
-<!--   <Button-->
+    <!--   <Button-->
 <!--        android:id="@+id/add_todo_btn"-->
 <!--        android:layout_width="96dp"-->
 <!--        android:layout_height="45dp"-->
@@ -59,19 +37,56 @@
 <!--        app:layout_constraintTop_toTopOf="parent"-->
 <!--        app:layout_constraintVertical_bias="0.051" />-->
 
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="381dp"
+        android:layout_height="77dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp">
+
+        </androidx.appcompat.widget.SearchView>
+
+    </RelativeLayout>
+
     <Button
         android:id="@+id/plan_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#83A300"
-        android:text="PLAN"
         android:onClick="onPlanClicked"
+        android:text="PLAN"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.688" />
+        app:layout_constraintVertical_bias="0.795" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/exhibit_items"
+        android:layout_width="340dp"
+        android:layout_height="350dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="100dp"
+        android:hint="todo list item"
+        android:inputType="text"
+        android:maxLines="1"
+        app:layout_constraintBottom_toTopOf="@+id/plan_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
