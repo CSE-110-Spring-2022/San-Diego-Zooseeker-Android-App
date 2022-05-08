@@ -7,55 +7,98 @@
     android:background="#F8F1E9"
     tools:context=".MainActivity">
 
+    <!--   <Button-->
+    <!--        android:id="@+id/add_todo_btn"-->
+    <!--        android:layout_width="96dp"-->
+    <!--        android:layout_height="45dp"-->
+    <!--        android:backgroundTint="#83A300"-->
+    <!--        android:onClick="onSearchBarClicked"-->
+    <!--        android:text="SEARCH"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.904"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintVertical_bias="0.051" />-->
+
+    <!--    <EditText-->
+    <!--        android:id="@+id/new_todo_text"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="50dp"-->
+    <!--        android:layout_marginEnd="100dp"-->
+    <!--        android:hint="Enter an exhibit..."-->
+    <!--        android:inputType="text"-->
+    <!--        android:maxLines="1"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.0"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintVertical_bias="0.051" />-->
+
     <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:id="@+id/relativeLayout"
+        android:layout_width="381dp"
+        android:layout_height="77dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <SearchView
-            android:id="@+id/search"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:iconifiedByDefault="false"
-            android:onClick="onSearchBarClicked">
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp">
 
-            <requestFocus />
-        </SearchView>
-
-        <ListView
-            android:id="@+id/listview"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" />
+        </androidx.appcompat.widget.SearchView>
 
     </RelativeLayout>
-
-
-<!--   <Button-->
-<!--        android:id="@+id/add_todo_btn"-->
-<!--        android:layout_width="96dp"-->
-<!--        android:layout_height="45dp"-->
-<!--        android:backgroundTint="#83A300"-->
-<!--        android:onClick="onSearchBarClicked"-->
-<!--        android:text="SEARCH"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.904"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.051" />-->
 
     <Button
         android:id="@+id/plan_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#83A300"
-        android:text="PLAN"
         android:onClick="onPlanClicked"
+        android:text="PLAN"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.688" />
+        app:layout_constraintVertical_bias="0.795" />
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#83A300"
+        android:text="There are 0 animals selected."
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.414"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.587" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/exhibit_items"
+        android:layout_width="344dp"
+        android:layout_height="314dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="36dp"
+        android:hint="todo list item"
+        android:inputType="text"
+        android:maxLines="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

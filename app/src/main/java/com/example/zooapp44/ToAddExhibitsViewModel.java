@@ -12,7 +12,6 @@ import java.util.List;
 public class ToAddExhibitsViewModel extends AndroidViewModel {
     private LiveData<List<ToAddExhibits>> toAddExhibits;
     private final ToAddExhibitDao toAddExhibitDao;
-
     public ToAddExhibitsViewModel(@NonNull Application application) {
         super(application);
         Context context = getApplication().getApplicationContext();
@@ -20,13 +19,13 @@ public class ToAddExhibitsViewModel extends AndroidViewModel {
         toAddExhibitDao = db.toAddExhibitDao();
     }
 
-    public LiveData<List<ToAddExhibits>> getTodoListItems() {
+    public LiveData<List<ToAddExhibits>> getToAddExhibits() {
         if (toAddExhibits == null) {
-            loadUsers();
+            loadExhibits();
         }
         return toAddExhibits;
     }
-    public void loadUsers() {
+    public void loadExhibits() {
         toAddExhibits= toAddExhibitDao.getAllLive();
     }
 
