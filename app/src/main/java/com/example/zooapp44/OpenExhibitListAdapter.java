@@ -7,14 +7,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.Collections;
-import java.util.List;
 //import java.util.function.BiConsumer;
 
 public class OpenExhibitListAdapter extends RecyclerView.Adapter<OpenExhibitListAdapter.ViewHolder> {
 //    private List<ToAddExhibits> toaddExhibits = Collections.emptyList();
-    private ExhibitRoute route;
+      private ExhibitRoute route;
 //    private BiConsumer<ToAddExhibits, String> onTextEditedHandler;
 
     public OpenExhibitListAdapter(ExhibitRoute route){
@@ -42,7 +39,7 @@ public class OpenExhibitListAdapter extends RecyclerView.Adapter<OpenExhibitList
 
     @Override
     public void onBindViewHolder(@NonNull OpenExhibitListAdapter.ViewHolder holder, int position) {
-        holder.setExhibitDistance(route.getExhibit(position), route.getDistance(position));
+        holder.setExhibitDistance(route.getExhibit(position), route.getDistance(position, true));
     }
 
     @Override
