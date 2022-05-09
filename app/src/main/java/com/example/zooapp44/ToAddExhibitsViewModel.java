@@ -12,7 +12,6 @@ import java.util.List;
 public class ToAddExhibitsViewModel extends AndroidViewModel {
     private LiveData<List<ToAddExhibits>> toAddExhibits;
     private final ToAddExhibitDao toAddExhibitDao;
-
     public ToAddExhibitsViewModel(@NonNull Application application) {
         super(application);
         Context context = getApplication().getApplicationContext();
