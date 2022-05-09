@@ -1,5 +1,6 @@
 package com.example.zooapp44;
 
+import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 import android.content.Context;
@@ -56,6 +57,10 @@ public class ToAddDatabaseTest {
 
         long id1=dao.insert(item1);
         long id2=dao.insert(item2);
+
+        List<ToAddExhibits> exhibitItems = dao.getAll();
+        assertEquals(item1.id, exhibitItems.get(0).id);
+        assertEquals(item2.id, exhibitItems.get(1).id);
 
         assertNotEquals(id1,id2);
     }

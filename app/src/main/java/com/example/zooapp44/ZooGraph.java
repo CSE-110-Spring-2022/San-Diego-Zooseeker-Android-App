@@ -124,6 +124,7 @@ public class ZooGraph {
     public class Edge {
         public String id;
         public String street;
+        public double weight;
 
         Edge(){ id = ""; street = "";}
         Edge(String id, String street){
@@ -223,6 +224,7 @@ public class ZooGraph {
         temp = allPaths.getPath(start);
         shortestEdges.addAll(temp.getEdgeList());
         shortestVertex.addAll(temp.getVertexList());
+        weights.add(temp.getWeight());
 
         //Change List<String> of vertices to List<Vertex>
         //Use for loop
@@ -234,7 +236,10 @@ public class ZooGraph {
         //Change List<String> of Identified to List<Edges>
         List<Edge> toPassE=new ArrayList<>();
         for(int where=0;where<shortestEdges.size();where++){
-            toPassE.add(eInfo.get(shortestEdges.get(where).getId()));
+            IdentifiedWeightedEdge graphEdge = shortestEdges.get(where);
+            Edge infoEdge = eInfo.get(graphEdge.getId());
+            infoEdge.weight = graphEdge.getWeight();
+            toPassE.add(infoEdge);
         }
 
         // Return ExhibitRoute

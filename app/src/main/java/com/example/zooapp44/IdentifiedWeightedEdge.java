@@ -24,6 +24,11 @@ public class IdentifiedWeightedEdge extends DefaultWeightedEdge {
         return "(" + getSource() + " :" + id + ": " + getTarget() + ")";
     }
 
+    @Override
+    public double getWeight(){
+        return super.getWeight();
+    }
+
     public static void attributeConsumer(Pair<IdentifiedWeightedEdge, String> pair, Attribute attr) {
         IdentifiedWeightedEdge edge = pair.getFirst();
         String attrName = pair.getSecond();
