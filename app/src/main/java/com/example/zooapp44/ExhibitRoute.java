@@ -105,8 +105,6 @@ public class ExhibitRoute {
         else target_location = exhibits.get(current);
 
         return findPathBetween(current_location, target_location);
-
-
     }
 
     private String findPathBetween(String current_location, String target_location) {
