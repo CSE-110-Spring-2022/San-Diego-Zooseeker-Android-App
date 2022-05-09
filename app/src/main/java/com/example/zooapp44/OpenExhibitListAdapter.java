@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class OpenExhibitListAdapter extends RecyclerView.Adapter<OpenExhibitListAdapter.ViewHolder> {
 //    private List<ToAddExhibits> toaddExhibits = Collections.emptyList();
-      private ExhibitRoute route;
+    private ExhibitRoute route;
 //    private BiConsumer<ToAddExhibits, String> onTextEditedHandler;
 
     public OpenExhibitListAdapter(ExhibitRoute route){
