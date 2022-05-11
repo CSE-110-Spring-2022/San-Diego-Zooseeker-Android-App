@@ -110,8 +110,8 @@
 
     <Button
         android:id="@+id/next_btn"
-        android:layout_width="150dp"
-        android:layout_height="70dp"
+        android:layout_width="130dp"
+        android:layout_height="60dp"
         android:backgroundTint="#B2F194"
         android:onClick="onNextClicked"
         android:text="NEXT"
@@ -126,8 +126,8 @@
 
     <Button
         android:id="@+id/back_btn"
-        android:layout_width="150dp"
-        android:layout_height="70dp"
+        android:layout_width="130dp"
+        android:layout_height="60dp"
         android:backgroundTint="#B2F194"
         android:onClick="onBackClicked"
         android:text="BACK"
@@ -135,7 +135,7 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.193"
+        app:layout_constraintHorizontal_bias="0.18"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.885" />
@@ -150,12 +150,12 @@
         android:onClick="onStopClicked"
         android:text="STOP NAVIGATION"
         android:textSize="24sp"
+        app:flow_horizontalAlign="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+        app:layout_constraintVertical_bias="0.959" />
 
     <TextView
         android:id="@+id/route_instruction"
