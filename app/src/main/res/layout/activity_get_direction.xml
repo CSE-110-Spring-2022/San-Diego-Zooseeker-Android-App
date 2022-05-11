@@ -6,61 +6,61 @@
     android:layout_height="match_parent"
     android:background="#F8F1E9">
 
+
     <TextView
         android:id="@+id/next_exhibit"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:layout_marginBottom="20dp"
         android:background="#83A300"
-        app:layout_constraintBottom_toTopOf="@+id/next_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.766" />
 
     <TextView
         android:id="@+id/next_animal"
         android:layout_width="224dp"
         android:layout_height="44dp"
-        android:layout_marginTop="346dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="6dp"
         android:text=" Next animal"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/next_btn"
+        app:layout_constraintBottom_toBottomOf="@+id/next_exhibit"
         app:layout_constraintEnd_toEndOf="@+id/next_exhibit"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/next_exhibit"
-        app:layout_constraintTop_toBottomOf="@+id/current_exhibit" />
+        app:layout_constraintTop_toTopOf="@+id/next_exhibit" />
 
     <TextView
         android:id="@+id/next_message"
         android:layout_width="163dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="124dp"
-        android:layout_marginTop="308dp"
         android:layout_marginEnd="124dp"
-        android:layout_marginBottom="85dp"
         android:background="#C4C4C4"
         android:text="Next coming up"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/next_btn"
+        app:layout_constraintBottom_toTopOf="@+id/next_exhibit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/current_exhibit" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:id="@+id/current_exhibit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
         android:background="#83A300"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_btn">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.131">
 
         <TextView
             android:id="@+id/current_animal"
@@ -94,14 +94,18 @@
         android:layout_width="110dp"
         android:layout_height="60dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginEnd="291dp"
         android:backgroundTint="#83A300"
         android:onClick="onHomeClicked"
         android:text="HOME"
         android:textAllCaps="false"
         android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
         app:layout_editor_absoluteX="16dp" />
 
     <Button
@@ -109,18 +113,18 @@
         android:layout_width="334dp"
         android:layout_height="48dp"
         android:layout_marginStart="39dp"
-        android:layout_marginTop="125dp"
         android:layout_marginEnd="39dp"
-        android:layout_marginBottom="1dp"
         android:backgroundTint="#B2F194"
         android:onClick="onNextClicked"
         android:text="NEXT"
         android:textColor="#000000"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/stop_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/route_instruction" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.868" />
 
     <Button
         android:id="@+id/stop_btn"
