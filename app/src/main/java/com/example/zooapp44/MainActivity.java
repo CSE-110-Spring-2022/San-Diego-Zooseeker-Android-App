@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -20,8 +21,7 @@ public class MainActivity extends AppCompatActivity {
     SearchView searchView;
     ExhibitAdapter adapter;
     ToAddExhibitsViewModel exhibitsViewModel;
-
-
+    int count = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +33,10 @@ public class MainActivity extends AppCompatActivity {
 
         ToAddExhibitDao toAddExhibitDao = ToAddDatabase.getSingleton(this).toAddExhibitDao();
         List<ToAddExhibits> exhibitItems = toAddExhibitDao.getAll();
-
-
+        TextView msg = findViewById(R.id.message);
+        count = toAddExhibitDao.getSelected().size();
+        String temp = "There are "+Integer.toString(count)+" animals selected.";
+        msg.setText(temp);
         adapter = new ExhibitAdapter();
         adapter.setHasStableIds(true);
         adapter.setOnCheckBoxClickedHandler(new Consumer<ToAddExhibits>() {
@@ -42,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
             public void accept(ToAddExhibits toAddExhibits) {
                 toAddExhibits.selected = !toAddExhibits.selected;
                 toAddExhibitDao.update(toAddExhibits);
+                count = toAddExhibitDao.getSelected().size();
+                String current= "There are "+Integer.toString(count)+" animals selected.";
+                msg.setText(current);
             }
         });
 

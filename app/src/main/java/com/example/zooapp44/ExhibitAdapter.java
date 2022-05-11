@@ -28,7 +28,7 @@ public class ExhibitAdapter extends RecyclerView.Adapter<ExhibitAdapter.ViewHold
         this.onCheckBoxClicked = onCheckBoxClicked;
     }
 
-    public void setOnTextEditedHandler(BiConsumer<ToAddExhibits, String> onTextEditedHandler) {
+    public void setOnTextEditedHandler(Consumer<ToAddExhibits> onCheckBoxClicked) {
         this.onTextEditedHandler = onTextEditedHandler;
     }
 
@@ -49,6 +49,7 @@ public class ExhibitAdapter extends RecyclerView.Adapter<ExhibitAdapter.ViewHold
 
     @Override
     public int getItemCount() {
+        System.out.println(exhibits.size());
         return exhibits.size();
     }
 
