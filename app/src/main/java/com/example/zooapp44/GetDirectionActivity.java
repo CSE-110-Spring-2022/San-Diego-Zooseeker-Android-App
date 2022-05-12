@@ -58,6 +58,9 @@ public class GetDirectionActivity extends AppCompatActivity {
     }
 
     public void onNextClicked(View view){
+        Button back = findViewById(R.id.back_btn);
+        back.setVisibility(View.VISIBLE);
+
         current++;
         if(current == route.getSize()){
             Button button = findViewById(R.id.next_btn);
@@ -67,7 +70,15 @@ public class GetDirectionActivity extends AppCompatActivity {
     }
 
     public void onBackClicked(View view){
+        Button next = findViewById(R.id.next_btn);
+        next.setVisibility(View.VISIBLE);
 
+        current--;
+        if(current == 0){
+            Button button = findViewById(R.id.back_btn);
+            button.setVisibility(View.INVISIBLE);
+        }
+        updateText();
     }
 
     public void onStopClicked(View view) { finish(); }
