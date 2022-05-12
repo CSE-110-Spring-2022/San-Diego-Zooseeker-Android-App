@@ -24,6 +24,21 @@
         app:layout_editor_absoluteX="16dp" />
 
     <Button
+        android:id="@+id/clear_button"
+        android:layout_width="110dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="264dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#F56C6C"
+        android:onClick="onClearClicked"
+        android:text="CLEAR"
+        android:textAllCaps="false"
+        android:textSize="22dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_editor_absoluteX="16dp" />
+
+    <Button
         android:id="@+id/direction_button"
         android:layout_width="wrap_content"
         android:layout_height="58dp"

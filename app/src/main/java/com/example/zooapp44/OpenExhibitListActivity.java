@@ -40,4 +40,7 @@ public class OpenExhibitListActivity extends AppCompatActivity {
         intent.putExtra("Route", ExhibitRoute.serialize(route));
         startActivity(intent);
     }
+
+    public void onClearClicked(View view) {
+    }
 }
