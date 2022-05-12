@@ -64,7 +64,7 @@
 
         <TextView
             android:id="@+id/current_animal"
-            android:layout_width="272dp"
+            android:layout_width="240dp"
             android:layout_height="37dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
