@@ -110,10 +110,8 @@
 
     <Button
         android:id="@+id/next_btn"
-        android:layout_width="334dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="39dp"
-        android:layout_marginEnd="39dp"
+        android:layout_width="150dp"
+        android:layout_height="55dp"
         android:backgroundTint="#B2F194"
         android:onClick="onNextClicked"
         android:text="NEXT"
@@ -121,19 +119,33 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintHorizontal_bias="0.901"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.868" />
+        app:layout_constraintVertical_bias="0.867" />
+
+    <Button
+        android:id="@+id/back_btn"
+        android:layout_width="150dp"
+        android:layout_height="55dp"
+        android:backgroundTint="#B2F194"
+        android:text="BACK"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:onClick="onBackClicked"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.098"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.867" />
 
     <Button
         android:id="@+id/stop_btn"
         android:layout_width="330dp"
         android:layout_height="48dp"
         android:layout_marginStart="39dp"
-        android:layout_marginTop="1dp"
         android:layout_marginEnd="39dp"
-        android:layout_marginBottom="31dp"
         android:backgroundTint="#F56C6C"
         android:onClick="onStopClicked"
         android:text="STOP NAVIGATION"
@@ -141,7 +153,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/next_btn" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.951" />
 
     <TextView
         android:id="@+id/route_instruction"
