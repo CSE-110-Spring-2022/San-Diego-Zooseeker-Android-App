@@ -15,7 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     SearchView searchView;
@@ -61,8 +62,9 @@ public class MainActivity extends AppCompatActivity {
                 for(int i = 0; i < exhibitItems.size(); i ++){
                     List<String> tags = exhibitItems.get(i).tags;
                     Log.i("tags", tags.toString());
+
                     for(int j = 0; j < tags.size(); j ++){
-                        if(query_item.equals(tags.get(j))){
+                        if(query_item.equals(tags.get(j).substring(0, query_item.length()))){
                             filteredItems.add(exhibitItems.get(i));
                         }
                     }
