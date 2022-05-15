@@ -34,7 +34,9 @@ public class OpenExhibitListActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
     public void onHomeClicked(View view){
-        finish();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        // finish();
     }
 
     public void onGetDirectionClicked(View view){
@@ -50,5 +52,6 @@ public class OpenExhibitListActivity extends AppCompatActivity {
             exhibitItems.get(i).selected = false;
             toAddExhibitDao.update(exhibitItems.get(i));
         }
+        setContentView(R.layout.activity_open_exhibit_list);
     }
 }
