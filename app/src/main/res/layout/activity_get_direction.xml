@@ -35,6 +35,23 @@
         app:layout_constraintStart_toStartOf="@+id/next_exhibit"
         app:layout_constraintTop_toTopOf="@+id/next_exhibit" />
 
+
+    <ImageView
+        android:id="@+id/skip_btn"
+        android:layout_width="53dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="5dp"
+        android:clickable="true"
+        android:src="@drawable/ic_trash_can"
+        android:onClick="onSkipClicked"
+        app:layout_constraintBottom_toBottomOf="@+id/next_exhibit"
+        app:layout_constraintEnd_toEndOf="@+id/next_exhibit"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/next_exhibit"
+        app:layout_constraintTop_toTopOf="@+id/next_exhibit"
+        app:layout_constraintVertical_bias="0.0" />
+
     <TextView
         android:id="@+id/next_message"
         android:layout_width="163dp"

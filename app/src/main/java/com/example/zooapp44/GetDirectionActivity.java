@@ -67,4 +67,8 @@ public class GetDirectionActivity extends AppCompatActivity {
     }
 
     public void onStopClicked(View view) { finish(); }
+
+    public void onSkipClicked(View view) {
+        //finish();
+    }
 }
