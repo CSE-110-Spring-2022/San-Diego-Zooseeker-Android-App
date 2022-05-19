@@ -2,9 +2,15 @@ package com.example.zooapp44;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +20,7 @@ public class GetDirectionActivity extends AppCompatActivity {
     public RecyclerView recyclerView;
     private int current;
     ExhibitRoute route;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +60,31 @@ public class GetDirectionActivity extends AppCompatActivity {
         super.onBackPressed();
         startActivity(new Intent(GetDirectionActivity.this, MainActivity.class));
         finish();
+    }
+    public void onSettingClicked(View view){
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.popup_window, null);
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true;
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
+    }
+
+    public void onBriefClicked(View view){
+
+    }
+
+    public void onDetailClicked(View view){
+
     }
 
     public void onNextClicked(View view){

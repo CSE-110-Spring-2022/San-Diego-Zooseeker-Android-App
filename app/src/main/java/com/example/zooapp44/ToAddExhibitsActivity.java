@@ -9,8 +9,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
-
 public class ToAddExhibitsActivity extends AppCompatActivity {
 
     public RecyclerView recyclerView;
@@ -31,9 +29,9 @@ public class ToAddExhibitsActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
-        ToAddDatabase db = ToAddDatabase.getSingleton(this);
-        ToAddExhibitDao toAddExhibitDao = db.toAddExhibitDao();
-
+//        ToAddDatabase db = ToAddDatabase.getSingleton(this);
+//        ToAddExhibitDao toAddExhibitDao = db.toAddExhibitDao();
+//        List<ToAddExhibits> exhibitlist = ToAddExhibits.loadJSON(this, "sample_node_info.json");
 
 //        toAddExhibitDao.insertAll(exhibitlist);
 
