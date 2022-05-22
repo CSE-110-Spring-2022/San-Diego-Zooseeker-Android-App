@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         TextView selectedExhibitsList = findViewById(R.id.selectedExhibits);
         selectedExhibitsOutput = "";
         for(int i = 0; i < count; i = i + 1){
-            selectedExhibitsOutput = selectedExhibitsOutput + toAddExhibitDao.getSelected().get(i).id +  "\n";
+            selectedExhibitsOutput = selectedExhibitsOutput + toAddExhibitDao.getSelected().get(i).name +  "\n";
         }
         selectedExhibitsList.setText(selectedExhibitsOutput);
 
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 msg.setText(current);
                 selectedExhibitsOutput = "";
                 for(int i = 0; i < count; i = i + 1){
-                    selectedExhibitsOutput = selectedExhibitsOutput + toAddExhibitDao.getSelected().get(i).id + "\n";
+                    selectedExhibitsOutput = selectedExhibitsOutput + toAddExhibitDao.getSelected().get(i).name + "\n";
                 }
                 selectedExhibitsList.setText(selectedExhibitsOutput);
             }
