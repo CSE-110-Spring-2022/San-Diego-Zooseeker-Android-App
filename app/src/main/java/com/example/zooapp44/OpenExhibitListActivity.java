@@ -1,8 +1,10 @@
 package com.example.zooapp44;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,8 +22,14 @@ public class OpenExhibitListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_open_exhibit_list);
 
+
         Intent intent = getIntent();
         route = ExhibitRoute.deserialize(intent.getStringExtra("Route"));
+
+        if(route.getSize() == 0){
+            Button directionButton = findViewById(R.id.direction_button);
+            directionButton.setVisibility(View.INVISIBLE);
+        }
 
 //        viewModel = new ViewModelProvider(this)
 //                .get(ToAddExhibitsViewModel.class);
@@ -36,7 +44,7 @@ public class OpenExhibitListActivity extends AppCompatActivity {
     public void onHomeClicked(View view){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-        // finish();
+//         finish();
     }
 
     public void onGetDirectionClicked(View view){
@@ -52,6 +60,11 @@ public class OpenExhibitListActivity extends AppCompatActivity {
             exhibitItems.get(i).selected = false;
             toAddExhibitDao.update(exhibitItems.get(i));
         }
+        SharedPreferences sharedPreferences = getSharedPreferences("Settings", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
+
         setContentView(R.layout.activity_open_exhibit_list);
     }
 }
