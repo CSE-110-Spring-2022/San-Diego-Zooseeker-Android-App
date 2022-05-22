@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onPlanClicked(View view){
+        finish();
         Intent intent = new Intent(this, OpenExhibitListActivity.class);
         ZooGraph g = ZooGraph.getSingleton(getApplicationContext());
 
