@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     ExhibitAdapter adapter;
     ToAddExhibitsViewModel exhibitsViewModel;
     int count = 0;
+    String selectedExhibitsOutput;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +38,14 @@ public class MainActivity extends AppCompatActivity {
         count = toAddExhibitDao.getSelected().size();
         String temp = "There are "+Integer.toString(count)+" animals selected.";
         msg.setText(temp);
+
+        TextView selectedExhibitsList = findViewById(R.id.selectedExhibits);
+        selectedExhibitsOutput = "";
+        for(int i = 0; i < count; i = i + 1){
+            selectedExhibitsOutput = selectedExhibitsOutput + toAddExhibitDao.getSelected().get(i).id +  "\n";
+        }
+        selectedExhibitsList.setText(selectedExhibitsOutput);
+
         adapter = new ExhibitAdapter();
         adapter.setHasStableIds(true);
         adapter.setOnCheckBoxClickedHandler(new Consumer<ToAddExhibits>() {
@@ -45,8 +54,13 @@ public class MainActivity extends AppCompatActivity {
                 toAddExhibits.selected = !toAddExhibits.selected;
                 toAddExhibitDao.update(toAddExhibits);
                 count = toAddExhibitDao.getSelected().size();
-                String current= "There are "+Integer.toString(count)+" animals selected.";
+                String current= "There are "+Integer.toString(count)+" animals selected: ";
                 msg.setText(current);
+                selectedExhibitsOutput = "";
+                for(int i = 0; i < count; i = i + 1){
+                    selectedExhibitsOutput = selectedExhibitsOutput + toAddExhibitDao.getSelected().get(i).id + "\n";
+                }
+                selectedExhibitsList.setText(selectedExhibitsOutput);
             }
         });
 
