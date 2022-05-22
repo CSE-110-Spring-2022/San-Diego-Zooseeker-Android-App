@@ -57,7 +57,7 @@ public class SearchActivityTest {
         scenario.onActivity(activity -> {
             SearchView searchView = activity.findViewById(R.id.search_view);
             searchView.requestFocus();
-            searchView.setQuery("gorilla", true);
+            searchView.setQuery("gor", true);
 
             try {
                 TimeUnit.SECONDS.sleep(1);
