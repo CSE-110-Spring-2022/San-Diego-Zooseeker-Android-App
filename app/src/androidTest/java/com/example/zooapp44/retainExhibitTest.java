@@ -86,7 +86,7 @@ public class retainExhibitTest {
                         graph.getVertex("intersaction", ZooGraph.Kind.INTERSECTION, true),
                         graph.getVertex("bird", ZooGraph.Kind.EXHIBIT, false),
                         graph.getVertex("lion", ZooGraph.Kind.EXHIBIT, true));
-        List<ZooGraph.Edge> edges = Arrays.asList(graph.eInfo.get("edge-0"), graph.eInfo.get("edge-1"), graph.eInfo.get("edge-2"), graph.eInfo.get("edge-3"));
+        List<ZooGraph.Edge> edges = Arrays.asList(graph.eInfo.get("gate_to_front"), graph.eInfo.get("gate_to_front"), graph.eInfo.get("gate_to_front"), graph.eInfo.get("gate_to_front"));
         List<Double> distance_double = Arrays.asList(300.0, 200.0);
         List<String> exhibits = Arrays.asList("tiger", "lion");
         intent.putExtra("Route", ExhibitRoute.serialize(new ExhibitRoute(vertices, edges, distance_double, exhibits)));

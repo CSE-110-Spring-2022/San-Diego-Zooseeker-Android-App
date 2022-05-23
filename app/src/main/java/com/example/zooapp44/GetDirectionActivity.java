@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -29,6 +30,7 @@ public class GetDirectionActivity extends AppCompatActivity {
         editor = preferences.edit();
 
         current = preferences.getInt("current_index", 0);
+        current = 0;
 
         if(current == route.getSize()){
             Button button = findViewById(R.id.next_btn);
@@ -49,6 +51,7 @@ public class GetDirectionActivity extends AppCompatActivity {
 
 
         TextView instructionView = findViewById(R.id.route_instruction);
+        instructionView.setMovementMethod(new ScrollingMovementMethod());
         instructionView.setText(route.getInstruction(current));
 
         updateNextAnimalView();

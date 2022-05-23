@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                     for(int j = 0; j < tags.size(); j ++){
                         if(tags.get(j).startsWith(query_item)){
                             filteredItems.add(exhibitItems.get(i));
+                            break;
                         }
                     }
                 }
