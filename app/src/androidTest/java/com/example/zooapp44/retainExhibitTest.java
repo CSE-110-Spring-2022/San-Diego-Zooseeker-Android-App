@@ -1,12 +1,14 @@
 package com.example.zooapp44;
 
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -24,6 +26,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -69,6 +72,35 @@ public class retainExhibitTest {
                 CheckBox checkBox = currentVH.itemView.findViewById(R.id.chosen);
                 assertTrue(checkBox.isChecked());
             }
+        });
+    }
+
+    @Test
+    public void testRetainRoute(){
+        Intent intent = new Intent(ApplicationProvider.getApplicationContext(), GetDirectionActivity.class);
+        ZooGraph graph = ZooGraph.getSingleton(ApplicationProvider.getApplicationContext());
+
+        List<ZooGraph.Vertex> vertices =
+                Arrays.asList(graph.getVertex("entrance gate", ZooGraph.Kind.GATE, true),
+                        graph.getVertex("tiger", ZooGraph.Kind.EXHIBIT, true),
+                        graph.getVertex("intersaction", ZooGraph.Kind.INTERSECTION, true),
+                        graph.getVertex("bird", ZooGraph.Kind.EXHIBIT, false),
+                        graph.getVertex("lion", ZooGraph.Kind.EXHIBIT, true));
+        List<ZooGraph.Edge> edges = Arrays.asList(graph.eInfo.get("edge-0"), graph.eInfo.get("edge-1"), graph.eInfo.get("edge-2"), graph.eInfo.get("edge-3"));
+        List<Double> distance_double = Arrays.asList(300.0, 200.0);
+        List<String> exhibits = Arrays.asList("tiger", "lion");
+        intent.putExtra("Route", ExhibitRoute.serialize(new ExhibitRoute(vertices, edges, distance_double, exhibits)));
+        ActivityScenario<GetDirectionActivity> scenario = ActivityScenario.launch(intent);
+        scenario.moveToState(Lifecycle.State.CREATED);
+        scenario.moveToState(Lifecycle.State.STARTED);
+        scenario.moveToState(Lifecycle.State.RESUMED);
+        scenario.onActivity(activity -> {
+            Button button = activity.findViewById(R.id.next_btn);
+            SharedPreferences sharedPreferences = activity.getSharedPreferences("Settings", Context.MODE_PRIVATE);
+            sharedPreferences.edit().clear().apply();
+            button.performClick();
+            assertEquals(1, sharedPreferences.getInt("current_index", 0));
+            sharedPreferences.edit().clear().apply();
         });
     }
 

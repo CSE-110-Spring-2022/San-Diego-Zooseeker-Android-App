@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
-
 public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     SearchView searchView;
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         TextView selectedExhibitsList = findViewById(R.id.selectedExhibits);
         selectedExhibitsOutput = "";
         for(int i = 0; i < count; i = i + 1){
-            selectedExhibitsOutput = selectedExhibitsOutput + toAddExhibitDao.getSelected().get(i).id +  "\n";
+            selectedExhibitsOutput = selectedExhibitsOutput + toAddExhibitDao.getSelected().get(i).name +  "\n";
         }
         selectedExhibitsList.setText(selectedExhibitsOutput);
 
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 msg.setText(current);
                 selectedExhibitsOutput = "";
                 for(int i = 0; i < count; i = i + 1){
-                    selectedExhibitsOutput = selectedExhibitsOutput + toAddExhibitDao.getSelected().get(i).id + "\n";
+                    selectedExhibitsOutput = selectedExhibitsOutput + toAddExhibitDao.getSelected().get(i).name + "\n";
                 }
                 selectedExhibitsList.setText(selectedExhibitsOutput);
             }
@@ -75,8 +74,9 @@ public class MainActivity extends AppCompatActivity {
                 for(int i = 0; i < exhibitItems.size(); i ++){
                     List<String> tags = exhibitItems.get(i).tags;
                     Log.i("tags", tags.toString());
+
                     for(int j = 0; j < tags.size(); j ++){
-                        if(query_item.equals(tags.get(j))){
+                        if(tags.get(j).startsWith(query_item)){
                             filteredItems.add(exhibitItems.get(i));
                         }
                     }

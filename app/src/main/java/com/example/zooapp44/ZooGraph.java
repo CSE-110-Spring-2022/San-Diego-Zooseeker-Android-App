@@ -140,11 +140,11 @@ public class ZooGraph {
         public String id;
         public Kind kind;
         public String name;
-        public List<String> tags;
         public boolean selected;
 
         Vertex(){}
-        Vertex(String name, Kind kind, boolean selected){
+        Vertex(String id, String name, Kind kind, boolean selected){
+            this.id = id;
             this.name = name;
             this.kind = kind;
             this.selected = selected;
@@ -152,7 +152,7 @@ public class ZooGraph {
     }
 
     public Vertex getVertex(String name, Kind kind, boolean selected){
-        return new Vertex(name, kind, selected);
+        return new Vertex(name, name, kind, selected);
     }
 
     /**
