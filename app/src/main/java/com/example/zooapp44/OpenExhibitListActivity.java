@@ -65,6 +65,15 @@ public class OpenExhibitListActivity extends AppCompatActivity {
         editor.clear();
         editor.apply();
 
+        // clear the route
+        route.exhibits.clear();
+        route.edges.clear();
+        route.vertices.clear();
+        route.weight.clear();
+
         setContentView(R.layout.activity_open_exhibit_list);
+        // disable the get direction button
+        Button directionButton = findViewById(R.id.direction_button);
+        directionButton.setVisibility(View.INVISIBLE);
     }
 }
