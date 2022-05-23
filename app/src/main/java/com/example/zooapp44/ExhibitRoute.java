@@ -113,7 +113,7 @@ public class ExhibitRoute {
         String target_location;
 
         if(current == getSize()){
-            current_location = "Entrance gate";
+            current_location = "entrance_exit_gate";
         } else{
             current_location = exhibits.get(current);
         }
@@ -154,6 +154,10 @@ public class ExhibitRoute {
         int t = 0;
         while(!vertices.get(t).id.equals(target_location))
             t++;
+
+        if(current_location == "entrance_exit_gate"){
+            s = vertices.size()-1;
+        }
         //s > t
 
         String ret = String.format("The shortest path from %s to %s is:\n\n", vertices.get(s).name, vertices.get(t).name);
@@ -163,7 +167,7 @@ public class ExhibitRoute {
             num++;
             ret += num + ". ";
             ret += String.format("Walk %s meters along %s from %s to %s.\n\n",
-                    edges.get(i).weight + "ft", edges.get(i).street, vertices.get(i).name, vertices.get(i - 1).name);
+                    edges.get(i-1).weight + "ft", edges.get(i-1).street, vertices.get(i).name, vertices.get(i - 1).name);
         }
 
         return ret;
