@@ -30,6 +30,7 @@ public class GetDirectionActivity extends AppCompatActivity {
         editor = preferences.edit();
 
         current = preferences.getInt("current_index", 0);
+        current = 0;
 
         if(current == route.getSize()){
             Button button = findViewById(R.id.next_btn);
