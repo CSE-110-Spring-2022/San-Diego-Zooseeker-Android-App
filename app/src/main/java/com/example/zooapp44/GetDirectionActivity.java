@@ -53,16 +53,13 @@ public class GetDirectionActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void updateTextBack(){
-        System.out.println("in updateTextBack()");
         TextView currentAnimalView = findViewById(R.id.current_animal);
 
         TextView nextAnimalView = findViewById(R.id.next_animal);
 
         currentAnimalView.setText(route.getExhibit(current));
         TextView backDistanceView = findViewById(R.id.current_distance);
-        // TODO: find distance from next exhibit to current exhibit
-        //backDistanceView.setText(route.getDistance(current, false));
-        backDistanceView.setText("back distance");
+        backDistanceView.setText(route.getBackDistance(current, false));
 
         TextView instructionView = findViewById(R.id.route_instruction);
         instructionView.setText(route.getBackInstruction(current+1));
@@ -73,7 +70,6 @@ public class GetDirectionActivity extends AppCompatActivity {
             nextAnimalView.setText("");
         else
             nextAnimalView.setText(route.getExhibit(current + 1));
-        System.out.println("end updateTextBack()");
     }
 
     public void onHomeClicked(View view){
@@ -95,7 +91,6 @@ public class GetDirectionActivity extends AppCompatActivity {
     }
 
     public void onBackClicked(View view){
-        System.out.println("back clicked");
         Button next = findViewById(R.id.next_btn);
         next.setVisibility(View.VISIBLE);
 
@@ -110,9 +105,7 @@ public class GetDirectionActivity extends AppCompatActivity {
 
             currentAnimalView.setText("Entrance gate");
             TextView backDistanceView = findViewById(R.id.current_distance);
-            // TODO: find distance from next exhibit to current exhibit
-            //backDistanceView.setText(route.getDistance(current, false));
-            backDistanceView.setText("back distance");
+            backDistanceView.setText(route.getBackDistance(current, false));
 
             TextView instructionView = findViewById(R.id.route_instruction);
             instructionView.setText(route.getBackInstruction(current+1));
@@ -120,7 +113,6 @@ public class GetDirectionActivity extends AppCompatActivity {
             nextAnimalView.setText(route.getExhibit(current + 1));
 
         } else {
-            System.out.println("current not less than 0");
             updateTextBack();
         }
     }

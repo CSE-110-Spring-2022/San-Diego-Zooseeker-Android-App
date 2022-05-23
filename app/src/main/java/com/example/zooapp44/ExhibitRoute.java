@@ -65,6 +65,14 @@ public class ExhibitRoute {
         return sum + "ft";
     }
 
+    public String getBackDistance(int i, boolean flg){
+        if(flg == false) return weight.get(i+1) + "ft";
+        int sum = 0;
+        for(int j = 0; j <= i; j++)
+            sum += weight.get(j);
+        return sum + "ft";
+    }
+
     public int getSize(){
         return exhibits.size();
     }
