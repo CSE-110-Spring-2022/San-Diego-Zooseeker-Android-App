@@ -120,4 +120,14 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("Route", ExhibitRoute.serialize(route));
         startActivity(intent);
     }
+
+    public void onClearClicked(View view) {
+        ToAddExhibitDao toAddExhibitDao = ToAddDatabase.getSingleton(this).toAddExhibitDao();
+        List<ToAddExhibits> exhibitItems = toAddExhibitDao.getAll();
+        for(int i = 0; i < exhibitItems.size(); i ++){
+            exhibitItems.get(i).selected = false;
+            toAddExhibitDao.update(exhibitItems.get(i));
+        }
+        setContentView(R.layout.activity_main);
+    }
 }
