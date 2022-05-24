@@ -140,11 +140,11 @@ public class ZooGraph {
         public String id;
         public Kind kind;
         public String name;
-        public List<String> tags;
         public boolean selected;
 
         Vertex(){}
-        Vertex(String name, Kind kind, boolean selected){
+        Vertex(String id, String name, Kind kind, boolean selected){
+            this.id = id;
             this.name = name;
             this.kind = kind;
             this.selected = selected;
@@ -152,7 +152,7 @@ public class ZooGraph {
     }
 
     public Vertex getVertex(String name, Kind kind, boolean selected){
-        return new Vertex(name, kind, selected);
+        return new Vertex(name, name, kind, selected);
     }
 
     /**
@@ -188,39 +188,44 @@ public class ZooGraph {
         //Want to loop through the list of exhibits until it is empty
         //When we find the shortest path one one vertex to another, remove the ending vertex from exhibits
         //Use that ending vertex to run getPaths
+        String lastVisited = start;
+//        toRemove.remove(0);
         while(toRemove.size()>0) {
-            temp=allPaths.getPath(exhibits.get(0));
+            allPaths = algorithm.getPaths(lastVisited);
+            temp=allPaths.getPath(toRemove.get(0));
             //Runs through all exhibits we need to go to see which one is shortest
             smallestWeight=10000000;
             //Runs through all exhibits we need to go to see which one is shortest
-            for (int i = 0; i < exhibits.size(); i++) {
+            for (String exhibit:toRemove) {
                 //If path is shorter than the current stored
                 //Store path in temp
                 //Store shortest weight in smallestWeight
-                if(smallestWeight>allPaths.getPath(exhibits.get(i)).getWeight()){
-                    smallestWeight=allPaths.getPath(exhibits.get(i)).getWeight();
-                    temp=allPaths.getPath(exhibits.get(i));
+                if(smallestWeight>allPaths.getPath(exhibit).getWeight()){
+                    smallestWeight=allPaths.getPath(exhibit).getWeight();
+                    temp=allPaths.getPath(exhibit);
                 }
-                //Set smallestWeight again
-                //Set edges list
-                //Set Vertices
-                //Set new search graph path using removed ending vertex
-                //Remove ending vertex
-                smallestWeight=10000000;
-                shortestEdges.addAll(temp.getEdgeList());
-                shortestVertex.addAll(temp.getVertexList());
-                //get rid of duplicates
-                shortestVertex.remove(shortestVertex.size() - 1);
-                toRemove.remove(temp.getEndVertex());
-                exhibitInOrder.add(temp.getEndVertex());
-                weights.add(temp.getWeight());
-                allPaths=algorithm.getPaths(temp.getEndVertex());
             }
+            //Set smallestWeight again
+            //Set edges list
+            //Set Vertices
+            //Set new search graph path using removed ending vertex
+            //Remove ending vertex
+//            smallestWeight=10000000;
+            shortestEdges.addAll(temp.getEdgeList());
+            shortestVertex.addAll(temp.getVertexList());
+            toRemove.remove(temp.getEndVertex());
+            //get rid of duplicates but keep the last one
+            shortestVertex.remove(shortestVertex.size() - 1);
+            exhibitInOrder.add(temp.getEndVertex());
+            weights.add(temp.getWeight());
+            lastVisited = temp.getEndVertex();
+//            allPaths=algorithm.getPaths(temp.getEndVertex());
         }
         //Have shortestEdges,shortestVertex,exhibits selected
         //List<String>=shortestVertex,List<Identified>=shortestEdges,List<String>
 
         //go back to the gate
+        allPaths = algorithm.getPaths(lastVisited);
         temp = allPaths.getPath(start);
         shortestEdges.addAll(temp.getEdgeList());
         shortestVertex.addAll(temp.getVertexList());

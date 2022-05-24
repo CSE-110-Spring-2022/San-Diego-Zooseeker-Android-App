@@ -2,14 +2,12 @@ package com.example.zooapp44;
 
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 import android.content.Intent;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.lifecycle.Lifecycle;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -35,7 +33,7 @@ public class GetDirectionActivityTest {
         // double = {entrance -> A, A -> B, B -> C}
 
         ZooGraph graph = ZooGraph.getSingleton(ApplicationProvider.getApplicationContext());
-        List<String> exhibits = Arrays.asList("gorillas", "lions", "elephant_odyssey", "arctic_foxes");
+        List<String> exhibits = Arrays.asList("flamingo", "gorilla", "toucan", "spoonbill");
         String start_location = "entrance_exit_gate";
         route = graph.getOptimalPath(start_location, exhibits);
         // If create the graph by hand
