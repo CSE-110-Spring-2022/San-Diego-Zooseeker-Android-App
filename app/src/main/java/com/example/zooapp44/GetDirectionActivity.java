@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,6 +50,16 @@ public class GetDirectionActivity extends AppCompatActivity {
         else
             nextAnimalView.setText(route.getExhibit(current + 1));
 
+        if(route.getSize() <= 1){
+            ImageView img = findViewById(R.id.skip_btn);
+            img.setVisibility(View.INVISIBLE);
+        }
+
+        if(current == route.getSize()){
+            ImageView img = findViewById(R.id.skip_btn);
+            img.setVisibility(View.INVISIBLE);
+        }
+
     }
 
     public void onHomeClicked(View view){
@@ -62,6 +73,9 @@ public class GetDirectionActivity extends AppCompatActivity {
         if(current == route.getSize()){
             Button button = findViewById(R.id.next_btn);
             button.setVisibility(View.INVISIBLE);
+
+            ImageView img = findViewById(R.id.skip_btn);
+            img.setVisibility(View.INVISIBLE);
         }
         updateText();
     }
@@ -69,6 +83,7 @@ public class GetDirectionActivity extends AppCompatActivity {
     public void onStopClicked(View view) { finish(); }
 
     public void onSkipClicked(View view) {
-        //finish();
+        route.exhibits.remove(current+1);
+        updateText();
     }
 }
