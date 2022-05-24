@@ -15,13 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
-
 public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     SearchView searchView;
     ExhibitAdapter adapter;
     ToAddExhibitsViewModel exhibitsViewModel;
     int count = 0;
+    String selectedExhibitsOutput;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +37,14 @@ public class MainActivity extends AppCompatActivity {
         count = toAddExhibitDao.getSelected().size();
         String temp = "There are "+Integer.toString(count)+" animals selected.";
         msg.setText(temp);
+
+        TextView selectedExhibitsList = findViewById(R.id.selectedExhibits);
+        selectedExhibitsOutput = "";
+        for(int i = 0; i < count; i = i + 1){
+            selectedExhibitsOutput = selectedExhibitsOutput + toAddExhibitDao.getSelected().get(i).name +  "\n";
+        }
+        selectedExhibitsList.setText(selectedExhibitsOutput);
+
         adapter = new ExhibitAdapter();
         adapter.setHasStableIds(true);
         adapter.setOnCheckBoxClickedHandler(new Consumer<ToAddExhibits>() {
@@ -45,8 +53,13 @@ public class MainActivity extends AppCompatActivity {
                 toAddExhibits.selected = !toAddExhibits.selected;
                 toAddExhibitDao.update(toAddExhibits);
                 count = toAddExhibitDao.getSelected().size();
-                String current= "There are "+Integer.toString(count)+" animals selected.";
+                String current= "There are "+Integer.toString(count)+" animals selected: ";
                 msg.setText(current);
+                selectedExhibitsOutput = "";
+                for(int i = 0; i < count; i = i + 1){
+                    selectedExhibitsOutput = selectedExhibitsOutput + toAddExhibitDao.getSelected().get(i).name + "\n";
+                }
+                selectedExhibitsList.setText(selectedExhibitsOutput);
             }
         });
 
@@ -61,9 +74,11 @@ public class MainActivity extends AppCompatActivity {
                 for(int i = 0; i < exhibitItems.size(); i ++){
                     List<String> tags = exhibitItems.get(i).tags;
                     Log.i("tags", tags.toString());
+
                     for(int j = 0; j < tags.size(); j ++){
-                        if(query_item.equals(tags.get(j))){
+                        if(tags.get(j).startsWith(query_item)){
                             filteredItems.add(exhibitItems.get(i));
+                            break;
                         }
                     }
                 }
@@ -87,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onPlanClicked(View view){
+        finish();
         Intent intent = new Intent(this, OpenExhibitListActivity.class);
         ZooGraph g = ZooGraph.getSingleton(getApplicationContext());
 
@@ -103,5 +119,15 @@ public class MainActivity extends AppCompatActivity {
         ExhibitRoute route = g.getOptimalPath(start, exhibitIds);
         intent.putExtra("Route", ExhibitRoute.serialize(route));
         startActivity(intent);
+    }
+
+    public void onClearClicked(View view) {
+        ToAddExhibitDao toAddExhibitDao = ToAddDatabase.getSingleton(this).toAddExhibitDao();
+        List<ToAddExhibits> exhibitItems = toAddExhibitDao.getAll();
+        for(int i = 0; i < exhibitItems.size(); i ++){
+            exhibitItems.get(i).selected = false;
+            toAddExhibitDao.update(exhibitItems.get(i));
+        }
+        setContentView(R.layout.activity_main);
     }
 }
