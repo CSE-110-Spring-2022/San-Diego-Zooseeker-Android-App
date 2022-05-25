@@ -1,6 +1,7 @@
 package com.example.zooapp44;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 
 import android.content.SharedPreferences;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +21,9 @@ public class GetDirectionActivity extends AppCompatActivity {
     ExhibitRoute route;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog dialog;
+    private Button replan_btn, cancel_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,5 +93,35 @@ public class GetDirectionActivity extends AppCompatActivity {
         editor.clear();
         editor.apply();
         finish();
+    }
+
+    // belows are functions handling the reroute popup window
+
+//    public void onOffClicked(View view){
+//        System.out.println("off route");
+//    }
+
+    public void createReplanMessage(){
+        dialogBuilder = new AlertDialog.Builder(this);
+        final View replanPopupView = getLayoutInflater().inflate(R.layout.replan_popup, null);
+        replan_btn = (Button) replanPopupView.findViewById(R.id.replan_btn);
+        cancel_btn = (Button) replanPopupView.findViewById(R.id.cancel_btn);
+
+        dialogBuilder.setView(replanPopupView);
+        dialog = dialogBuilder.create();
+        dialog.show();
+
+    }
+
+    public void onReplanClick(View view) {
+        //replan route
+    }
+
+    public void onCancelClick(View view) {
+        //close pop up window, continue old route
+    }
+
+    public void onOffClick(View view) {
+        createReplanMessage();
     }
 }
