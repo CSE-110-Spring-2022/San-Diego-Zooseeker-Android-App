@@ -116,10 +116,19 @@ public class GetDirectionActivity extends AppCompatActivity {
     }
 
     public void onBriefClicked(View view){
+        TextView instructionView = findViewById(R.id.route_instruction);
+        instructionView.setMovementMethod(new ScrollingMovementMethod());
 
+
+        instructionView.setText(route.getBriefInstruction(current));
     }
 
     public void onDetailClicked(View view){
+        TextView instructionView = findViewById(R.id.route_instruction);
+        instructionView.setMovementMethod(new ScrollingMovementMethod());
+
+
+        instructionView.setText(route.getDetailedInstruction(current));
 
     }
 }
