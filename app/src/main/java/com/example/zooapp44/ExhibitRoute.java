@@ -3,6 +3,7 @@ package com.example.zooapp44;
 import com.google.gson.Gson;
 
 import java.util.List;
+import java.util.Locale;
 
 public class ExhibitRoute {
     List<String> exhibits;
@@ -93,7 +94,7 @@ public class ExhibitRoute {
 
 
 
-    public String getInstruction(int current) {
+    public String getBriefInstruction(int current) {
         String current_location;
         if(current == 0)
             current_location = vertices.get(0).id;  //set current location to entrance
@@ -104,25 +105,64 @@ public class ExhibitRoute {
             target_location = vertices.get(0).id;
         else target_location = exhibits.get(current);
 
-        return findPathBetween(current_location, target_location);
+        return findPathBetween(current_location, target_location, false);
     }
 
-    private String findPathBetween(String current_location, String target_location) {
+    public String getDetailedInstruction(int current) {
+        String current_location;
+        if(current == 0)
+            current_location = vertices.get(0).id;  //set current location to entrance
+        else current_location = exhibits.get(current - 1);
+
+        String target_location;
+        if(current == getSize())
+            target_location = vertices.get(0).id;
+        else target_location = exhibits.get(current);
+
+        return findPathBetween(current_location, target_location, true);
+    }
+
+    private String findPathBetween(String current_location, String target_location, boolean detailed) {
+        String ret = "";
         int s = 0;
-        while(!vertices.get(s).id.equals(current_location))
+        while (!vertices.get(s).id.equals(current_location))
             s++;
         int t = s;
-        while(!vertices.get(t).id.equals(target_location))
+        while (!vertices.get(t).id.equals(target_location))
             t++;
 
-        String ret = String.format("The shortest path from %s to %s is:\n\n", vertices.get(s).name, vertices.get(t).name);
-
-        int num = 0;
-        for(int i = s; i < t; i++){
-            num++;
-            ret += num + ". ";
-            ret += String.format("Walk %s meters along %s from %s to %s.\n\n",
-                    edges.get(i).weight + "ft", edges.get(i).street, vertices.get(i).name, vertices.get(i + 1).name);
+        ret = String.format("The shortest path from %s to %s is:\n\n", vertices.get(s).name, vertices.get(t).name);
+        if (detailed) {
+            int num = 0;
+            for (int i = s; i < t; i++) {
+                num++;
+                ret += num + ". ";
+                ret += String.format("Walk %s meters along %s from %s to %s.\n\n",
+                        edges.get(i).weight + "ft", edges.get(i).street, vertices.get(i).name, vertices.get(i + 1).name);
+            }
+        } else {
+            int num = 0;
+            float weight_temp = 0;
+            String street = "";
+            String vert_temp = "";
+            for (int i = s; i < t; i++) {
+                if (i == s) {
+                    street = edges.get(i).street; //initialization
+                    vert_temp = vertices.get(i).name;
+                }
+                weight_temp += (float)edges.get(i).weight;
+                if (edges.get(i).street.equals(edges.get(i+1).street) && i != t-1) {
+                    //skip if street does not change
+                    continue;
+                }
+                num++;
+                ret += num + ". ";
+                ret += String.format("Walk %s meters along %s from %s to %s.\n\n",
+                        weight_temp + "ft", street, vert_temp, vertices.get(i + 1).name);
+                weight_temp = 0;    //reset
+                street = edges.get(i+1).street;
+                vert_temp = vertices.get(i+1).name;
+            }
         }
 
         return ret;

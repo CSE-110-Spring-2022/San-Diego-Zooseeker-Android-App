@@ -109,23 +109,6 @@
         app:layout_editor_absoluteX="16dp" />
 
     <Button
-        android:id="@+id/Setting_btn"
-        android:layout_width="110dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="652dp"
-        android:backgroundTint="#83A300"
-        android:onClick="onSettingClicked"
-        android:text="SETTINGS"
-        android:textAllCaps="false"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
-
-    <Button
         android:id="@+id/next_btn"
         android:layout_width="334dp"
         android:layout_height="48dp"
@@ -142,6 +125,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.868" />
+
+    <Button
+        android:id="@+id/Setting_btn"
+        android:layout_width="110dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="652dp"
+        android:backgroundTint="#83A300"
+        android:onClick="onSettingClicked"
+        android:text="SETTINGS"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
 
     <Button
         android:id="@+id/stop_btn"
@@ -169,9 +169,10 @@
         android:width="350dp"
         android:height="200dp"
         android:background="#9F9EB150"
-        android:text="The shortest path from 'elephant_odyssey' to 'entrance_exit_gate' is:   \n1. Walk 200 meters along Africa Rocks Street from 'Lions' to 'Elephant Odyssey'.   \n2. Walk 200 meters along Sharp Teeth Shortcut from 'Alligators' to 'Lions'.   \n3. Walk 100 meters along Reptile Road from 'Entrance Plaza' to 'Alligators'.  \n4. Walk 10 meters along Entrance Way from 'Entrance and Exit Gate' to 'Entrance Plaza'."
+        android:text=""
         android:textColor="@color/black"
         android:textSize="16sp"
+        android:scrollbars="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/current_exhibit" />
