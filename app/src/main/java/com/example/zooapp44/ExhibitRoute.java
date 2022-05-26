@@ -151,7 +151,7 @@ public class ExhibitRoute {
                     vert_temp = vertices.get(i).name;
                 }
                 weight_temp += (float)edges.get(i).weight;
-                if (edges.get(i).street.equals(edges.get(i+1).street) && i != t-1) {
+                if (i != t-1 && edges.get(i).street.equals(edges.get(i+1).street)) {
                     //skip if street does not change
                     continue;
                 }
@@ -159,9 +159,11 @@ public class ExhibitRoute {
                 ret += num + ". ";
                 ret += String.format("Walk %s meters along %s from %s to %s.\n\n",
                         weight_temp + "ft", street, vert_temp, vertices.get(i + 1).name);
-                weight_temp = 0;    //reset
-                street = edges.get(i+1).street;
-                vert_temp = vertices.get(i+1).name;
+                if (i!= t-1) {
+                    weight_temp = 0;    //reset
+                    street = edges.get(i + 1).street;
+                    vert_temp = vertices.get(i + 1).name;
+                }
             }
         }
 

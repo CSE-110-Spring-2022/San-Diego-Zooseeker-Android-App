@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class GetDirectionActivity extends AppCompatActivity {
     public RecyclerView recyclerView;
     private int current;
+    private boolean isBrief = true;
     ExhibitRoute route;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -57,10 +58,11 @@ public class GetDirectionActivity extends AppCompatActivity {
 
         TextView instructionView = findViewById(R.id.route_instruction);
         instructionView.setMovementMethod(new ScrollingMovementMethod());
-
-
-        instructionView.setText(route.getDetailedInstruction(current));
-
+        if (isBrief) {
+            instructionView.setText(route.getBriefInstruction(current));
+        } else {
+            instructionView.setText(route.getDetailedInstruction(current));
+        }
         updateNextAnimalView();
     }
 
@@ -116,19 +118,12 @@ public class GetDirectionActivity extends AppCompatActivity {
     }
 
     public void onBriefClicked(View view){
-        TextView instructionView = findViewById(R.id.route_instruction);
-        instructionView.setMovementMethod(new ScrollingMovementMethod());
-
-
-        instructionView.setText(route.getBriefInstruction(current));
+        isBrief = true;
+        updateText();
     }
 
     public void onDetailClicked(View view){
-        TextView instructionView = findViewById(R.id.route_instruction);
-        instructionView.setMovementMethod(new ScrollingMovementMethod());
-
-
-        instructionView.setText(route.getDetailedInstruction(current));
-
+        isBrief = false;
+        updateText();
     }
 }
