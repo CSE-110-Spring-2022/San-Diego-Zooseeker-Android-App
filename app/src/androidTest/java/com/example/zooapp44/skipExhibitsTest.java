@@ -3,7 +3,6 @@ package com.example.zooapp44;
 import static org.junit.Assert.assertEquals;
 
 import android.content.Intent;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,16 +41,15 @@ public class skipExhibitsTest {
         scenario.moveToState(Lifecycle.State.RESUMED);
 
         scenario.onActivity(activity -> {
-            for(int i = 0; i < route.getSize()-2; i++){
+            for(int i = 0; i < route.getSize() - 1; i++){
                 String preExhibit, postExhibit;
-                TextView textView = activity.findViewById(R.id.next_animal);
+                TextView textView = activity.findViewById(R.id.current_animal);
                 preExhibit = textView.getText().toString();
                 ImageView button = activity.findViewById(R.id.skip_btn);
                 button.performClick();
-                textView = activity.findViewById(R.id.next_animal);
+                textView = activity.findViewById(R.id.current_animal);
                 postExhibit = textView.getText().toString();
-                assertEquals(preExhibit, route.exhibits.get(i+1));
-                assertEquals(postExhibit, route.exhibits.get(i+2));
+                assertEquals(preExhibit, postExhibit);
             }
         });
     }
