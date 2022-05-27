@@ -41,15 +41,16 @@ public class skipExhibitsTest {
         scenario.moveToState(Lifecycle.State.RESUMED);
 
         scenario.onActivity(activity -> {
-            for(int i = 0; i < route.getSize() - 1; i++){
+            for(int i = 0; i < route.getSize()-2; i++){
                 String preExhibit, postExhibit;
-                TextView textView = activity.findViewById(R.id.current_animal);
+                TextView textView = activity.findViewById(R.id.next_animal);
                 preExhibit = textView.getText().toString();
                 ImageView button = activity.findViewById(R.id.skip_btn);
                 button.performClick();
-                textView = activity.findViewById(R.id.current_animal);
+                textView = activity.findViewById(R.id.next_animal);
                 postExhibit = textView.getText().toString();
-                assertEquals(preExhibit, postExhibit);
+                assertEquals(preExhibit, route.exhibits.get(i+1));
+                assertEquals(postExhibit, route.exhibits.get(i+2));
             }
         });
     }
