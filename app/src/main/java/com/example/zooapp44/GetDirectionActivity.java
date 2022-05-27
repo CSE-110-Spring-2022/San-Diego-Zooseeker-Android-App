@@ -102,6 +102,9 @@ public class GetDirectionActivity extends AppCompatActivity {
 
 
     public void onSkipClicked(View view) {
+        Double new_dist = route.weight.get(current) + route.weight.get(current + 1);
+        route.weight.set(current+1, new_dist);
+        route.weight.remove(current);
         route.exhibits.remove(current);
         route.edges.remove(current);
         updateText();
