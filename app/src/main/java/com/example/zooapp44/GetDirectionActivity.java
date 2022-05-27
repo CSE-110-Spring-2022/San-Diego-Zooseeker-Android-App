@@ -62,16 +62,18 @@ public class GetDirectionActivity extends AppCompatActivity {
         TextView nextAnimalView = findViewById(R.id.next_animal);
         if(current + 1 == route.getSize())
             nextAnimalView.setText("Entrance gate");
-        else if(current + 1 > route.getSize())
+        else if(current + 1 > route.getSize()) {
             nextAnimalView.setText("");
+        }
         else
             nextAnimalView.setText(route.getExhibit(current + 1));
 
 
-        if(route.getSize() <= 1){
-            ImageView img = findViewById(R.id.skip_btn);
-            img.setVisibility(View.INVISIBLE);
-        }
+//        if(route.getSize() <= 1){
+//            ImageView img = findViewById(R.id.skip_btn);
+//            img.setVisibility(View.INVISIBLE);
+//        }
+
 
         if(current == route.getSize()){
             ImageView img = findViewById(R.id.skip_btn);
@@ -102,11 +104,17 @@ public class GetDirectionActivity extends AppCompatActivity {
 
 
     public void onSkipClicked(View view) {
+        // get new distance
         Double new_dist = route.weight.get(current) + route.weight.get(current + 1);
-        route.weight.set(current+1, new_dist);
+        route.weight.set(current + 1, new_dist);
         route.weight.remove(current);
+
+        // get new exhibit name
         route.exhibits.remove(current);
+
+        // get new instruction
         route.edges.remove(current);
+        route.vertices.remove(current + 1);
         updateText();
     }
   
