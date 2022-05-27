@@ -109,13 +109,22 @@ public class GetDirectionActivity extends AppCompatActivity {
         route.weight.set(current + 1, new_dist);
         route.weight.remove(current);
 
-        // get new exhibit name
-        route.exhibits.remove(current);
+         //get new exhibit name
+         route.exhibits.remove(current);
 
         // get new instruction
         route.edges.remove(current);
         route.vertices.remove(current + 1);
         updateText();
+
+        if(current == route.getSize()){
+            Button button = findViewById(R.id.next_btn);
+            button.setVisibility(View.INVISIBLE);
+
+            ImageView img = findViewById(R.id.skip_btn);
+            img.setVisibility(View.INVISIBLE);
+        }
+
     }
   
     public void onStopClicked(View view) {
