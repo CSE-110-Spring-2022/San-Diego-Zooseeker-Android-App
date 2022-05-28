@@ -48,31 +48,6 @@ public class LocationModel {
         lastKnownCoords.removeSource(locationProviderSource);
     }
 
-    @SuppressLint("MissingPermission")
-    public void addLocationProviderSource(LocationManager locationManager, String provider) {
-        // If a location provider source is already added, remove it.
-        if (locationProviderSource != null) {
-            removeLocationProviderSource();
-        }
-
-        // Create a new GPS source.
-        var providerSource = new MutableLiveData<Coord>();
-        var locationListener = new LocationListener() {
-            @Override
-            public void onLocationChanged(@NonNull Location location) {
-                var coord = Coord.fromLocation(location);
-                Log.i("Location", String.format("Model received GPS location update: %s", coord));
-                providerSource.postValue(coord);
-            }
-        };
-        // Register for updates.
-        locationManager.requestLocationUpdates(provider, 0, 0f, locationListener);
-
-        locationProviderSource = providerSource;
-        lastKnownCoords.addSource(locationProviderSource, lastKnownCoords::setValue);
-    }
-
-
     public void mockLocation(Coord coords) {
         mockSource.postValue(coords);
     }

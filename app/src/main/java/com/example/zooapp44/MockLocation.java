@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -37,5 +36,9 @@ public class MockLocation {
             e.printStackTrace();
             return Collections.emptyList();
         }
+    }
+
+    public void change() {
+        mock = new Coord(lat, lng);
     }
 }

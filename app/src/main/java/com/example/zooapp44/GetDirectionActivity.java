@@ -63,6 +63,7 @@ public class GetDirectionActivity extends AppCompatActivity {
         List<Coord> coordList= new ArrayList<>();
         List<Double> timeList= new ArrayList<>();
         for(var object: mock){
+            object.change();
             coordList.add(object.mock);
             timeList.add(object.time);
         }
