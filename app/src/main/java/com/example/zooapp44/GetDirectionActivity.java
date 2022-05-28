@@ -109,8 +109,8 @@ public class GetDirectionActivity extends AppCompatActivity {
         route.weight.set(current + 1, new_dist);
         route.weight.remove(current);
 
-         //get new exhibit name
-         route.exhibits.remove(current);
+        // get new exhibit name
+        route.exhibits.remove(current);
 
         // get new instruction
         route.edges.remove(current);
