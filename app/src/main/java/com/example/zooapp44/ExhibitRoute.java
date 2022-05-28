@@ -65,6 +65,14 @@ public class ExhibitRoute {
         return sum + "ft";
     }
 
+    public String getBackDistance(int i, boolean flg){
+        if(flg == false) return weight.get(i+1) + "ft";
+        int sum = 0;
+        for(int j = 0; j <= i; j++)
+            sum += weight.get(j);
+        return sum + "ft";
+    }
+
     public int getSize(){
         return exhibits.size();
     }
@@ -107,6 +115,25 @@ public class ExhibitRoute {
         return findPathBetween(current_location, target_location);
     }
 
+
+    public String getBackInstruction(int current) {
+        String current_location;
+        String target_location;
+
+        if(current == getSize()){
+            current_location = "entrance_exit_gate";
+        } else{
+            current_location = exhibits.get(current);
+        }
+
+        if(current == 0) {
+            target_location = vertices.get(0).id;   //set target location to entrance
+        } else{
+            target_location = exhibits.get(current - 1);
+        }
+        return findBackPathBetween(current_location, target_location);
+    }
+
     private String findPathBetween(String current_location, String target_location) {
         int s = 0;
         while(!vertices.get(s).id.equals(current_location))
@@ -123,6 +150,32 @@ public class ExhibitRoute {
             ret += num + ". ";
             ret += String.format("Walk %s meters along %s from %s to %s.\n\n",
                     edges.get(i).weight + "ft", edges.get(i).street, vertices.get(i).name, vertices.get(i + 1).name);
+        }
+
+        return ret;
+    }
+
+    private String findBackPathBetween(String current_location, String target_location) {
+        int s = 0;
+        while (!vertices.get(s).id.equals(current_location))
+                s++;
+        int t = 0;
+        while(!vertices.get(t).id.equals(target_location))
+            t++;
+
+        if(current_location == "entrance_exit_gate"){
+            s = vertices.size()-1;
+        }
+        //s > t
+
+        String ret = String.format("The shortest path from %s to %s is:\n\n", vertices.get(s).name, vertices.get(t).name);
+
+        int num = 0;
+        for(int i = s; i > t; i--){
+            num++;
+            ret += num + ". ";
+            ret += String.format("Walk %s meters along %s from %s to %s.\n\n",
+                    edges.get(i-1).weight + "ft", edges.get(i-1).street, vertices.get(i).name, vertices.get(i - 1).name);
         }
 
         return ret;

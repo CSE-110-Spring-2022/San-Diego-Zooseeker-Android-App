@@ -76,6 +76,27 @@ public class GetDirectionActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("SetTextI18n")
+    private void updateTextBack(){
+        TextView currentAnimalView = findViewById(R.id.current_animal);
+
+        TextView nextAnimalView = findViewById(R.id.next_animal);
+
+        currentAnimalView.setText(route.getExhibit(current));
+        TextView backDistanceView = findViewById(R.id.current_distance);
+        backDistanceView.setText(route.getBackDistance(current, false));
+
+        TextView instructionView = findViewById(R.id.route_instruction);
+        instructionView.setText(route.getBackInstruction(current+1));
+
+        if(current + 1 == route.getSize())
+            nextAnimalView.setText("Entrance gate");
+        else if(current + 1 > route.getSize())
+            nextAnimalView.setText("");
+        else
+            nextAnimalView.setText(route.getExhibit(current + 1));
+    }
+
     public void onHomeClicked(View view){
         super.onBackPressed();
         startActivity(new Intent(GetDirectionActivity.this, MainActivity.class));
@@ -83,6 +104,9 @@ public class GetDirectionActivity extends AppCompatActivity {
     }
 
     public void onNextClicked(View view){
+        Button back = findViewById(R.id.back_btn);
+        back.setVisibility(View.VISIBLE);
+
         current++;
         editor.putInt("current_index", current);
         if(current == route.getSize()){
@@ -95,6 +119,7 @@ public class GetDirectionActivity extends AppCompatActivity {
         updateText();
         editor.apply();
     }
+
 
 
     public void onSkipClicked(View view) {
@@ -120,6 +145,36 @@ public class GetDirectionActivity extends AppCompatActivity {
 
     }
   
+
+    public void onBackClicked(View view){
+        Button next = findViewById(R.id.next_btn);
+        next.setVisibility(View.VISIBLE);
+
+        current --;
+
+        if(current < 0){
+            Button button = findViewById(R.id.back_btn);
+            button.setVisibility(View.INVISIBLE);
+
+            TextView currentAnimalView = findViewById(R.id.current_animal);
+            TextView nextAnimalView = findViewById(R.id.next_animal);
+
+            currentAnimalView.setText("Entrance gate");
+            TextView backDistanceView = findViewById(R.id.current_distance);
+            backDistanceView.setText(route.getBackDistance(current, false));
+
+            TextView instructionView = findViewById(R.id.route_instruction);
+            instructionView.setText(route.getBackInstruction(current+1));
+
+            nextAnimalView.setText(route.getExhibit(current + 1));
+
+        } else {
+            updateTextBack();
+        }
+    }
+
+    
+
     public void onStopClicked(View view) {
         editor.clear();
         editor.apply();
