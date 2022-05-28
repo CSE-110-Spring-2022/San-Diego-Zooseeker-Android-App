@@ -69,13 +69,6 @@ public class GetDirectionActivity extends AppCompatActivity {
         else
             nextAnimalView.setText(route.getExhibit(current + 1));
 
-
-//        if(route.getSize() <= 1){
-//            ImageView img = findViewById(R.id.skip_btn);
-//            img.setVisibility(View.INVISIBLE);
-//        }
-
-
         if(current == route.getSize()){
             ImageView img = findViewById(R.id.skip_btn);
             img.setVisibility(View.INVISIBLE);
@@ -113,11 +106,10 @@ public class GetDirectionActivity extends AppCompatActivity {
         // get new exhibit name
         route.exhibits.remove(current);
 
-        // get new instruction
-        route.edges.remove(current);
-        route.vertices.remove(current);
         updateText();
 
+
+        // disable buttons when reach the last one
         if(current == route.getSize()){
             Button button = findViewById(R.id.next_btn);
             button.setVisibility(View.INVISIBLE);
