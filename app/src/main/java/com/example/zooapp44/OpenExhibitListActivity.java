@@ -1,5 +1,6 @@
 package com.example.zooapp44;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,7 +10,9 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.test.core.app.ApplicationProvider;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OpenExhibitListActivity extends AppCompatActivity {
@@ -50,6 +53,19 @@ public class OpenExhibitListActivity extends AppCompatActivity {
     public void onGetDirectionClicked(View view){
         Intent intent = new Intent(this, GetDirectionActivity.class);
         intent.putExtra("Route", ExhibitRoute.serialize(route));
+
+        LocationModel location= new LocationModel();
+        Context context = ApplicationProvider.getApplicationContext();
+
+        List<MockLocation> mock= MockLocation.loadMockJSON(context,"mock_route1.json");
+        List<Coord> coordList= new ArrayList<>();
+        List<Double> timeList= new ArrayList<>();
+        for(var object: mock){
+            coordList.add(object.mock);
+            timeList.add(object.time);
+        }
+        location.mockRoute(coordList,timeList);
+
         startActivity(intent);
     }
 
