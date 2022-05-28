@@ -10,6 +10,7 @@ public class ExhibitRoute {
     List<ZooGraph.Edge> edges;
     List<ZooGraph.Vertex> vertices;
     List<Double> weight;
+    List<String> original;
 
     /*
     public ExhibitRoute(List<String> exhibits, List<String> Distance){
@@ -29,14 +30,16 @@ public class ExhibitRoute {
      * @param vertices
      * @param edges
      * @param weight
-     * @param exhibit
+     * @param exhibit contains list of Strings that contain selected exhibits by name
+     * @param original contains list of Strings that contain selected animals/ entrance by name
      */
 
-    public ExhibitRoute(List<ZooGraph.Vertex> vertices,List<ZooGraph.Edge> edges,List<Double> weight,List<String> exhibit){
+    public ExhibitRoute(List<ZooGraph.Vertex> vertices,List<ZooGraph.Edge> edges,List<Double> weight,List<String> exhibit,List<String> original){
         this.edges=edges;
         this.exhibits=exhibit;
         this.vertices=vertices;
         this.weight=weight;
+        this.original=original;
     }
 
     /**
@@ -49,6 +52,13 @@ public class ExhibitRoute {
             return "entrance gate";
         }
         return exhibits.get(i);
+    }
+
+    public String getOriginal(int i){
+        if(i == getSize()){
+            return "entrance gate";
+        }
+        return original.get(i);
     }
 
     /**
@@ -88,10 +98,9 @@ public class ExhibitRoute {
                 ", edges=" + edges +
                 ", vertices=" + vertices +
                 ", weight=" + weight +
+                ", original=" + original +
                 '}';
     }
-
-
 
     public String getInstruction(int current) {
         String current_location;

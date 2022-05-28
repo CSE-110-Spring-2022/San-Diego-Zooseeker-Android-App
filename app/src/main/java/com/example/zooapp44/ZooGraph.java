@@ -141,18 +141,20 @@ public class ZooGraph {
         public Kind kind;
         public String name;
         public boolean selected;
+        public String group_id;
 
         Vertex(){}
-        Vertex(String id, String name, Kind kind, boolean selected){
+        Vertex(String id, String name, Kind kind, boolean selected,String group_id){
             this.id = id;
             this.name = name;
             this.kind = kind;
             this.selected = selected;
+            this.group_id=group_id;
         }
     }
 
-    public Vertex getVertex(String name, Kind kind, boolean selected){
-        return new Vertex(name, name, kind, selected);
+    public Vertex getVertex(String name, Kind kind, boolean selected,String group_id){
+        return new Vertex(name, name, kind, selected,group_id);
     }
 
     /**
@@ -163,6 +165,22 @@ public class ZooGraph {
      * @return ExhibitRoute(List<Vertex>,List<Edges>,List<Double>weights from vertex to vertex,List<String>selected exhibits)
      */
     public ExhibitRoute getOptimalPath(String start, List<String> exhibits){
+
+        //Change exhibits to be in exhibits only, not selected
+        List<String> retain=new ArrayList<>();
+        retain.addAll(exhibits);
+        exhibits=new ArrayList<String>();
+        for(int i=0;i<retain.size();i++){
+            //If not part of group, add to list
+            String check=vInfo.get(retain.get(i)).group_id;
+            if(check==null){
+                exhibits.add(retain.get(i));
+            }
+            //Part of group, add group to list
+            else{
+                exhibits.add(vInfo.get(retain.get(i)).group_id);
+            }
+        }
 
         DijkstraShortestPath<String,IdentifiedWeightedEdge> algorithm = new DijkstraShortestPath<>(graph);
         ShortestPathAlgorithm.SingleSourcePaths<String,IdentifiedWeightedEdge> allPaths=algorithm.getPaths(start);
@@ -247,9 +265,28 @@ public class ZooGraph {
             toPassE.add(infoEdge);
         }
 
+        List<String> orderedRetain=new ArrayList<String>();
+        for(int j=0;j<exhibitInOrder.size();j++){
+            int i=0;
+           while(i<retain.size()){
+                if(retain.get(i)==exhibitInOrder.get(j)){
+                    orderedRetain.add(retain.get(i));
+                    retain.remove(i);
+                    break;
+                }
+                else if(vInfo.get(retain.get(i)).group_id!=null&&vInfo.get(retain.get(i)).group_id.equals(exhibitInOrder.get(j))){
+                    orderedRetain.add(retain.get(i));
+                    retain.remove(i);
+                    break;
+                }
+                i++;
+            }
+        }
+
+
         // Return ExhibitRoute
         // which includes List<Vertex>, List<edge>, list<double> which is distance
-        return new ExhibitRoute(toPassV,toPassE, weights, exhibitInOrder);
+        return new ExhibitRoute(toPassV,toPassE, weights, exhibitInOrder,orderedRetain);
     }
 
 }

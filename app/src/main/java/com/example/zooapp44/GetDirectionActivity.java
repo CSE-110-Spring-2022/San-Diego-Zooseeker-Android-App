@@ -45,7 +45,7 @@ public class GetDirectionActivity extends AppCompatActivity {
     private void updateText() {
         TextView currentAnimalView = findViewById(R.id.current_animal);
 
-        currentAnimalView.setText(route.getExhibit(current));
+        currentAnimalView.setText(route.getOriginal(current));
         TextView currentDistanceView = findViewById(R.id.current_distance);
         currentDistanceView.setText(route.getDistance(current, false));
 
@@ -64,7 +64,7 @@ public class GetDirectionActivity extends AppCompatActivity {
         else if(current + 1 > route.getSize())
             nextAnimalView.setText("");
         else
-            nextAnimalView.setText(route.getExhibit(current + 1));
+            nextAnimalView.setText(route.getOriginal(current + 1));
     }
 
     public void onHomeClicked(View view){

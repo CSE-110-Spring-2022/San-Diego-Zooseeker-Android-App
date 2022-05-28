@@ -52,8 +52,8 @@ public class ToAddDatabaseTest {
         List<String> tags1 = Arrays.asList("tag1", "tag2", "tag3");
         List<String> tags2 = Arrays.asList("tag4", "tag5", "tag6");
 
-        ToAddExhibits item1 = new ToAddExhibits("R301","exhibit","no" , tags1);
-        ToAddExhibits item2 = new ToAddExhibits("R99","exhibit", "yes", tags2);
+        ToAddExhibits item1 = new ToAddExhibits("R301","exhibit","no" , "",tags1,-133,500);
+        ToAddExhibits item2 = new ToAddExhibits("R99","exhibit", "yes", "",tags2,-300,900);
 
         long id1=dao.insert(item1);
         long id2=dao.insert(item2);
@@ -70,9 +70,9 @@ public class ToAddDatabaseTest {
         List<String> tags1 = Arrays.asList("tag1", "tag2", "tag3");
         List<String> tags2 = Arrays.asList("tag4", "tag5", "tag6");
 
-        ToAddExhibits item1 = new ToAddExhibits("R301","exhibit","no" , tags1);
-        ToAddExhibits item2 = new ToAddExhibits("R99","exhibit", "yes", tags2);
-        ToAddExhibits item3 = new ToAddExhibits("Longbow", "intersection", "no", tags2);
+        ToAddExhibits item1 = new ToAddExhibits("R301","exhibit","no" ,"", tags1,-133,500);
+        ToAddExhibits item2 = new ToAddExhibits("R99","exhibit", "yes","",tags2,-133,500);
+        ToAddExhibits item3 = new ToAddExhibits("Longbow", "intersection", "no","",tags2,-133,500);
 
         item1.selected = false;
         item2.selected = true;
