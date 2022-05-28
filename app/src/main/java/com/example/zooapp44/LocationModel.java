@@ -8,6 +8,7 @@ import android.location.LocationManager;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -32,15 +33,41 @@ public class LocationModel {
     private Observer observer;
 
     public LocationModel(Observer o) {
-        lastKnownCoords = new MediatorLiveData<>();
+        lastKnownCoords = new MediatorLiveData<Coord>();
         this.observer=o;
         // Create and add the mock source.
-        mockSource = new MutableLiveData<>();
-        lastKnownCoords.addSource(mockSource, lastKnownCoords::setValue);
+        mockSource = new MutableLiveData<Coord>();
+
+        final Observer<Coord> observe = new Observer<Coord>() {
+            @Override
+            public void onChanged(@Nullable Coord coord) {
+                System.out.println();
+            }
+        };
+
+        /**
+        Observer<Coord> test= new Observer<Coord>(){
+
+            @Override
+            public void onChanged(Coord coord) {
+
+                System.out.println("Here");
+
+            }
+        };
+         **/
+
+        lastKnownCoords.addSource(mockSource,observe);
+        mockSource.postValue(new Coord(3,3));
     }
 
-    public MediatorLiveData<Coord> getLastKnownCoords(){
-        return lastKnownCoords;
+    public MutableLiveData<Coord> giveMutable(){
+        return mockSource;
+    }
+
+    public Coord getLastKnownCoords(){
+        Coord coord= mockSource.getValue();
+        return mockSource.getValue();
     }
 
     void removeLocationProviderSource() {
@@ -49,6 +76,7 @@ public class LocationModel {
     }
 
     public void mockLocation(Coord coords) {
+        Coord coord= coords;
         mockSource.postValue(coords);
     }
 

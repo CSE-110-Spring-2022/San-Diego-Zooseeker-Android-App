@@ -45,19 +45,19 @@ public class GetDirectionActivity extends AppCompatActivity {
         }
 
 
+        //Observes when the location changes
+        final Observer<Coord> observe = new Observer<Coord>() {
+            @Override
+            public void onChanged(@Nullable Coord coord) {
+                Coord current = location.getLastKnownCoords();
+                System.out.println(current.toString());
+            }
+        };
 
-        location= new LocationModel(
-                new Observer<Coord>(){
-                    @Override
-                    public void onChanged(Coord coord) {
+        location= new LocationModel(observe);
+        location.giveMutable().observe(this,observe);
 
 
-
-                    }
-                }
-
-
-        );
 
         List<MockLocation> mock= MockLocation.loadMockJSON(getApplicationContext(),"mock_route1.json");
         List<Coord> coordList= new ArrayList<>();
@@ -68,9 +68,7 @@ public class GetDirectionActivity extends AppCompatActivity {
             timeList.add(object.time);
         }
         location.mockRoute(coordList,timeList);
-
         updateText();
-
     }
 
     @SuppressLint("SetTextI18n")
