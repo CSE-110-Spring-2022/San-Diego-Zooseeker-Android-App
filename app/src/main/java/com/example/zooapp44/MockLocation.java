@@ -16,10 +16,14 @@ import java.util.List;
 public class MockLocation {
         public Coord mock;
         public double time;
-
+        public double lat;
+        public double lng;
     MockLocation(double lat, double lng, double time){
-        this.mock=new Coord(lat,lng);
+        this.lat=lat;
+        this.lng=lng;
         this.time=time;
+        Coord temp = new Coord(lat,lng);
+        mock=temp;
     }
 
     public static List<MockLocation> loadMockJSON(Context context, String path){

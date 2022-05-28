@@ -10,8 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class GetDirectionActivity extends AppCompatActivity {
     public RecyclerView recyclerView;
@@ -19,6 +25,7 @@ public class GetDirectionActivity extends AppCompatActivity {
     ExhibitRoute route;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+    LocationModel location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +43,30 @@ public class GetDirectionActivity extends AppCompatActivity {
             Button button = findViewById(R.id.next_btn);
             button.setVisibility(View.INVISIBLE);
         }
+
+
+
+        location= new LocationModel(
+                new Observer<Coord>(){
+                    @Override
+                    public void onChanged(Coord coord) {
+
+
+
+                    }
+                }
+
+
+        );
+
+        List<MockLocation> mock= MockLocation.loadMockJSON(getApplicationContext(),"mock_route1.json");
+        List<Coord> coordList= new ArrayList<>();
+        List<Double> timeList= new ArrayList<>();
+        for(var object: mock){
+            coordList.add(object.mock);
+            timeList.add(object.time);
+        }
+        location.mockRoute(coordList,timeList);
 
         updateText();
 

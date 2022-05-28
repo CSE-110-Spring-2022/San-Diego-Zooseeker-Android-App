@@ -19,11 +19,13 @@ public class OpenExhibitListActivity extends AppCompatActivity {
     public RecyclerView recyclerView;
 //    private ToAddExhibitsViewModel viewModel;
     ExhibitRoute route;
+    private LocationModel location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_open_exhibit_list);
+
 
 
         Intent intent = getIntent();
@@ -54,17 +56,6 @@ public class OpenExhibitListActivity extends AppCompatActivity {
         Intent intent = new Intent(this, GetDirectionActivity.class);
         intent.putExtra("Route", ExhibitRoute.serialize(route));
 
-        LocationModel location= new LocationModel();
-        Context context = ApplicationProvider.getApplicationContext();
-
-        List<MockLocation> mock= MockLocation.loadMockJSON(context,"mock_route1.json");
-        List<Coord> coordList= new ArrayList<>();
-        List<Double> timeList= new ArrayList<>();
-        for(var object: mock){
-            coordList.add(object.mock);
-            timeList.add(object.time);
-        }
-        location.mockRoute(coordList,timeList);
 
         startActivity(intent);
     }

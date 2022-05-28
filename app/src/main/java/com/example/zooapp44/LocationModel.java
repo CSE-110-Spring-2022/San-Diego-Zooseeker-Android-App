@@ -11,8 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
 import java.util.List;
+//import java.util.Observer;
 import java.util.Stack;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -22,19 +24,23 @@ import java.util.concurrent.TimeUnit;
 
 public class LocationModel {
 
-    public Coord firstLocation;
-    public Coord secondLocation;
+
     private final MediatorLiveData<Coord> lastKnownCoords;
 
     private LiveData<Coord> locationProviderSource = null;
     private MutableLiveData<Coord> mockSource = null;
+    private Observer observer;
 
-    public LocationModel() {
+    public LocationModel(Observer o) {
         lastKnownCoords = new MediatorLiveData<>();
-
+        this.observer=o;
         // Create and add the mock source.
         mockSource = new MutableLiveData<>();
         lastKnownCoords.addSource(mockSource, lastKnownCoords::setValue);
+    }
+
+    public MediatorLiveData<Coord> getLastKnownCoords(){
+        return lastKnownCoords;
     }
 
     void removeLocationProviderSource() {
@@ -84,6 +90,7 @@ public class LocationModel {
                     for (int j=0;j<route.size();j++) {
                         // Mock the location...
                         Log.i("Coordinates",route.get(j).toString());
+
                         mockLocation(route.get(j));
 
                         // Sleep for a while...
