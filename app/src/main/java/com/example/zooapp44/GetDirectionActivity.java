@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,6 +55,7 @@ public class GetDirectionActivity extends AppCompatActivity {
         instructionView.setMovementMethod(new ScrollingMovementMethod());
         instructionView.setText(route.getInstruction(current));
 
+
         updateNextAnimalView();
     }
 
@@ -61,10 +63,17 @@ public class GetDirectionActivity extends AppCompatActivity {
         TextView nextAnimalView = findViewById(R.id.next_animal);
         if(current + 1 == route.getSize())
             nextAnimalView.setText("Entrance gate");
-        else if(current + 1 > route.getSize())
+        else if(current + 1 > route.getSize()) {
             nextAnimalView.setText("");
+        }
         else
             nextAnimalView.setText(route.getExhibit(current + 1));
+
+        if(current == route.getSize()){
+            ImageView img = findViewById(R.id.skip_btn);
+            img.setVisibility(View.INVISIBLE);
+        }
+
     }
 
     @SuppressLint("SetTextI18n")
@@ -103,11 +112,39 @@ public class GetDirectionActivity extends AppCompatActivity {
         if(current == route.getSize()){
             Button button = findViewById(R.id.next_btn);
             button.setVisibility(View.INVISIBLE);
+
+            ImageView img = findViewById(R.id.skip_btn);
+            img.setVisibility(View.INVISIBLE);
         }
         updateText();
         editor.apply();
     }
 
+
+
+    public void onSkipClicked(View view) {
+        // get new distance
+        Double new_dist = route.weight.get(current) + route.weight.get(current + 1);
+        route.weight.set(current + 1, new_dist);
+        route.weight.remove(current);
+
+        // get new exhibit name
+        route.exhibits.remove(current);
+
+        updateText();
+
+
+        // disable buttons when reach the last one
+        if(current == route.getSize()){
+            Button button = findViewById(R.id.next_btn);
+            button.setVisibility(View.INVISIBLE);
+
+            ImageView img = findViewById(R.id.skip_btn);
+            img.setVisibility(View.INVISIBLE);
+        }
+
+    }
+  
 
     public void onBackClicked(View view){
         Button next = findViewById(R.id.next_btn);
@@ -137,6 +174,7 @@ public class GetDirectionActivity extends AppCompatActivity {
     }
 
     
+
     public void onStopClicked(View view) {
         editor.clear();
         editor.apply();
