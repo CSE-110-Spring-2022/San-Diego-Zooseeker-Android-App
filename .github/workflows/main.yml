@@ -9,6 +9,10 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
+      # local properties issue is fixed with this
+      - name: Touch local properties
+        run: touch local.properties
+
       - name: set up JDK 11
         uses: actions/setup-java@v2
         with:
@@ -25,7 +29,5 @@ jobs:
         uses: asadmansr/android-test-report-action@v1.2.0
         if: ${{ always() }} # IMPORTANT: run Android Test Report regardless
 
-      # local prperties isssue is fixed with this
-      - name: Touch local properties
-        run: touch local.properties
+
         
