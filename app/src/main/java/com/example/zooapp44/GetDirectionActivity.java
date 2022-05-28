@@ -55,6 +55,7 @@ public class GetDirectionActivity extends AppCompatActivity {
         instructionView.setMovementMethod(new ScrollingMovementMethod());
         instructionView.setText(route.getInstruction(current));
 
+
         updateNextAnimalView();
     }
 
@@ -114,7 +115,7 @@ public class GetDirectionActivity extends AppCompatActivity {
 
         // get new instruction
         route.edges.remove(current);
-        route.vertices.remove(current + 1);
+        route.vertices.remove(current);
         updateText();
 
         if(current == route.getSize()){
