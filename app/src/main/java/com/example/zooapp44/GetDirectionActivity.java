@@ -107,13 +107,15 @@ public class GetDirectionActivity extends AppCompatActivity {
         Button back = findViewById(R.id.back_btn);
         back.setVisibility(View.VISIBLE);
 
+        ImageView img = findViewById(R.id.skip_btn);
+        img.setVisibility(View.VISIBLE);
+
         current++;
         editor.putInt("current_index", current);
         if(current == route.getSize()){
             Button button = findViewById(R.id.next_btn);
             button.setVisibility(View.INVISIBLE);
 
-            ImageView img = findViewById(R.id.skip_btn);
             img.setVisibility(View.INVISIBLE);
         }
         updateText();
@@ -150,11 +152,16 @@ public class GetDirectionActivity extends AppCompatActivity {
         Button next = findViewById(R.id.next_btn);
         next.setVisibility(View.VISIBLE);
 
+        ImageView img = findViewById(R.id.skip_btn);
+        img.setVisibility(View.VISIBLE);
+
         current --;
 
         if(current < 0){
             Button button = findViewById(R.id.back_btn);
             button.setVisibility(View.INVISIBLE);
+
+            img.setVisibility(View.INVISIBLE);
 
             TextView currentAnimalView = findViewById(R.id.current_animal);
             TextView nextAnimalView = findViewById(R.id.next_animal);
