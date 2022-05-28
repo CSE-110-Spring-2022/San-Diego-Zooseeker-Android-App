@@ -54,6 +54,70 @@ public class ChangeModeTest {
             }
         });
     }
-    
+
+
+    @Test
+    public void b2d(){
+        Intent getDirectionIntent = new Intent(ApplicationProvider.getApplicationContext(), GetDirectionActivity.class);
+        getDirectionIntent.putExtra("Route", ExhibitRoute.serialize(route));
+        ActivityScenario<GetDirectionActivity> scenario = ActivityScenario.launch(getDirectionIntent);
+        scenario.moveToState(Lifecycle.State.CREATED);
+        scenario.moveToState(Lifecycle.State.STARTED);
+        scenario.moveToState(Lifecycle.State.RESUMED);
+
+
+        scenario.onActivity(activity -> {
+
+            for(int i = 0; i < route.getSize(); i++){
+                Button setting = activity.findViewById(R.id.Setting_btn);
+                setting.performClick();
+
+                Button detail_btn = activity.findViewById(R.id.detail_btn);
+                detail_btn.performClick();
+
+
+                TextView instruction = activity.findViewById(R.id.route_instruction);
+                assertEquals(instruction.getText().toString(),
+                        route.getDetailedInstruction(i));
+
+                setting.performClick();
+
+                Button next = activity.findViewById(R.id.next_btn);
+                next.performClick();
+            }
+        });
+    }
+
+    @Test
+    public void d2b(){
+        Intent getDirectionIntent = new Intent(ApplicationProvider.getApplicationContext(), GetDirectionActivity.class);
+        getDirectionIntent.putExtra("Route", ExhibitRoute.serialize(route));
+        ActivityScenario<GetDirectionActivity> scenario = ActivityScenario.launch(getDirectionIntent);
+        scenario.moveToState(Lifecycle.State.CREATED);
+        scenario.moveToState(Lifecycle.State.STARTED);
+        scenario.moveToState(Lifecycle.State.RESUMED);
+
+
+        scenario.onActivity(activity -> {
+            Button setting = activity.findViewById(R.id.Setting_btn);
+            Button detail_btn = activity.findViewById(R.id.detail_btn);
+            Button brief_btn = activity.findViewById(R.id.brief.btn);
+            Button next = activity.findViewById(R.id.next_btn);
+
+            for(int i = 0; i < route.getSize(); i++){
+                setting.performClick();
+                detail_btn.performClick();
+                brief_btn.performClick();
+
+                TextView instruction = activity.findViewById(R.id.route_instruction);
+                assertEquals(instruction.getText().toString(),
+                        route.getBriefInstruction(i));
+
+                // close settings window and go to the next exhibit
+                setting.performClick();
+                next.performClick();
+            }
+        });
+    }
 
 }
