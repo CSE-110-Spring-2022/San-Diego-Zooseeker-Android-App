@@ -32,6 +32,7 @@ import java.util.Map;
 public class GetDirectionActivity extends AppCompatActivity {
     public RecyclerView recyclerView;
     private int current;
+    private View v;
     ExhibitRoute route;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -60,6 +61,22 @@ public class GetDirectionActivity extends AppCompatActivity {
             Button button = findViewById(R.id.next_btn);
             button.setVisibility(View.INVISIBLE);
         }
+        AlertDialog.Builder myAlert = new AlertDialog.Builder(this);
+        myAlert.setMessage("")
+                .setPositiveButton("Replan", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setTitle("Off track, replan?")
+                .create();
 
 
         //Observes when the location changes
@@ -71,6 +88,7 @@ public class GetDirectionActivity extends AppCompatActivity {
                 if(!route.onRoute(vertexCoordMap, current)){
                     System.out.println("Off Route!");
                     // Do off-route pop up here.
+                    myAlert.show();
                 }
                 System.out.println(current_coord.toString());
             }
@@ -126,6 +144,7 @@ public class GetDirectionActivity extends AppCompatActivity {
     }
 
     public void onNextClicked(View view){
+        this.v = view;
         current++;
         editor.putInt("current_index", current);
         if(current == route.getSize()){
