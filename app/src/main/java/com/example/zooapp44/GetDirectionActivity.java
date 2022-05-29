@@ -32,7 +32,7 @@ import java.util.Map;
 public class GetDirectionActivity extends AppCompatActivity {
     public RecyclerView recyclerView;
     private int current;
-    private View v;
+    private boolean show = true;
     ExhibitRoute route;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -66,12 +66,15 @@ public class GetDirectionActivity extends AppCompatActivity {
                 .setPositiveButton("Replan", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        //implementation of replan goes here
+                        show = false;
                         dialog.dismiss();
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        show=false;
                         dialog.dismiss();
                     }
                 })
@@ -88,7 +91,9 @@ public class GetDirectionActivity extends AppCompatActivity {
                 if(!route.onRoute(vertexCoordMap, current)){
                     System.out.println("Off Route!");
                     // Do off-route pop up here.
-                    myAlert.show();
+                    if (show) {
+                        myAlert.show();
+                    }
                 }
                 System.out.println(current_coord.toString());
             }
@@ -144,13 +149,13 @@ public class GetDirectionActivity extends AppCompatActivity {
     }
 
     public void onNextClicked(View view){
-        this.v = view;
         current++;
         editor.putInt("current_index", current);
         if(current == route.getSize()){
             Button button = findViewById(R.id.next_btn);
             button.setVisibility(View.INVISIBLE);
         }
+        show = true;
         updateText();
         editor.apply();
     }
