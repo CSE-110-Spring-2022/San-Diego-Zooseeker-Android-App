@@ -226,6 +226,16 @@ public class ChangeModeTest {
                         isDisplayed()));
         materialCheckBox.perform(click());
 
+        ViewInteraction materialCheckBox2 = onView(
+                allOf(withId(R.id.chosen),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.exhibit_items),
+                                        1),
+                                0),
+                        isDisplayed()));
+        materialCheckBox2.perform(click());
+
         ViewInteraction materialButton3 = onView(
                 allOf(withId(R.id.plan_btn), withText("PLAN"),
                         childAtPosition(
@@ -252,7 +262,7 @@ public class ChangeModeTest {
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                6),
+                                9),
                         isDisplayed()));
         materialButton5.perform(click());
 
