@@ -19,13 +19,14 @@ ToAddExhibitDao {
     List<Long> insertAll(List<ToAddExhibits> toAddExhibits);
 
     @Query("SELECT * FROM  `exhibit_items` WHERE `id`=:id")
-    ToAddExhibits get(String id);
+    ToAddExhibits get(long id);
 
     @Query("SELECT * FROM `exhibit_items`")
     LiveData<List<ToAddExhibits>> getAllLive();
 
     @Query("SELECT * FROM `exhibit_items` WHERE `selected`=1")
     List<ToAddExhibits> getSelected();
+
 
     @Query("SELECT * FROM `exhibit_items` ORDER BY `kind`")
     List<ToAddExhibits> getAll();

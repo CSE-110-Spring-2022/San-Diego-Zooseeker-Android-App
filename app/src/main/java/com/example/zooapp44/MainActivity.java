@@ -12,8 +12,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.apache.commons.lang3.ObjectUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -35,18 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
         ToAddExhibitDao toAddExhibitDao = ToAddDatabase.getSingleton(this).toAddExhibitDao();
         List<ToAddExhibits> exhibitItems = toAddExhibitDao.getAll();
-
-        //Find coordinates of exhibits in a group
-        for(ToAddExhibits object:exhibitItems){
-            if(object.group_id!= null){
-                ToAddExhibits change= object;
-                change.lat=toAddExhibitDao.get(object.group_id).lat;
-                change.lng=toAddExhibitDao.get(object.group_id).lng;
-                toAddExhibitDao.update(change);
-            }
-        }
-
-
         TextView msg = findViewById(R.id.message);
         count = toAddExhibitDao.getSelected().size();
         String temp = "There are "+Integer.toString(count)+" animals selected.";
@@ -125,10 +111,9 @@ public class MainActivity extends AppCompatActivity {
         List<ToAddExhibits> exhibits = dao.getSelected();
 
         List<String> exhibitIds = new ArrayList<>();
-        for(ToAddExhibits x:dao.getAll()){
-            if(x.selected==true){
-                exhibitIds.add(x.id);
-            }
+        for (ToAddExhibits toAddExhibits : exhibits) {
+            String id = toAddExhibits.id;
+            exhibitIds.add(id);
         }
         String start = "entrance_exit_gate";
         ExhibitRoute route = g.getOptimalPath(start, exhibitIds);

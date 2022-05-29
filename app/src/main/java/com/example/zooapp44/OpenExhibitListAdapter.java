@@ -39,7 +39,7 @@ public class OpenExhibitListAdapter extends RecyclerView.Adapter<OpenExhibitList
 
     @Override
     public void onBindViewHolder(@NonNull OpenExhibitListAdapter.ViewHolder holder, int position) {
-        holder.setExhibitDistance(route.getOriginal(position), route.getDistance(position, true));
+        holder.setExhibitDistance(route.getExhibit(position), route.getDistance(position, true));
     }
 
     @Override
