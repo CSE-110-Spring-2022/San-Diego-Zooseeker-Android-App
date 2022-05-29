@@ -16,9 +16,18 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.zooapp44.utils.VertexCoord;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 
 public class GetDirectionActivity extends AppCompatActivity {
     public RecyclerView recyclerView;
@@ -26,9 +35,14 @@ public class GetDirectionActivity extends AppCompatActivity {
     ExhibitRoute route;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+
+    LocationModel location;
+    Map<String, Coord> vertexCoordMap = VertexCoord.getVertexCoordMap(this);
+
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
     private Button replan_btn, cancel_btn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,15 +61,43 @@ public class GetDirectionActivity extends AppCompatActivity {
             button.setVisibility(View.INVISIBLE);
         }
 
-        updateText();
 
+        //Observes when the location changes
+        final Observer<Coord> observe = new Observer<Coord>() {
+            @Override
+            public void onChanged(@Nullable Coord coord) {
+                Coord current_coord = location.getLastKnownCoords();
+                route.current_coord = current_coord;
+                if(!route.onRoute(vertexCoordMap, current)){
+                    System.out.println("Off Route!");
+                    // Do off-route pop up here.
+                }
+                System.out.println(current_coord.toString());
+            }
+        };
+
+        location= new LocationModel(observe);
+        location.giveMutable().observe(this,observe);
+
+
+
+        List<MockLocation> mock= MockLocation.loadMockJSON(getApplicationContext(),"mock_route1.json");
+        List<Coord> coordList= new ArrayList<>();
+        List<Double> timeList= new ArrayList<>();
+        for(var object: mock){
+            object.change();
+            coordList.add(object.mock);
+            timeList.add(object.time);
+        }
+        location.mockRoute(coordList,timeList);
+        updateText();
     }
 
     @SuppressLint("SetTextI18n")
     private void updateText() {
         TextView currentAnimalView = findViewById(R.id.current_animal);
 
-        currentAnimalView.setText(route.getExhibit(current));
+        currentAnimalView.setText(route.getOriginal(current));
         TextView currentDistanceView = findViewById(R.id.current_distance);
         currentDistanceView.setText(route.getDistance(current, false));
 
@@ -74,7 +116,7 @@ public class GetDirectionActivity extends AppCompatActivity {
         else if(current + 1 > route.getSize())
             nextAnimalView.setText("");
         else
-            nextAnimalView.setText(route.getExhibit(current + 1));
+            nextAnimalView.setText(route.getOriginal(current + 1));
     }
 
     public void onHomeClicked(View view){

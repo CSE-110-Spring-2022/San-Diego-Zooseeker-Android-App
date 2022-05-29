@@ -81,11 +81,11 @@ public class retainExhibitTest {
         ZooGraph graph = ZooGraph.getSingleton(ApplicationProvider.getApplicationContext());
 
         List<ZooGraph.Vertex> vertices =
-                Arrays.asList(graph.getVertex("entrance gate", ZooGraph.Kind.GATE, true),
-                        graph.getVertex("tiger", ZooGraph.Kind.EXHIBIT, true),
-                        graph.getVertex("intersaction", ZooGraph.Kind.INTERSECTION, true),
-                        graph.getVertex("bird", ZooGraph.Kind.EXHIBIT, false),
-                        graph.getVertex("lion", ZooGraph.Kind.EXHIBIT, true));
+                Arrays.asList(graph.getVertex("entrance gate", ZooGraph.Kind.GATE, true,""),
+                        graph.getVertex("tiger", ZooGraph.Kind.EXHIBIT, true,""),
+                        graph.getVertex("intersaction", ZooGraph.Kind.INTERSECTION, true,""),
+                        graph.getVertex("bird", ZooGraph.Kind.EXHIBIT, false,""),
+                        graph.getVertex("lion", ZooGraph.Kind.EXHIBIT, true,""));
         List<ZooGraph.Edge> edges = Arrays.asList(graph.eInfo.get("gate_to_front"), graph.eInfo.get("gate_to_front"), graph.eInfo.get("gate_to_front"), graph.eInfo.get("gate_to_front"));
         List<Double> distance_double = Arrays.asList(300.0, 200.0);
         List<String> exhibits = Arrays.asList("tiger", "lion");
