@@ -3,6 +3,7 @@ package com.example.zooapp44;
 import com.google.gson.Gson;
 
 import java.util.List;
+import java.util.Map;
 
 public class ExhibitRoute {
     List<String> exhibits;
@@ -11,18 +12,7 @@ public class ExhibitRoute {
     List<ZooGraph.Vertex> vertices;
     List<Double> weight;
     List<String> original;
-
-    /*
-    public ExhibitRoute(List<String> exhibits, List<String> Distance){
-        this.exhibits = exhibits;
-        this.Distance = Distance;
-    }
-
-    public ExhibitRoute() {
-        this.exhibits = new ArrayList<>();
-        this.Distance = new ArrayList<>();
-    }
-    */
+    Coord current_coord;
 
 
     /**
@@ -103,17 +93,25 @@ public class ExhibitRoute {
     }
 
     public String getInstruction(int current) {
-        String current_location;
-        if(current == 0)
-            current_location = vertices.get(0).id;  //set current location to entrance
-        else current_location = exhibits.get(current - 1);
+        String current_location = getCurrent_exhibit(current);
+        String target_location = getTarget_exhibit(current);
+        return findPathBetween(current_location, target_location);
+    }
 
+    private String getTarget_exhibit(int current) {
         String target_location;
         if(current == getSize())
             target_location = vertices.get(0).id;
         else target_location = exhibits.get(current);
+        return target_location;
+    }
 
-        return findPathBetween(current_location, target_location);
+    private String getCurrent_exhibit(int current) {
+        String current_location;
+        if(current == 0)
+            current_location = vertices.get(0).id;  //set current location to entrance
+        else current_location = exhibits.get(current - 1);
+        return current_location;
     }
 
     private String findPathBetween(String current_location, String target_location) {
@@ -135,6 +133,38 @@ public class ExhibitRoute {
         }
 
         return ret;
+    }
+
+    /**
+     *
+     * @param vertexCoord the map from vertex id to Coord
+     *                    this should be get from utils/VertexCoord
+     * @param current index of current exhibits
+     * @return whether the user is on route
+     */
+    public boolean onRoute(Map<String, Coord> vertexCoord, int current){
+        String current_exhibit = getCurrent_exhibit(current);
+        String next_exhibit = getTarget_exhibit(current + 1);
+
+        int s = 0;
+        while(!vertices.get(s).id.equals(current_exhibit))
+            s++;
+        int t = s;
+        while(!vertices.get(t).id.equals(next_exhibit))
+            t++;
+
+        for(int i = s; i < t; i++){
+            Coord st = vertexCoord.get(vertices.get(i).id);
+            Coord ed = vertexCoord.get(vertices.get(i + 1).id);
+
+            double dis1 =Coord.calcDistance(st, current_coord);
+            double dis2 = Coord.calcDistance(current_coord, ed);
+            double tot_dis = Coord.calcDistance(st, ed);
+
+            if(Math.abs(dis1 + dis2 - tot_dis) < 100)
+                return true;
+        }
+        return false;
     }
 
 

@@ -4,6 +4,7 @@ import android.location.Location;
 
 import androidx.annotation.NonNull;
 
+import com.example.zooapp44.utils.LatLngs;
 import com.google.android.gms.common.internal.Objects;
 import com.google.android.gms.maps.model.LatLng;
 //import com.google.common.base.Objects;
@@ -59,6 +60,15 @@ public class Coord {
     public boolean isInBetween(Coord first,Coord second,Coord between){
 
         return false;
+    }
+
+    public static double calcDistance(Coord x, Coord y){
+        double d_lat = x.lat - y.lat;
+        double d_lng = x.lng - y.lng;
+
+        double d_ft_v = d_lat * 363843.57;
+        double d_ft_h = d_lng * 307515.50;
+        return Math.sqrt(d_ft_v * d_ft_v + d_ft_h * d_ft_h);
     }
 
 

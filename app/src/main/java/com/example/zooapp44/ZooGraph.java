@@ -150,6 +150,7 @@ public class ZooGraph {
             this.kind = kind;
             this.selected = selected;
             this.group_id=group_id;
+
         }
     }
 

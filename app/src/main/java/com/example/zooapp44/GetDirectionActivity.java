@@ -15,8 +15,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.zooapp44.utils.VertexCoord;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 public class GetDirectionActivity extends AppCompatActivity {
@@ -26,6 +29,7 @@ public class GetDirectionActivity extends AppCompatActivity {
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
     LocationModel location;
+    Map<String, Coord> vertexCoordMap = VertexCoord.getVertexCoordMap(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +53,13 @@ public class GetDirectionActivity extends AppCompatActivity {
         final Observer<Coord> observe = new Observer<Coord>() {
             @Override
             public void onChanged(@Nullable Coord coord) {
-                Coord current = location.getLastKnownCoords();
-                System.out.println(current.toString());
+                Coord current_coord = location.getLastKnownCoords();
+                route.current_coord = current_coord;
+                if(!route.onRoute(vertexCoordMap, current)){
+                    System.out.println("Off Route!");
+                    // Do off-route pop up here.
+                }
+                System.out.println(current_coord.toString());
             }
         };
 
