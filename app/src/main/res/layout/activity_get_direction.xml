@@ -32,7 +32,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/next_exhibit"
         app:layout_constraintEnd_toEndOf="@+id/next_exhibit"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="@+id/next_exhibit"
+        app:layout_constraintStart_toStartOf="@+id/next_exhibit" />
 
 
     <TextView

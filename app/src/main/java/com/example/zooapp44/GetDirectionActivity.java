@@ -139,13 +139,7 @@ public class GetDirectionActivity extends AppCompatActivity {
     }
 
 
-    public void onStopClicked(View view) {
-        editor.clear();
-        editor.apply();
-        finish();
-    }
-
-    public void onSettingClicked(View view){
+    public void onSettingClicked(View view) {
         LayoutInflater inflater = (LayoutInflater)
                 getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.popup_window, null);
@@ -161,6 +155,7 @@ public class GetDirectionActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
 
 
 
@@ -186,7 +181,7 @@ public class GetDirectionActivity extends AppCompatActivity {
         }
 
     }
-  
+
 
 
     public void onBriefClicked(View view){
@@ -197,6 +192,7 @@ public class GetDirectionActivity extends AppCompatActivity {
     public void onDetailClicked(View view){
         isBrief = false;
         updateText();
+    }
 
     public void onBackClicked(View view){
         Button next = findViewById(R.id.next_btn);
@@ -230,7 +226,7 @@ public class GetDirectionActivity extends AppCompatActivity {
         }
     }
 
-    
+
 
     public void onStopClicked(View view) {
         editor.clear();

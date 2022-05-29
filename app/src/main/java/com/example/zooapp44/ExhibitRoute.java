@@ -116,19 +116,21 @@ public class ExhibitRoute {
         return findPathBetween(current_location, target_location, false);
     }
 
+
     public String getDetailedInstruction(int current) {
         String current_location;
-        if(current == 0)
+        if (current == 0)
             current_location = vertices.get(0).id;  //set current location to entrance
         else current_location = exhibits.get(current - 1);
 
 
         String target_location;
-        if(current == getSize())
+        if (current == getSize())
             target_location = vertices.get(0).id;
         else target_location = exhibits.get(current);
 
         return findPathBetween(current_location, target_location, true);
+    }
 
     public String getBackInstruction(int current) {
         String current_location;
