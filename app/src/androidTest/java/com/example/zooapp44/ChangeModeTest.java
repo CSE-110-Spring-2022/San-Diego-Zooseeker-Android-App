@@ -97,20 +97,16 @@ public class ChangeModeTest {
         scenario.onActivity(activity -> {
             Button setting = activity.findViewById(R.id.Setting_btn);
 
-            // datail_btn in a popup, probably won't work this way
-            // Button detail_btn = activity.findViewById(R.id.detail_btn);
             Button next = activity.findViewById(R.id.next_btn);
 
             for(int i = 0; i < route.getSize(); i++){
                 setting.performClick();
 
-                Button detail_btn = activity.findViewById(R.id.detail_btn);
+                LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View layout = inflater.inflate(R.layout.popup_window,
+                        (ViewGroup) activity.findViewById(R.id.change_mode_popup));
 
-//                LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                View layout = inflater.inflate(R.layout.popup_window,
-//                        (ViewGroup) activity.findViewById(R.id.change_mode_popup));
-//
-//                Button detail_btn = (Button) layout.findViewById(R.id.detail_btn);
+                Button detail_btn = (Button) layout.findViewById(R.id.detail_btn);
 
                 detail_btn.performClick();
 
@@ -138,16 +134,18 @@ public class ChangeModeTest {
         scenario.onActivity(activity -> {
             Button setting = activity.findViewById(R.id.Setting_btn);
 
-            // datail_btn and brief_btn in a popup, probably won't work this way
-//            Button detail_btn = activity.findViewById(R.id.detail_btn);
-//            Button brief_btn = activity.findViewById(R.id.brief_btn);
             Button next = activity.findViewById(R.id.next_btn);
 
             for(int i = 0; i < route.getSize(); i++){
                 setting.performClick();
 
-                Button detail_btn = activity.findViewById(R.id.detail_btn);
-                Button brief_btn = activity.findViewById(R.id.brief_btn);
+                LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View layout = inflater.inflate(R.layout.popup_window,
+                        (ViewGroup) activity.findViewById(R.id.change_mode_popup));
+
+                Button detail_btn = (Button) layout.findViewById(R.id.detail_btn);
+                Button brief_btn = (Button) layout.findViewById(R.id.brief_btn);
+
                 detail_btn.performClick();
                 brief_btn.performClick();
 
