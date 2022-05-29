@@ -1,16 +1,23 @@
 package com.example.zooapp44;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,8 +35,14 @@ public class GetDirectionActivity extends AppCompatActivity {
     ExhibitRoute route;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+
     LocationModel location;
     Map<String, Coord> vertexCoordMap = VertexCoord.getVertexCoordMap(this);
+
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog dialog;
+    private Button replan_btn, cancel_btn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,5 +140,45 @@ public class GetDirectionActivity extends AppCompatActivity {
         editor.clear();
         editor.apply();
         finish();
+    }
+
+
+
+    // belows are functions handling the reroute popup window
+
+
+    public void createReplanMessage(View view){
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+        View replanView = inflater.inflate(R.layout.replan_popup, null);
+        boolean focusable = true;
+
+        float density = GetDirectionActivity.this.getResources().getDisplayMetrics().density;
+        final PopupWindow replanPopupView = new PopupWindow(replanView, (int)density*400, (int)density*300, focusable);
+        replanPopupView.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        cancel_btn = (Button) replanView.findViewById(R.id.cancel_btn);
+        cancel_btn.setOnClickListener(new View.OnClickListener() {
+            // onClick method for cancel button
+            @Override
+            public void onClick(View view) {
+                replanPopupView.dismiss();
+            }
+        });
+
+        replan_btn = (Button) replanView.findViewById(R.id.replan_btn);
+        replan_btn.setOnClickListener(new View.OnClickListener() {
+            // onClick method for replan button
+            @Override
+            public void onClick(View view){
+                // get current location and replan new route
+            }
+        });
+
+    }
+
+
+    public void onOffClick(View view) {
+        createReplanMessage(view);
     }
 }
