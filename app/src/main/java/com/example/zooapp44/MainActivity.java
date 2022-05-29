@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     ToAddExhibitsViewModel exhibitsViewModel;
     int count = 0;
     String selectedExhibitsOutput;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
