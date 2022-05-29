@@ -76,8 +76,9 @@ public class MainActivity extends AppCompatActivity {
                     List<String> tags = exhibitItems.get(i).tags;
                     Log.i("tags", tags.toString());
 
-                    for (int j = 0; j < tags.size(); j ++){
-                        if (tags.get(j).startsWith(query_item) || query_item.startsWith(tags.get(j))){
+
+                    for(int j = 0; j < tags.size(); j ++){
+                        if(tags.get(j).startsWith(query_item)){
                             filteredItems.add(exhibitItems.get(i));
                             break;
                         }

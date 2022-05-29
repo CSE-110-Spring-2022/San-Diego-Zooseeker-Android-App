@@ -35,6 +35,7 @@
         app:layout_constraintStart_toStartOf="@+id/next_exhibit"
         app:layout_constraintTop_toTopOf="@+id/next_exhibit" />
 
+
     <TextView
         android:id="@+id/next_message"
         android:layout_width="163dp"
@@ -52,20 +53,20 @@
 
     <LinearLayout
         android:id="@+id/current_exhibit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="412dp"
+        android:layout_height="67dp"
         android:background="#83A300"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.131">
+        app:layout_constraintVertical_bias="0.13">
+
 
         <TextView
             android:id="@+id/current_animal"
-            android:layout_width="272dp"
-            android:layout_height="37dp"
+            android:layout_width="199dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="Animal Name"
@@ -77,7 +78,7 @@
         <TextView
             android:id="@+id/current_distance"
             android:layout_width="100dp"
-            android:layout_height="37dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="40dp"
             android:layout_marginBottom="16dp"
@@ -86,6 +87,16 @@
             android:textSize="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/skip_btn"
+            android:layout_width="52dp"
+            android:layout_height="64dp"
+            android:clickable="true"
+            android:onClick="onSkipClicked"
+            android:src="@drawable/ic_trash_can"
+            tools:layout_editor_absoluteX="380dp"
+            tools:layout_editor_absoluteY="87dp" />
 
     </LinearLayout>
 
@@ -110,10 +121,8 @@
 
     <Button
         android:id="@+id/next_btn"
-        android:layout_width="334dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="39dp"
-        android:layout_marginEnd="39dp"
+        android:layout_width="150dp"
+        android:layout_height="55dp"
         android:backgroundTint="#B2F194"
         android:onClick="onNextClicked"
         android:text="NEXT"
@@ -121,10 +130,59 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintHorizontal_bias="0.901"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.868" />
+        app:layout_constraintVertical_bias="0.867" />
+
+    <Button
+        android:id="@+id/back_btn"
+        android:layout_width="150dp"
+        android:layout_height="55dp"
+        android:backgroundTint="#B2F194"
+        android:text="BACK"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:onClick="onBackClicked"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.098"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.867" />
+
+    <Button
+        android:id="@+id/stop_btn"
+        android:layout_width="330dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginEnd="39dp"
+        android:backgroundTint="#F56C6C"
+        android:onClick="onStopClicked"
+        android:text="STOP NAVIGATION"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.951" />
+
+    <TextView
+        android:id="@+id/route_instruction"
+        android:layout_width="347dp"
+        android:layout_height="295dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="31dp"
+        android:width="350dp"
+        android:height="200dp"
+        android:background="#9F9EB150"
+        android:text="The shortest path from 'elephant_odyssey' to 'entrance_exit_gate' is:   \n1. Walk 200 meters along Africa Rocks Street from 'Lions' to 'Elephant Odyssey'.   \n2. Walk 200 meters along Sharp Teeth Shortcut from 'Alligators' to 'Lions'.   \n3. Walk 100 meters along Reptile Road from 'Entrance Plaza' to 'Alligators'.  \n4. Walk 10 meters along Entrance Way from 'Entrance and Exit Gate' to 'Entrance Plaza'."
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:scrollbars="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/current_exhibit" />
 
     <Button
         android:id="@+id/Setting_btn"
@@ -143,41 +201,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023" />
 
-    <Button
-        android:id="@+id/stop_btn"
-        android:layout_width="330dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="39dp"
-        android:layout_marginBottom="31dp"
-        android:backgroundTint="#F56C6C"
-        android:onClick="onStopClicked"
-        android:text="STOP NAVIGATION"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/next_btn" />
 
-    <TextView
-        android:id="@+id/route_instruction"
-        android:layout_width="347dp"
-        android:layout_height="295dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="31dp"
-        android:width="350dp"
-        android:height="200dp"
-        android:background="#9F9EB150"
-        android:scrollbars="vertical"
-        android:text=""
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/current_exhibit" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
