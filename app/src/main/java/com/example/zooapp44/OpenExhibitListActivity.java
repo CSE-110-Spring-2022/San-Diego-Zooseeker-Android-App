@@ -1,6 +1,5 @@
 package com.example.zooapp44;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,22 +9,18 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.test.core.app.ApplicationProvider;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class OpenExhibitListActivity extends AppCompatActivity {
     public RecyclerView recyclerView;
 //    private ToAddExhibitsViewModel viewModel;
     ExhibitRoute route;
-    private LocationModel location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_open_exhibit_list);
-
 
 
         Intent intent = getIntent();
@@ -55,8 +50,6 @@ public class OpenExhibitListActivity extends AppCompatActivity {
     public void onGetDirectionClicked(View view){
         Intent intent = new Intent(this, GetDirectionActivity.class);
         intent.putExtra("Route", ExhibitRoute.serialize(route));
-
-
         startActivity(intent);
     }
 

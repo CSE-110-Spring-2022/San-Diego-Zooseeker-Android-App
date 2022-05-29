@@ -16,7 +16,6 @@ public class ExhibitRouteTest {
     @Test
     public void addition_isCorrect() {
         List<String> exhibits = Arrays.asList("tiger", "monkey", "fish");
-        List<String> original = Arrays.asList("tiger", "monkey", "fish");
         //List<String> Distance = Arrays.asList("300ft", "200ft", "100ft");
         ZooGraph.Vertex one=null;
         /*
@@ -60,7 +59,7 @@ public class ExhibitRouteTest {
 
         List<Double> weights= Arrays.asList(300.0, 200.0);
 
-        ExhibitRoute exhibitRoute = new ExhibitRoute(vertices,edges,weights,exhibits,original);
+        ExhibitRoute exhibitRoute = new ExhibitRoute(vertices,edges,weights,exhibits);
         String encoded = ExhibitRoute.serialize(exhibitRoute);
         ExhibitRoute decoded = ExhibitRoute.deserialize(encoded);
 
