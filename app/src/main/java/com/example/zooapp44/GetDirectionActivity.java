@@ -88,6 +88,7 @@ public class GetDirectionActivity extends AppCompatActivity {
             public void onChanged(@Nullable Coord coord) {
                 Coord current_coord = location.getLastKnownCoords();
                 route.current_coord = current_coord;
+                //If person is not on route
                 if(!route.onRoute(vertexCoordMap, current)){
                     System.out.println("Off Route!");
                     // Do off-route pop up here.
@@ -95,13 +96,16 @@ public class GetDirectionActivity extends AppCompatActivity {
                         myAlert.show();
                     }
                 }
+                //Update
+                else{
+
+                }
                 System.out.println(current_coord.toString());
             }
         };
 
         location= new LocationModel(observe);
         location.giveMutable().observe(this,observe);
-
 
 
         List<MockLocation> mock= MockLocation.loadMockJSON(getApplicationContext(),"mock_route1.json");
@@ -116,6 +120,14 @@ public class GetDirectionActivity extends AppCompatActivity {
         updateText();
     }
 
+    private void updateFromCurrent(){
+        TextView instructionView = findViewById(R.id.route_instruction);
+        instructionView.setMovementMethod(new ScrollingMovementMethod());
+        instructionView.setText(route.getInstruction(current,location.getLastKnownCoords()));
+    }
+
+
+
     @SuppressLint("SetTextI18n")
     private void updateText() {
         TextView currentAnimalView = findViewById(R.id.current_animal);
@@ -124,10 +136,9 @@ public class GetDirectionActivity extends AppCompatActivity {
         TextView currentDistanceView = findViewById(R.id.current_distance);
         currentDistanceView.setText(route.getDistance(current, false));
 
-
         TextView instructionView = findViewById(R.id.route_instruction);
         instructionView.setMovementMethod(new ScrollingMovementMethod());
-        instructionView.setText(route.getInstruction(current));
+        instructionView.setText(route.getInstruction(current,location.getLastKnownCoords()));
 
         updateNextAnimalView();
     }

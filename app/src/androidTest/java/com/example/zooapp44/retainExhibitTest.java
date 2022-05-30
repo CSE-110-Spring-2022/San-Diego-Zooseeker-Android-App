@@ -81,15 +81,16 @@ public class retainExhibitTest {
         ZooGraph graph = ZooGraph.getSingleton(ApplicationProvider.getApplicationContext());
 
         List<ZooGraph.Vertex> vertices =
-                Arrays.asList(graph.getVertex("entrance gate", ZooGraph.Kind.GATE, true,""),
-                        graph.getVertex("tiger", ZooGraph.Kind.EXHIBIT, true,""),
-                        graph.getVertex("intersaction", ZooGraph.Kind.INTERSECTION, true,""),
-                        graph.getVertex("bird", ZooGraph.Kind.EXHIBIT, false,""),
-                        graph.getVertex("lion", ZooGraph.Kind.EXHIBIT, true,""));
+                Arrays.asList(graph.getVertex("entrance_exit_gate", ZooGraph.Kind.GATE, true,"",300,300),
+                        graph.getVertex("gorilla", ZooGraph.Kind.EXHIBIT, true,"",300,300),
+                        graph.getVertex("intxn_front_treetops", ZooGraph.Kind.INTERSECTION, true,"",300,300),
+                        graph.getVertex("hippo", ZooGraph.Kind.EXHIBIT, false,"",300,300),
+                        graph.getVertex("koi", ZooGraph.Kind.EXHIBIT, true,"",300,300));
         List<ZooGraph.Edge> edges = Arrays.asList(graph.eInfo.get("gate_to_front"), graph.eInfo.get("gate_to_front"), graph.eInfo.get("gate_to_front"), graph.eInfo.get("gate_to_front"));
         List<Double> distance_double = Arrays.asList(300.0, 200.0);
-        List<String> exhibits = Arrays.asList("tiger", "lion");
-        intent.putExtra("Route", ExhibitRoute.serialize(new ExhibitRoute(vertices, edges, distance_double, exhibits)));
+        List<String> exhibits = Arrays.asList("gorilla", "koi");
+        List<String> original =Arrays.asList("gorilla", "koi");
+        intent.putExtra("Route", ExhibitRoute.serialize(new ExhibitRoute(vertices, edges, distance_double, exhibits,original)));
         ActivityScenario<GetDirectionActivity> scenario = ActivityScenario.launch(intent);
         scenario.moveToState(Lifecycle.State.CREATED);
         scenario.moveToState(Lifecycle.State.STARTED);
@@ -112,7 +113,7 @@ public class retainExhibitTest {
 
         Intent intent = new Intent(ApplicationProvider.getApplicationContext(), OpenExhibitListActivity.class);
 
-        ExhibitRoute exhibitRoute = new ExhibitRoute(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        ExhibitRoute exhibitRoute = new ExhibitRoute(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),new ArrayList<>());
         intent.putExtra("Route", ExhibitRoute.serialize(exhibitRoute));
 
         ActivityScenario<OpenExhibitListActivity> scenario = ActivityScenario.launch(intent);
