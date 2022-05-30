@@ -276,7 +276,7 @@ public class ExhibitRoute {
                     vert_temp = vertices.get(i).name;
                 }
                 weight_temp += (float)edges.get(i-1).weight;
-                if (i != t+1 && edges.get(i).street.equals(edges.get(i-1).street)) {
+                if (i != t+1 && edges.get(i-1).street.equals(edges.get(i-2).street)) {
                     //skip if street does not change
                     continue;
                 }
@@ -286,7 +286,7 @@ public class ExhibitRoute {
                         weight_temp + "ft", street, vert_temp, vertices.get(i - 1).name);
                 if (i!= t+1) {
                     weight_temp = 0;    //reset
-                    street = edges.get(i - 1).street;
+                    street = edges.get(i - 2).street;
                     vert_temp = vertices.get(i - 1).name;
                 }
             }
