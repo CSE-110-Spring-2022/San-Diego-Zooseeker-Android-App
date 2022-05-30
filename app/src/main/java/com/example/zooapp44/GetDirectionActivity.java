@@ -101,8 +101,7 @@ public class GetDirectionActivity extends AppCompatActivity {
                 else{
                     updateText();
                 }
-                System.out.println(current_coord.toString());
-            }
+                System.out.println(current_coord.toString());}
         };
 
         location= new LocationModel(observe);

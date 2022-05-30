@@ -116,7 +116,7 @@ public class ExhibitRoute {
         else target_location = exhibits.get(current);
 
         Pair<Double,String> length=this.findClosest(current_location,target_location,location);
-        return findPathBetween(current_location, target_location,length.first);
+        return findPathBetween(length.second, target_location,length.first);
     }
 
     private String getCurrent_exhibit(int current) {
@@ -273,7 +273,7 @@ public class ExhibitRoute {
         */
             //If current location is in the route between
             if (Coord.isInBetween(tester1, tester2, dot)) {
-                nearest = vertices.get(i + 1).name;
+                nearest = vertices.get(i).id;
                 distance=Coord.calcDistance(dot,tester2);
                 toReturn= new Pair<>(distance,nearest);
             }

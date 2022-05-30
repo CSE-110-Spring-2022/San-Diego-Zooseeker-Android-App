@@ -61,9 +61,15 @@ public class Coord {
         double ac=calcDistance(first,second);
         double ab=calcDistance(first,between);
         double bc= calcDistance(between,second);
+        double together=ab+bc;
+        if(Math.abs(ac-together)<0.001){
+            return true;
+        }
+        /**
         if(calcDistance(first,second)==calcDistance(first,between)+calcDistance(between,second)){
             return true;
         }
+         **/
         return false;
     }
 
