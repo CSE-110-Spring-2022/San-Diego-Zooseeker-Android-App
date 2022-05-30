@@ -102,18 +102,17 @@
 
     <Button
         android:id="@+id/home_btn"
-        android:layout_width="110dp"
+        android:layout_width="145dp"
         android:layout_height="60dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="291dp"
         android:backgroundTint="#83A300"
         android:onClick="onHomeClicked"
         android:text="HOME"
+        android:textAlignment="center"
         android:textAllCaps="false"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.06"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023"
@@ -186,22 +185,19 @@
 
     <Button
         android:id="@+id/Setting_btn"
-        android:layout_width="110dp"
+        android:layout_width="145dp"
         android:layout_height="60dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="652dp"
         android:backgroundTint="#83A300"
         android:onClick="onSettingClicked"
         android:text="SETTINGS"
         android:textAllCaps="false"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.939"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
