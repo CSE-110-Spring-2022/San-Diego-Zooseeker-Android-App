@@ -184,6 +184,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/current_exhibit" />
 
+    <Button
+        android:id="@+id/Setting_btn"
+        android:layout_width="110dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="652dp"
+        android:backgroundTint="#83A300"
+        android:onClick="onSettingClicked"
+        android:text="SETTINGS"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+
 
 
 

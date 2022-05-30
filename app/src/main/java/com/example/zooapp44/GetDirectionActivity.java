@@ -6,9 +6,19 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +27,8 @@ import androidx.recyclerview.widget.RecyclerView;
 public class GetDirectionActivity extends AppCompatActivity {
     public RecyclerView recyclerView;
     private int current;
+    private boolean isBrief = true;
+    private boolean isBack = false;
     ExhibitRoute route;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -53,11 +65,15 @@ public class GetDirectionActivity extends AppCompatActivity {
 
         TextView instructionView = findViewById(R.id.route_instruction);
         instructionView.setMovementMethod(new ScrollingMovementMethod());
-        instructionView.setText(route.getInstruction(current));
 
-
+        if (isBrief) {
+            instructionView.setText(route.getBriefInstruction(current));
+        } else {
+            instructionView.setText(route.getDetailedInstruction(current));
+        }
         updateNextAnimalView();
     }
+
 
     private void updateNextAnimalView() {
         TextView nextAnimalView = findViewById(R.id.next_animal);
@@ -68,6 +84,7 @@ public class GetDirectionActivity extends AppCompatActivity {
         }
         else
             nextAnimalView.setText(route.getExhibit(current + 1));
+
 
         if(current == route.getSize()){
             ImageView img = findViewById(R.id.skip_btn);
@@ -87,7 +104,13 @@ public class GetDirectionActivity extends AppCompatActivity {
         backDistanceView.setText(route.getBackDistance(current, false));
 
         TextView instructionView = findViewById(R.id.route_instruction);
-        instructionView.setText(route.getBackInstruction(current+1));
+        // instructionView.setText(route.getBriefBackInstruction(current+1));
+
+        if (isBrief) {
+            instructionView.setText(route.getBriefBackInstruction(current+1));
+        } else {
+            instructionView.setText(route.getDetailedBackInstruction(current+1));
+        }
 
         if(current + 1 == route.getSize())
             nextAnimalView.setText("Entrance gate");
@@ -98,12 +121,16 @@ public class GetDirectionActivity extends AppCompatActivity {
     }
 
     public void onHomeClicked(View view){
+        isBack = false;
+
         super.onBackPressed();
         startActivity(new Intent(GetDirectionActivity.this, MainActivity.class));
         finish();
     }
 
     public void onNextClicked(View view){
+        isBack = false;
+
         Button back = findViewById(R.id.back_btn);
         back.setVisibility(View.VISIBLE);
 
@@ -123,8 +150,29 @@ public class GetDirectionActivity extends AppCompatActivity {
     }
 
 
+    public void onSettingClicked(View view) {
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.popup_window, null);
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true;
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
+    }
+
+
 
     public void onSkipClicked(View view) {
+        isBack = false;
+
         // get new distance
         Double new_dist = route.weight.get(current) + route.weight.get(current + 1);
         route.weight.set(current + 1, new_dist);
@@ -146,9 +194,75 @@ public class GetDirectionActivity extends AppCompatActivity {
         }
 
     }
-  
+
+
+
+    public void onBriefClicked(View view){
+        if(current < 0){
+            TextView currentAnimalView = findViewById(R.id.current_animal);
+            TextView nextAnimalView = findViewById(R.id.next_animal);
+
+            currentAnimalView.setText("Entrance gate");
+            TextView backDistanceView = findViewById(R.id.current_distance);
+            backDistanceView.setText(route.getBackDistance(current, false));
+
+            TextView instructionView = findViewById(R.id.route_instruction);
+            instructionView.setText(route.getBriefBackInstruction(current+1));
+
+            nextAnimalView.setText(route.getExhibit(current + 1));
+
+        } else {
+            isBrief = true;
+            if(!isBack) {
+                updateText();
+            } else{
+                updateTextBack();
+            }
+        }
+
+//        isBrief = true;
+//        if(!isBack) {
+//            updateText();
+//        } else{
+//            updateTextBack();
+//        }
+    }
+
+    public void onDetailClicked(View view){
+        if(current < 0){
+            TextView currentAnimalView = findViewById(R.id.current_animal);
+            TextView nextAnimalView = findViewById(R.id.next_animal);
+
+            currentAnimalView.setText("Entrance gate");
+            TextView backDistanceView = findViewById(R.id.current_distance);
+            backDistanceView.setText(route.getBackDistance(current, false));
+
+            TextView instructionView = findViewById(R.id.route_instruction);
+            instructionView.setText(route.getDetailedBackInstruction(current+1));
+
+            nextAnimalView.setText(route.getExhibit(current + 1));
+
+        } else {
+            isBrief = false;
+            if (!isBack) {
+                updateText();
+            } else {
+                updateTextBack();
+            }
+        }
+
+
+//        isBrief = false;
+//        if(!isBack) {
+//            updateText();
+//        } else{
+//            updateTextBack();
+//        }
+    }
 
     public void onBackClicked(View view){
+        isBack = true;
+
         Button next = findViewById(R.id.next_btn);
         next.setVisibility(View.VISIBLE);
 
@@ -171,7 +285,7 @@ public class GetDirectionActivity extends AppCompatActivity {
             backDistanceView.setText(route.getBackDistance(current, false));
 
             TextView instructionView = findViewById(R.id.route_instruction);
-            instructionView.setText(route.getBackInstruction(current+1));
+            instructionView.setText(route.getBriefBackInstruction(current+1));
 
             nextAnimalView.setText(route.getExhibit(current + 1));
 
@@ -180,9 +294,11 @@ public class GetDirectionActivity extends AppCompatActivity {
         }
     }
 
-    
+
 
     public void onStopClicked(View view) {
+        isBack = false;
+
         editor.clear();
         editor.apply();
         finish();

@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     ToAddExhibitsViewModel exhibitsViewModel;
     int count = 0;
     String selectedExhibitsOutput;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,9 +72,10 @@ public class MainActivity extends AppCompatActivity {
                 String query_item = searchView.getQuery().toString();
                 Log.i("query item", query_item);
 
-                for(int i = 0; i < exhibitItems.size(); i ++){
+                for (int i = 0; i < exhibitItems.size(); i ++){
                     List<String> tags = exhibitItems.get(i).tags;
                     Log.i("tags", tags.toString());
+
 
                     for(int j = 0; j < tags.size(); j ++){
                         if(tags.get(j).startsWith(query_item)){
