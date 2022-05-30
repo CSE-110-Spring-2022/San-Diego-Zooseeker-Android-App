@@ -196,5 +196,40 @@ public class ExhibitRoute {
         return false;
     }
 
+    private String getTarget_exhibit(int current) {
+        String target_location;
+        if(current == getSize())
+            target_location = vertices.get(0).id;
+        else target_location = exhibits.get(current);
+        return target_location;
+    }
+
+
+    private String findBackPathBetween(String current_location, String target_location) {
+        int s = 0;
+        while (!vertices.get(s).id.equals(current_location))
+            s++;
+        int t = 0;
+        while(!vertices.get(t).id.equals(target_location))
+            t++;
+
+        if(current_location == "entrance_exit_gate"){
+            s = vertices.size()-1;
+        }
+        //s > t
+
+        String ret = String.format("The shortest path from %s to %s is:\n\n", vertices.get(s).name, vertices.get(t).name);
+
+        int num = 0;
+        for(int i = s; i > t; i--){
+            num++;
+            ret += num + ". ";
+            ret += String.format("Walk %s meters along %s from %s to %s.\n\n",
+                    edges.get(i-1).weight + "ft", edges.get(i-1).street, vertices.get(i).name, vertices.get(i - 1).name);
+        }
+
+        return ret;
+    }
+
 
 }
