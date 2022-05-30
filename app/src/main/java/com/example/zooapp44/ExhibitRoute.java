@@ -280,7 +280,19 @@ public class ExhibitRoute {
         }
         toReturn = new Pair<Double,String>(distance, nearest);
         return toReturn;
+    }
 
+    public Pair<Double, String> findAllClosest(Coord dot){
+        double distance=10000000;
+        String closest=null;
+        for(int i=0;i<vertices.size();i++){
+            Coord tester1 = new Coord(vertices.get(i).lat, vertices.get(i).lng);
+            if(Coord.calcDistance(tester1,dot)<distance){
+                distance=Coord.calcDistance(tester1,dot);
+                closest=vertices.get(i).id;
+            }
+        }
+        return new Pair<Double,String>(distance,closest);
     }
 
 

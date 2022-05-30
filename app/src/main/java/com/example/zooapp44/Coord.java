@@ -58,7 +58,10 @@ public class Coord {
     }
 
     public static boolean isInBetween(Coord first,Coord second,Coord between){
-        if(calcDistance(first,second)==calcDistance(first,between)+calcDistance(first,between)){
+        double ac=calcDistance(first,second);
+        double ab=calcDistance(first,between);
+        double bc= calcDistance(between,second);
+        if(calcDistance(first,second)==calcDistance(first,between)+calcDistance(between,second)){
             return true;
         }
         return false;

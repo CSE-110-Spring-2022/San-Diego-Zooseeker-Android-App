@@ -20,7 +20,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.util.Pair;
+import android.util.Pair;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -93,13 +93,13 @@ public class GetDirectionActivity extends AppCompatActivity {
                 if(!route.onRoute(vertexCoordMap, current)){
                     System.out.println("Off Route!");
                     // Do off-route pop up here.
-                    route.onRoute(vertexCoordMap, current);
+
                     if (show) {
                         myAlert.show();
                     }
                 }
                 else{
-
+                    updateText();
                 }
                 System.out.println(current_coord.toString());
             }
@@ -310,6 +310,31 @@ public class GetDirectionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 // get current location and replan new route
+                Coord dot= location.getLastKnownCoords();
+
+                ZooGraph g = ZooGraph.getSingleton(getApplicationContext());
+
+                ToAddDatabase db = ToAddDatabase.getSingleton(getApplicationContext());
+                ToAddExhibitDao dao = db.toAddExhibitDao();
+                List<ToAddExhibits> exhibits = dao.getSelected();
+
+                List<String> exhibitIds = new ArrayList<>();
+                for(int i=current;current<route.original.size();i++){
+                    exhibitIds.add(route.original.get(i));
+                }
+
+                //Get closest exhibit
+                //double is the distance
+                //string is the closest exhibit
+                Pair<Double,String> closest=route.findAllClosest(location.getLastKnownCoords());
+                ExhibitRoute reroute= g.getOptimalPath(closest.second, exhibitIds);
+                int old_current=current;
+                int current=route.vertices.size();
+                route.vertices.addAll(reroute.vertices);
+                route.original.addAll(reroute.original);
+                route.weight.addAll(reroute.weight);
+                route.edges.addAll(reroute.edges);
+                updateText();
             }
         });
 
