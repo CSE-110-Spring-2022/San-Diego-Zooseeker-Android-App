@@ -57,8 +57,10 @@ public class Coord {
         return String.format("Coord{lat=%s, lng=%s}", lat, lng);
     }
 
-    public boolean isInBetween(Coord first,Coord second,Coord between){
-
+    public static boolean isInBetween(Coord first,Coord second,Coord between){
+        if(calcDistance(first,second)==calcDistance(first,between)+calcDistance(first,between)){
+            return true;
+        }
         return false;
     }
 

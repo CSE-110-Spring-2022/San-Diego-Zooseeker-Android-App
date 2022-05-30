@@ -20,6 +20,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.util.Pair;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -96,6 +97,9 @@ public class GetDirectionActivity extends AppCompatActivity {
                         myAlert.show();
                     }
                 }
+                else{
+
+                }
                 System.out.println(current_coord.toString());
             }
         };
@@ -104,7 +108,7 @@ public class GetDirectionActivity extends AppCompatActivity {
         location.giveMutable().observe(this,observe);
 
 
-
+        /**
         List<MockLocation> mock= MockLocation.loadMockJSON(getApplicationContext(),"mock_route1.json");
         List<Coord> coordList= new ArrayList<>();
         List<Double> timeList= new ArrayList<>();
@@ -114,6 +118,7 @@ public class GetDirectionActivity extends AppCompatActivity {
             timeList.add(object.time);
         }
         location.mockRoute(coordList,timeList);
+         **/
         updateText();
 
     }
@@ -129,7 +134,7 @@ public class GetDirectionActivity extends AppCompatActivity {
 
         TextView instructionView = findViewById(R.id.route_instruction);
         instructionView.setMovementMethod(new ScrollingMovementMethod());
-        instructionView.setText(route.getInstruction(current));
+        instructionView.setText(route.getInstruction(current,location.getLastKnownCoords()));
 
 
         updateNextAnimalView();

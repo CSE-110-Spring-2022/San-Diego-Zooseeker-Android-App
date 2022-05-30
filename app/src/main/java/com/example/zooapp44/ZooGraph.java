@@ -142,20 +142,24 @@ public class ZooGraph {
         public String name;
         public boolean selected;
         public String group_id;
+        public double lat;
+        public double lng;
 
         Vertex(){}
-        Vertex(String id, String name, Kind kind, boolean selected,String group_id){
+        Vertex(String id, String name, Kind kind, boolean selected,String group_id,double lat,double lng){
             this.id = id;
             this.name = name;
             this.kind = kind;
             this.selected = selected;
             this.group_id=group_id;
+            this.lat=lat;
+            this.lng=lng;
 
         }
     }
 
-    public Vertex getVertex(String name, Kind kind, boolean selected,String group_id){
-        return new Vertex(name, name, kind, selected,group_id);
+    public Vertex getVertex(String name, Kind kind, boolean selected,String group_id,double lat,double lng){
+        return new Vertex(name, name, kind, selected,group_id,lat,lng);
     }
 
     /**

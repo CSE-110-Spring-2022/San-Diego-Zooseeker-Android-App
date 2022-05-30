@@ -1,5 +1,7 @@
 package com.example.zooapp44;
 
+import android.util.Pair;
+
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -102,7 +104,7 @@ public class ExhibitRoute {
 
 
 
-    public String getInstruction(int current) {
+    public String getInstruction(int current, Coord location) {
         String current_location;
         if(current == 0)
             current_location = vertices.get(0).id;  //set current location to entrance
@@ -113,7 +115,8 @@ public class ExhibitRoute {
             target_location = vertices.get(0).id;
         else target_location = exhibits.get(current);
 
-        return findPathBetween(current_location, target_location);
+        Pair<Double,String> length=this.findClosest(current_location,target_location,location);
+        return findPathBetween(current_location, target_location,length.first);
     }
 
     private String getCurrent_exhibit(int current) {
@@ -123,7 +126,6 @@ public class ExhibitRoute {
         else current_location = exhibits.get(current - 1);
         return current_location;
     }
-
 
     public String getBackInstruction(int current) {
         String current_location;
@@ -143,7 +145,7 @@ public class ExhibitRoute {
         return findBackPathBetween(current_location, target_location);
     }
 
-    private String findPathBetween(String current_location, String target_location) {
+    private String findPathBetween(String current_location, String target_location,double distance) {
         int s = 0;
         while(!vertices.get(s).id.equals(current_location))
             s++;
@@ -157,8 +159,14 @@ public class ExhibitRoute {
         for(int i = s; i < t; i++){
             num++;
             ret += num + ". ";
-            ret += String.format("Walk %s meters along %s from %s to %s.\n\n",
-                    edges.get(i).weight + "ft", edges.get(i).street, vertices.get(i).name, vertices.get(i + 1).name);
+            if(i==s){
+                ret += String.format("Walk %s meters along %s from %s to %s.\n\n",
+                        distance+ "ft", edges.get(i).street, vertices.get(i).name, vertices.get(i + 1).name);
+            }
+            else {
+                ret += String.format("Walk %s meters along %s from %s to %s.\n\n",
+                        edges.get(i).weight + "ft", edges.get(i).street, vertices.get(i).name, vertices.get(i + 1).name);
+            }
         }
 
         return ret;
@@ -229,6 +237,49 @@ public class ExhibitRoute {
         }
 
         return ret;
+    }
+
+    /**
+     * This method returns the next node to travel to, along side the distance needed to travel to that node
+     *
+     * @param dot
+     * @returns the distance to that node
+     */
+    public Pair<Double, String> findClosest(String current_location, String target_location, Coord dot) {
+        double distance = 1000000;
+        String nearest = null;
+        int first=-1;
+        int second=-1;
+        Pair<Double, String> toReturn = new Pair<>(distance, nearest);
+        for(int j=0;j<vertices.size();j++){
+            if(vertices.get(j).id.equals(current_location)&&first==-1){
+                first=j;
+            }
+            if(vertices.get(j).id.equals(target_location)&&second==-1){
+                second=j;
+            }
+        }
+        for (int i = first; i < second - 1; i++) {
+            Coord tester1 = new Coord(vertices.get(i).lat, vertices.get(i).lng);
+            Coord tester2 = new Coord(vertices.get(i + 1).lat, vertices.get(i + 1).lng);
+            /*
+            if(Coord.calcDistance(dot,tester1)<distance){
+                distance=Coord.calcDistance(dot,tester1);
+                nearest=vertices.get(i).id;
+                toReturn=new Pair<>(distance,nearest);
+            }
+        }
+        */
+            //If current location is in the route between
+            if (Coord.isInBetween(tester1, tester2, dot)) {
+                nearest = vertices.get(i + 1).name;
+                distance=Coord.calcDistance(dot,tester2);
+                toReturn= new Pair<>(distance,nearest);
+            }
+        }
+        toReturn = new Pair<Double,String>(distance, nearest);
+        return toReturn;
+
     }
 
 
