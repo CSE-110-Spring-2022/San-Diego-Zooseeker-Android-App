@@ -27,6 +27,7 @@
 
         <activity
             android:name=".GetDirectionActivity"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name=".OpenExhibitListActivity"
