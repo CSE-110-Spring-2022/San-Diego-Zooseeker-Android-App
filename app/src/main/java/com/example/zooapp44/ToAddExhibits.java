@@ -33,23 +33,16 @@ public class ToAddExhibits {
     public boolean selected;
     public String name;
     public List<String> tags;
-    public String group_id;
-    public double lat;
-    public double lng;
-
 
 
 
     //Constructor for each exhibit in json
-    ToAddExhibits(String id, String kind, String name,String group_id,List<String> tags, double lat,double lng) {
+    ToAddExhibits(String id, String kind, String name, List<String> tags) {
         this.id = id;
         this.kind = kind;
         this.name = name;
         this.selected = false;
         this.tags = tags;
-        this.group_id=group_id;
-        this.lat=lat;
-        this.lng=lng;
     }
 
     public static List<ToAddExhibits> loadJSON(Context context, String path){
@@ -68,15 +61,11 @@ public class ToAddExhibits {
     @Override
     public String toString() {
         return "ToAddExhibits{" +
-                "identification=" + identification +
+                "identification='" + identification + '\'' +
+                ", itemType='" + kind + '\'' +
+                ", selected='" + selected + '\'' +
                 ", id='" + id + '\'' +
-                ", kind='" + kind + '\'' +
-                ", selected=" + selected +
-                ", name='" + name + '\'' +
-                ", tags=" + tags +
-                ", group_id='" + group_id + '\'' +
-                ", lat=" + lat +
-                ", lng=" + lng +
                 '}';
     }
+
 }
