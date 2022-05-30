@@ -181,7 +181,8 @@ public class ExhibitRoute {
      */
     public boolean onRoute(Map<String, Coord> vertexCoord, int current){
         String current_exhibit = getCurrent_exhibit(current);
-        String next_exhibit = getTarget_exhibit(current + 1);
+        // Deleted +1
+        String next_exhibit = getTarget_exhibit(current );
 
         int s = 0;
         while(!vertices.get(s).id.equals(current_exhibit))

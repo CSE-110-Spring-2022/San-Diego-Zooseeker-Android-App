@@ -140,10 +140,10 @@
         android:layout_width="150dp"
         android:layout_height="55dp"
         android:backgroundTint="#B2F194"
+        android:onClick="onBackClicked"
         android:text="BACK"
         android:textColor="#000000"
         android:textSize="24sp"
-        android:onClick="onBackClicked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.098"
@@ -176,10 +176,10 @@
         android:width="350dp"
         android:height="200dp"
         android:background="#9F9EB150"
+        android:scrollbars="vertical"
         android:text="The shortest path from 'elephant_odyssey' to 'entrance_exit_gate' is:   \n1. Walk 200 meters along Africa Rocks Street from 'Lions' to 'Elephant Odyssey'.   \n2. Walk 200 meters along Sharp Teeth Shortcut from 'Alligators' to 'Lions'.   \n3. Walk 100 meters along Reptile Road from 'Entrance Plaza' to 'Alligators'.  \n4. Walk 10 meters along Entrance Way from 'Entrance and Exit Gate' to 'Entrance Plaza'."
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:scrollbars="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/current_exhibit" />
@@ -188,8 +188,8 @@
         android:id="@+id/off_route"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Off"
         android:onClick="onOffClick"
+        android:text="Off"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.015"
@@ -197,7 +197,38 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.66" />
 
+    <EditText
+        android:id="@+id/Location"
+        android:layout_width="119dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        android:text="Coordinates"
+        app:layout_constraintBottom_toTopOf="@+id/current_exhibit"
+        app:layout_constraintEnd_toStartOf="@+id/location_enter"
+        app:layout_constraintStart_toEndOf="@+id/home_btn"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/location_enter"
+        android:layout_width="107dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Enter"
+        android:onClick="onEnterClicked"
+        app:layout_constraintBottom_toTopOf="@+id/current_exhibit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Location"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

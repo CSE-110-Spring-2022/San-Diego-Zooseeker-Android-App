@@ -93,6 +93,7 @@ public class GetDirectionActivity extends AppCompatActivity {
                 if(!route.onRoute(vertexCoordMap, current)){
                     System.out.println("Off Route!");
                     // Do off-route pop up here.
+                    route.onRoute(vertexCoordMap, current);
                     if (show) {
                         myAlert.show();
                     }
@@ -119,6 +120,8 @@ public class GetDirectionActivity extends AppCompatActivity {
         }
         location.mockRoute(coordList,timeList);
          **/
+        Coord start= new Coord(32.73459618734685,-117.14936);
+        location.giveMutable().setValue(start);
         updateText();
 
     }
@@ -201,6 +204,14 @@ public class GetDirectionActivity extends AppCompatActivity {
         }
         updateText();
         editor.apply();
+    }
+
+    public void onEnterClicked(View view){
+         TextView dot=findViewById(R.id.Location);
+         String text = dot.getText().toString();
+         String[] names= text.split(",");
+         Coord cur=new Coord(Double.parseDouble(names[0]),Double.parseDouble(names[1]));
+         location.giveMutable().setValue(cur);
     }
 
 

@@ -45,20 +45,8 @@ public class LocationModel {
             }
         };
 
-        /**
-        Observer<Coord> test= new Observer<Coord>(){
-
-            @Override
-            public void onChanged(Coord coord) {
-
-                System.out.println("Here");
-
-            }
-        };
-         **/
 
         lastKnownCoords.addSource(mockSource,observe);
-        mockSource.postValue(new Coord(3,3));
     }
 
     public MutableLiveData<Coord> giveMutable(){
