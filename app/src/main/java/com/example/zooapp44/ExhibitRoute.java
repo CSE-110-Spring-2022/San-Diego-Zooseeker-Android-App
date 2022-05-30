@@ -65,6 +65,14 @@ public class ExhibitRoute {
         return sum + "ft";
     }
 
+    public String getBackDistance(int i, boolean flg){
+        if(flg == false) return weight.get(i+1) + "ft";
+        int sum = 0;
+        for(int j = 0; j <= i; j++)
+            sum += weight.get(j);
+        return sum + "ft";
+    }
+
     public int getSize(){
         return exhibits.size();
     }
@@ -92,18 +100,20 @@ public class ExhibitRoute {
                 '}';
     }
 
-    public String getInstruction(int current) {
-        String current_location = getCurrent_exhibit(current);
-        String target_location = getTarget_exhibit(current);
-        return findPathBetween(current_location, target_location);
-    }
 
-    private String getTarget_exhibit(int current) {
+
+    public String getInstruction(int current) {
+        String current_location;
+        if(current == 0)
+            current_location = vertices.get(0).id;  //set current location to entrance
+        else current_location = exhibits.get(current - 1);
+
         String target_location;
         if(current == getSize())
             target_location = vertices.get(0).id;
         else target_location = exhibits.get(current);
-        return target_location;
+
+        return findPathBetween(current_location, target_location);
     }
 
     private String getCurrent_exhibit(int current) {
@@ -112,6 +122,25 @@ public class ExhibitRoute {
             current_location = vertices.get(0).id;  //set current location to entrance
         else current_location = exhibits.get(current - 1);
         return current_location;
+    }
+
+
+    public String getBackInstruction(int current) {
+        String current_location;
+        String target_location;
+
+        if(current == getSize()){
+            current_location = "entrance_exit_gate";
+        } else{
+            current_location = exhibits.get(current);
+        }
+
+        if(current == 0) {
+            target_location = vertices.get(0).id;   //set target location to entrance
+        } else{
+            target_location = exhibits.get(current - 1);
+        }
+        return findBackPathBetween(current_location, target_location);
     }
 
     private String findPathBetween(String current_location, String target_location) {
