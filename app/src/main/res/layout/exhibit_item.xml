@@ -18,6 +18,7 @@
         android:layout_height="66dp"
         android:layout_marginTop="64dp"
         android:background="#83A300"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
