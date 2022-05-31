@@ -224,7 +224,7 @@ public class GetDirectionActivity extends AppCompatActivity {
          String text = dot.getText().toString();
          String[] names= text.split(",");
          Coord cur=new Coord(Double.parseDouble(names[0]),Double.parseDouble(names[1]));
-         location.giveMutable().setValue(cur);
+         location.mockLocation(cur);
     }
 
 
@@ -327,9 +327,9 @@ public class GetDirectionActivity extends AppCompatActivity {
 
                 ZooGraph g = ZooGraph.getSingleton(getApplicationContext());
 
-                ToAddDatabase db = ToAddDatabase.getSingleton(getApplicationContext());
-                ToAddExhibitDao dao = db.toAddExhibitDao();
-                List<ToAddExhibits> exhibits = dao.getSelected();
+//                ToAddDatabase db = ToAddDatabase.getSingleton(getApplicationContext());
+//                ToAddExhibitDao dao = db.toAddExhibitDao();
+//                List<ToAddExhibits> exhibits = dao.getSelected();
 
                 List<String> exhibitIds = new ArrayList<>();
                 for(int i=current;current<route.original.size();i++){
