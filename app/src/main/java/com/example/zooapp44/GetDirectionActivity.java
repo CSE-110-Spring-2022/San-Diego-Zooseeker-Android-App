@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -45,7 +46,7 @@ public class GetDirectionActivity extends AppCompatActivity {
     public RecyclerView recyclerView;
     private int current;
     private boolean show = true;
-    private boolean isBrief = true;
+    private boolean isBrief = false;
     private boolean isBack = false;
     ExhibitRoute route;
     SharedPreferences preferences;
@@ -180,7 +181,11 @@ public class GetDirectionActivity extends AppCompatActivity {
     private void setInstructionView(TextView instructionView) {
         if(isBrief)
             instructionView.setText(route.getBriefInstruction(current));
-        else instructionView.setText(route.getDetailedInstruction(current));
+        else {
+            String text = route.getDetailedInstruction(current);
+            Log.d("Test", "setInstructionView: " + text);
+            instructionView.setText(text);
+        }
     }
 
 
@@ -268,12 +273,8 @@ public class GetDirectionActivity extends AppCompatActivity {
      * @return returns true
      */
     public boolean changeNeeded(){
-        Pair<Double,String> checker=route
-                .findClosest(route.vertices.get(current).id,route.vertices.get(current+1).id,route.current_coord);
-        if(checker.second==null){
-            return true;
-        }
-        return false;
+        Coord nextCoord = route.getExhibitCoord(current);
+        return Coord.calcDistance(route.current_coord, nextCoord) <= 5;
     }
 
     public void onEnterClicked(View view){

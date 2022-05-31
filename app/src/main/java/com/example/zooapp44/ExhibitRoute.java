@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import java.util.List;
 import java.util.Map;
 import java.util.Locale;
+import java.util.Objects;
 
 public class ExhibitRoute {
     List<String> exhibits;
@@ -405,5 +406,11 @@ public class ExhibitRoute {
         return new Pair<Double,String>(distance,closest);
     }
 
+    public Coord getExhibitCoord(int current){
+        int t = 0;
+        while(!Objects.equals(vertices.get(t).id, exhibits.get(current + 1)))
+            t++;
+        return new Coord(vertices.get(t).lat, vertices.get(t).lng);
+    }
 
 }
