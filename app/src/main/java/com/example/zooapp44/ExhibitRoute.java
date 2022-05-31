@@ -121,7 +121,7 @@ public class ExhibitRoute {
             //Replan
             return null;
         }
-        return findPathBetween(current_location, target_location, length.first, false);
+        return findPathBetween(length.second, target_location, length.first, false);
     }
 
     private String getCurrent_exhibit(int current) {
@@ -149,7 +149,7 @@ public class ExhibitRoute {
             //Replan
             return null;
         }
-        return findPathBetween(current_location, target_location, length.first, true);
+        return findPathBetween(length.second, target_location, length.first, true);
     }
 
 //    public String getBackInstruction(int current) {
@@ -223,7 +223,7 @@ public class ExhibitRoute {
                 ret += num + ". ";
                 if (i == s) {
                     ret += String.format("Walk %s meters along %s from %s to %s.\n\n",
-                            (int) (distance) + "ft", edges.get(i).street, vertices.get(i).name, vertices.get(i + 1).name);
+                            (int)distance + "ft", edges.get(i).street, vertices.get(i).name, vertices.get(i + 1).name);
                 } else {
                     ret += String.format("Walk %s meters along %s from %s to %s.\n\n",
                             edges.get(i).weight + "ft", edges.get(i).street, vertices.get(i).name, vertices.get(i + 1).name);
@@ -238,8 +238,11 @@ public class ExhibitRoute {
                 if (i == s) {
                     street = edges.get(i).street; //initialization
                     vert_temp = vertices.get(i).name;
+                    weight_temp += (int)distance;
                 }
-                weight_temp += (float)edges.get(i).weight;
+                else {
+                    weight_temp += (float) edges.get(i).weight;
+                }
                 if (i != t-1 && edges.get(i).street.equals(edges.get(i+1).street)) {
                     //skip if street does not change
                     continue;

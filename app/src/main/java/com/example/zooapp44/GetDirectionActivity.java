@@ -111,7 +111,7 @@ public class GetDirectionActivity extends AppCompatActivity {
                     }
                 }
                 else{
-                    updateText();
+                    updateTextWithInRouteLocation();
                 }
                 System.out.println(current_coord.toString());}
         };
@@ -142,28 +142,40 @@ public class GetDirectionActivity extends AppCompatActivity {
     private void updateText() {
 
 
-
-
         TextView instructionView = findViewById(R.id.route_instruction);
         instructionView.setMovementMethod(new ScrollingMovementMethod());
 
-
+        /**
         String setter=route.getDetailedInstruction(current);
+        //If current location is between the current exhibit and the next
         if(setter==(null)){
             current--;
         }
+        //Else if
         else {
             updateNextAnimalView();
         }
+         **/
         setInstructionView(instructionView);
         TextView currentAnimalView = findViewById(R.id.current_animal);
-
         currentAnimalView.setText(route.getExhibit(current));
         TextView currentDistanceView = findViewById(R.id.current_distance);
         currentDistanceView.setText(route.getDistance(current, false));
-
-
         updateNextAnimalView();
+    }
+
+    /**
+     * Updates Text that if location is within the route.
+     * Here because no updateNextAnimalView when location is the same
+     */
+    public void updateTextWithInRouteLocation(){
+        TextView instructionView = findViewById(R.id.route_instruction);
+        instructionView.setMovementMethod(new ScrollingMovementMethod());
+        setInstructionView(instructionView);
+        TextView currentAnimalView = findViewById(R.id.current_animal);
+        currentAnimalView.setText(route.getExhibit(current));
+        TextView currentDistanceView = findViewById(R.id.current_distance);
+        currentDistanceView.setText(route.getDistance(current, false));
     }
 
     private void setInstructionView(TextView instructionView) {
@@ -197,6 +209,7 @@ public class GetDirectionActivity extends AppCompatActivity {
 
         TextView nextAnimalView = findViewById(R.id.next_animal);
 
+        currentAnimalView.setText(route.getExhibit(current));
         currentAnimalView.setText(route.getExhibit(current));
         TextView backDistanceView = findViewById(R.id.current_distance);
         backDistanceView.setText(route.getBackDistance(current, false));
@@ -234,8 +247,11 @@ public class GetDirectionActivity extends AppCompatActivity {
 
         ImageView img = findViewById(R.id.skip_btn);
         img.setVisibility(View.VISIBLE);
-
         current++;
+        if(!changeNeeded()){
+            current--;
+            return;
+        }
         editor.putInt("current_index", current);
         if(current == route.getSize()){
             Button button = findViewById(R.id.next_btn);
@@ -245,6 +261,20 @@ public class GetDirectionActivity extends AppCompatActivity {
         }
         updateText();
         editor.apply();
+    }
+
+    /**
+     * Checks if current location is between the previous destination and the current target
+     * Used in onNextClicked to make sure that if location is in the route, don't change locations when pressed next
+     * @return returns true
+     */
+    public boolean changeNeeded(){
+        Pair<Double,String> checker=route
+                .findClosest(route.vertices.get(current).id,route.vertices.get(current+1).id,route.current_coord);
+        if(checker.second==null){
+            return true;
+        }
+        return false;
     }
 
     public void onEnterClicked(View view){
