@@ -356,12 +356,6 @@ public class GetDirectionActivity extends AppCompatActivity {
             }
         }
 
-//        isBrief = true;
-//        if(!isBack) {
-//            updateText();
-//        } else{
-//            updateTextBack();
-//        }
     }
 
     public void onDetailClicked(View view){
@@ -388,12 +382,6 @@ public class GetDirectionActivity extends AppCompatActivity {
         }
 
 
-//        isBrief = false;
-//        if(!isBack) {
-//            updateText();
-//        } else{
-//            updateTextBack();
-//        }
     }
 
     public void onBackClicked(View view){
@@ -474,18 +462,11 @@ public class GetDirectionActivity extends AppCompatActivity {
 
                 ZooGraph g = ZooGraph.getSingleton(getApplicationContext());
 
-//                ToAddDatabase db = ToAddDatabase.getSingleton(getApplicationContext());
-//                ToAddExhibitDao dao = db.toAddExhibitDao();
-//                List<ToAddExhibits> exhibits = dao.getSelected();
-
                 List<String> exhibitIds = new ArrayList<>();
                 for(int i=current;current<route.original.size();i++){
                     exhibitIds.add(route.original.get(i));
                 }
 
-                //Get closest exhibit
-                //double is the distance
-                //string is the closest exhibit
                 Pair<Double,String> closest=route.findAllClosest(location.getLastKnownCoords());
                 ExhibitRoute reroute= g.getOptimalPath(closest.second, exhibitIds);
                 int old_current=current;

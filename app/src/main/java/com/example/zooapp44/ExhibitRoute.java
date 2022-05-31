@@ -249,8 +249,6 @@ public class ExhibitRoute {
 
     /**
      *
-     * @param vertexCoord the map from vertex id to Coord
-     *                    this should be get from utils/VertexCoord
      * @param current index of current exhibits
      * @return whether the user is on route
      */
@@ -408,7 +406,7 @@ public class ExhibitRoute {
 
     public Coord getExhibitCoord(int current){
         int t = 0;
-        while(!Objects.equals(vertices.get(t).id, exhibits.get(current + 1)))
+        while(!Objects.equals(vertices.get(t).id, exhibits.get(current - 1)))
             t++;
         return new Coord(vertices.get(t).lat, vertices.get(t).lng);
     }

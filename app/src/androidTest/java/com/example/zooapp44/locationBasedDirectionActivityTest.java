@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import android.content.Intent;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.lifecycle.Lifecycle;
@@ -50,7 +51,7 @@ public class locationBasedDirectionActivityTest {
             ZooGraph.Vertex first = route.vertices.get(0);
             ZooGraph.Vertex second = route.vertices.get(1);
             Coord firstCoord = new Coord(first.lat, first.lng);
-            Coord secondCoord = new Coord(first.lat, second.lng);
+            Coord secondCoord = new Coord(second.lat, second.lng);
             Coord mid = Coord.midPoint(firstCoord, secondCoord);
             int distance = (int)Coord.calcDistance(firstCoord, secondCoord);
 
@@ -78,9 +79,29 @@ public class locationBasedDirectionActivityTest {
 
             // The instruction panel is not refreshing
             // Guess it is not synchronized in testing
-            // So i won't put assert here
-            Log.d("Test", "testLocationBasedDirection (distance): " + distance + " " + newDistance);
+            // So i won't put assert here, but check the logcat
 
+            //Go to the next intersection
+            activity.location.mockLocation(secondCoord);
+
+            // Start going from the second vertex to third
+            ZooGraph.Vertex third = route.vertices.get(2);
+            Coord thirdCoord = new Coord(third.lat, third.lng);
+            List<Coord> coords = Coord.interpolate(secondCoord, thirdCoord, 4);
+            for(Coord coord:coords)
+                activity.location.mockLocation(coord);
+
+            //Get to the third intersection
+            activity.location.mockLocation(thirdCoord);
+
+            // Directly get to the fourth coord, which is the destination
+            ZooGraph.Vertex fourth = route.vertices.get(3);
+            Coord fourthCoord = new Coord(fourth.lat, fourth.lng);
+            activity.location.mockLocation(fourthCoord);
+
+            // Hit Next button and check the log cat
+            Button button = activity.findViewById(R.id.next_btn);
+            button.performClick();
         });
     }
 }
