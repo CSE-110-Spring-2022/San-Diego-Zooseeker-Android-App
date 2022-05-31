@@ -102,18 +102,17 @@
 
     <Button
         android:id="@+id/home_btn"
-        android:layout_width="110dp"
+        android:layout_width="145dp"
         android:layout_height="60dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="291dp"
         android:backgroundTint="#83A300"
         android:onClick="onHomeClicked"
         android:text="HOME"
+        android:textAlignment="center"
         android:textAllCaps="false"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.06"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023"
@@ -184,19 +183,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/current_exhibit" />
 
-    <Button
-        android:id="@+id/off_route"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onOffClick"
-        android:text="Off"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.015"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.66" />
-
     <EditText
         android:id="@+id/Location"
         android:layout_width="119dp"
@@ -229,6 +215,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Location"
         app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/Setting_btn"
+        android:layout_width="145dp"
+        android:layout_height="60dp"
+        android:backgroundTint="#83A300"
+        android:onClick="onSettingClicked"
+        android:text="SETTINGS"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.939"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

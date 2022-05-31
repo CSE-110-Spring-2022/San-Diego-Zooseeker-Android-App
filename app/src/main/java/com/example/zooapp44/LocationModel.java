@@ -65,7 +65,7 @@ public class LocationModel {
 
     public void mockLocation(Coord coords) {
         Coord coord= coords;
-        mockSource.postValue(coords);
+        giveMutable().setValue(coords);
     }
 
     /**
