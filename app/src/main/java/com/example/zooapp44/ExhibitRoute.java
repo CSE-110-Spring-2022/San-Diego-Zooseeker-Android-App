@@ -116,6 +116,10 @@ public class ExhibitRoute {
         else target_location = exhibits.get(current);
 
         Pair<Double,String> length=this.findClosest(current_location,target_location,location);
+        if(length.second==null){
+            //Replan
+            return null;
+        }
         return findPathBetween(length.second, target_location,length.first);
     }
 
@@ -161,7 +165,7 @@ public class ExhibitRoute {
             ret += num + ". ";
             if(i==s){
                 ret += String.format("Walk %s meters along %s from %s to %s.\n\n",
-                        distance+ "ft", edges.get(i).street, vertices.get(i).name, vertices.get(i + 1).name);
+                        (int)(distance)+ "ft", edges.get(i).street, vertices.get(i).name, vertices.get(i + 1).name);
             }
             else {
                 ret += String.format("Walk %s meters along %s from %s to %s.\n\n",
@@ -260,7 +264,7 @@ public class ExhibitRoute {
                 second=j;
             }
         }
-        for (int i = first; i < second - 1; i++) {
+        for (int i = first; i < second ; i++) {
             Coord tester1 = new Coord(vertices.get(i).lat, vertices.get(i).lng);
             Coord tester2 = new Coord(vertices.get(i + 1).lat, vertices.get(i + 1).lng);
             /*

@@ -127,6 +127,24 @@ public class GetDirectionActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void updateText() {
+
+
+
+
+        TextView instructionView = findViewById(R.id.route_instruction);
+        instructionView.setMovementMethod(new ScrollingMovementMethod());
+
+
+        String setter=route.getInstruction(current,location.getLastKnownCoords());
+        if(setter==(null)){
+            current--;
+            instructionView.setText(route.getInstruction(current,location.getLastKnownCoords()));
+        }
+        else {
+            instructionView.setText(route.getInstruction(current, location.getLastKnownCoords()));
+            updateNextAnimalView();
+        }
+
         TextView currentAnimalView = findViewById(R.id.current_animal);
 
         currentAnimalView.setText(route.getExhibit(current));
@@ -134,12 +152,8 @@ public class GetDirectionActivity extends AppCompatActivity {
         currentDistanceView.setText(route.getDistance(current, false));
 
 
-        TextView instructionView = findViewById(R.id.route_instruction);
-        instructionView.setMovementMethod(new ScrollingMovementMethod());
-        instructionView.setText(route.getInstruction(current,location.getLastKnownCoords()));
 
 
-        updateNextAnimalView();
     }
 
     private void updateNextAnimalView() {
