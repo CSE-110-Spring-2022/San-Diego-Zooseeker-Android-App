@@ -52,7 +52,6 @@ public class GetDirectionActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
 
     LocationModel location;
-    Map<String, Coord> vertexCoordMap = VertexCoord.getVertexCoordMap(this);
 
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
@@ -102,7 +101,7 @@ public class GetDirectionActivity extends AppCompatActivity {
             public void onChanged(@Nullable Coord coord) {
                 Coord current_coord = location.getLastKnownCoords();
                 route.current_coord = current_coord;
-                if(!route.onRoute(vertexCoordMap, current)){
+                if(!route.onRoute(current)){
                     System.out.println("Off Route!");
                     // Do off-route pop up here.
 

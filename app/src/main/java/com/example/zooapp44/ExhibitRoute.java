@@ -152,23 +152,7 @@ public class ExhibitRoute {
         return findPathBetween(length.second, target_location, length.first, true);
     }
 
-//    public String getBackInstruction(int current) {
-//        String current_location;
-//        String target_location;
-//
-//        if(current == getSize()){
-//            current_location = "entrance_exit_gate";
-//        } else{
-//            current_location = exhibits.get(current);
-//        }
-//
-//        if(current == 0) {
-//            target_location = vertices.get(0).id;   //set target location to entrance
-//        } else{
-//            target_location = exhibits.get(current - 1);
-//        }
-//        return findBackPathBetween(current_location, target_location, false);
-//    }
+
 
     public String getBriefBackInstruction(int current) {
         String current_location;
@@ -269,7 +253,7 @@ public class ExhibitRoute {
      * @param current index of current exhibits
      * @return whether the user is on route
      */
-    public boolean onRoute(Map<String, Coord> vertexCoord, int current){
+    public boolean onRoute(int current){
         String current_exhibit = getCurrent_exhibit(current);
         // Deleted +1
         String next_exhibit = getTarget_exhibit(current );
@@ -282,14 +266,14 @@ public class ExhibitRoute {
             t++;
 
         for(int i = s; i < t; i++){
-            Coord st = vertexCoord.get(vertices.get(i).id);
-            Coord ed = vertexCoord.get(vertices.get(i + 1).id);
+            Coord st = new Coord(vertices.get(i).lat, vertices.get(i).lng);
+            Coord ed = new Coord(vertices.get(i + 1).lat, vertices.get(i + 1).lng);
 
             double dis1 =Coord.calcDistance(st, current_coord);
             double dis2 = Coord.calcDistance(current_coord, ed);
             double tot_dis = Coord.calcDistance(st, ed);
 
-            if(Math.abs(dis1 + dis2 - tot_dis) < 100)
+            if(Math.abs(dis1 + dis2 - tot_dis) < 10)
                 return true;
         }
         return false;

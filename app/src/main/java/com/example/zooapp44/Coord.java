@@ -7,6 +7,10 @@ import androidx.annotation.NonNull;
 import com.example.zooapp44.utils.LatLngs;
 import com.google.android.gms.common.internal.Objects;
 import com.google.android.gms.maps.model.LatLng;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 //import com.google.common.base.Objects;
 
 
@@ -62,7 +66,7 @@ public class Coord {
         double ab=calcDistance(first,between);
         double bc= calcDistance(between,second);
         double together=ab+bc;
-        if(Math.abs(ac-together)<0.001){
+        if(Math.abs(ac-together) < 1){
             return true;
         }
         /**
@@ -80,6 +84,19 @@ public class Coord {
         double d_ft_v = d_lat * 363843.57;
         double d_ft_h = d_lng * 307515.50;
         return Math.sqrt(d_ft_v * d_ft_v + d_ft_h * d_ft_h);
+    }
+
+    public static List<Coord> interpolate(Coord p1, Coord p2, int n){
+        return IntStream.range(0, n)
+                .mapToDouble(i -> (double) i / (double) n)
+                .mapToObj(t -> Coord.of(
+                        p1.lat + (p2.lat - p1.lat) * t,
+                        p1.lng + (p2.lng - p1.lng) * t
+                )).collect(Collectors.toList());
+    }
+
+    public static Coord midPoint(Coord p1, Coord p2){
+        return Coord.of((p1.lat + p2.lat) / 2, (p1.lng + p2.lng) / 2);
     }
 
 
