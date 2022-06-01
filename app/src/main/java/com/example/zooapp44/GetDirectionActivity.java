@@ -56,7 +56,7 @@ public class GetDirectionActivity extends AppCompatActivity {
         editor = preferences.edit();
 
         current = preferences.getInt("current_index", 0);
-        current = 0;
+//        current = 0;
 
         if(current == route.getSize()){
             Button button = findViewById(R.id.next_btn);
@@ -101,7 +101,6 @@ public class GetDirectionActivity extends AppCompatActivity {
                 route.current_coord = current_coord;
                 if(!route.onRoute(current)){
                     System.out.println("Off Route!");
-                    // Do off-route pop up here.
 
                     if (show) {
                         myAlert.show();
@@ -110,7 +109,11 @@ public class GetDirectionActivity extends AppCompatActivity {
                 else{
                     updateTextWithInRouteLocation();
                 }
-                System.out.println(current_coord.toString());}
+                System.out.println(current_coord.toString());
+                editor.putFloat("current_lat", (float) current_coord.lat);
+                editor.putFloat("current_lng", (float) current_coord.lng);
+                editor.apply();
+            }
         };
 
         location= new LocationModel(observe);
@@ -128,7 +131,11 @@ public class GetDirectionActivity extends AppCompatActivity {
         }
         location.mockRoute(coordList,timeList);
          **/
-        Coord start= new Coord(32.73459618734685,-117.14936);
+
+        double lat = (double)preferences.getFloat("current_lat", (float) 32.73459618734685);
+        double lng = (double)preferences.getFloat("current_lng", (float) -117.14936);
+
+        Coord start= new Coord(lat, lng);
 //        location.mockLocation(start);
         location.giveMutable().setValue(start);
         // updateText();
