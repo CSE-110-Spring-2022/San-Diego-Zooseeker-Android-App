@@ -96,6 +96,7 @@ public class GetDirectionActivity extends AppCompatActivity {
                 .setTitle("Off track, replan?")
                 .create();
 
+        updateNextAnimalView();
 
         //Observes when the location changes
         final Observer<Coord> observe = new Observer<Coord>() {
