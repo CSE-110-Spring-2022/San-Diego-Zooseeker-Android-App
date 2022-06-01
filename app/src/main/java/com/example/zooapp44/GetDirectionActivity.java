@@ -29,6 +29,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Pair;
@@ -179,8 +180,11 @@ public class GetDirectionActivity extends AppCompatActivity {
     }
 
     private void setInstructionView(TextView instructionView) {
-        if(isBrief)
-            instructionView.setText(route.getBriefInstruction(current));
+        if(isBrief){
+            String text = route.getBriefInstruction(current);
+            Log.d("Test", "setInstructionView: " + text);
+            instructionView.setText(text);
+        }
         else {
             String text = route.getDetailedInstruction(current);
             Log.d("Test", "setInstructionView: " + text);
@@ -481,6 +485,10 @@ public class GetDirectionActivity extends AppCompatActivity {
 
     }
 
+    @VisibleForTesting
+    public void setBrief(boolean f){
+        this.isBrief = f;
+    }
 
     public void onOffClick(View view) {
         createReplanMessage(view);

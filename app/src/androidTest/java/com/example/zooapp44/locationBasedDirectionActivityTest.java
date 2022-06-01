@@ -38,7 +38,7 @@ public class locationBasedDirectionActivityTest {
     }
 
     @Test
-    public void testLocationBasedDirection(){
+    public void testLocationBasedDirectionDetailed(){
         Intent getDirectionIntent = new Intent(ApplicationProvider.getApplicationContext(), GetDirectionActivity.class);
         getDirectionIntent.putExtra("Route", ExhibitRoute.serialize(route));
         ActivityScenario<GetDirectionActivity> scenario = ActivityScenario.launch(getDirectionIntent);
@@ -84,6 +84,10 @@ public class locationBasedDirectionActivityTest {
             //Go to the next intersection
             activity.location.mockLocation(secondCoord);
 
+            // Simulate accidentally perform next click
+            Button button = activity.findViewById(R.id.next_btn);
+            button.performClick();
+
             // Start going from the second vertex to third
             ZooGraph.Vertex third = route.vertices.get(2);
             Coord thirdCoord = new Coord(third.lat, third.lng);
@@ -100,8 +104,34 @@ public class locationBasedDirectionActivityTest {
             activity.location.mockLocation(fourthCoord);
 
             // Hit Next button and check the log cat
-            Button button = activity.findViewById(R.id.next_btn);
             button.performClick();
+        });
+    }
+
+    @Test
+    public void testLocationBasedDirectionBrief(){
+        Intent getDirectionIntent = new Intent(ApplicationProvider.getApplicationContext(), GetDirectionActivity.class);
+        getDirectionIntent.putExtra("Route", ExhibitRoute.serialize(route));
+        ActivityScenario<GetDirectionActivity> scenario = ActivityScenario.launch(getDirectionIntent);
+
+        scenario.moveToState(Lifecycle.State.CREATED);
+        scenario.moveToState(Lifecycle.State.STARTED);
+        scenario.moveToState(Lifecycle.State.RESUMED);
+
+        scenario.onActivity(activity -> {
+            // Set the mode to brief
+            activity.setBrief(true);
+            // Start from the first exhibit, which is the fourth vertex
+            ZooGraph.Vertex fourth = route.vertices.get(3);
+            Coord fourthCoord = new Coord(fourth.lat, fourth.lng);
+            activity.location.mockLocation(fourthCoord);
+            Button nextBtn = activity.findViewById(R.id.next_btn);
+            nextBtn.performClick();
+            ZooGraph.Vertex fifth = route.vertices.get(4);
+            Coord fifthCoord = new Coord(fifth.lat, fifth.lng);
+            Coord mid = Coord.midPoint(fourthCoord, fifthCoord);
+            activity.location.mockLocation(mid);
+            activity.location.mockLocation(fifthCoord);
         });
     }
 }
