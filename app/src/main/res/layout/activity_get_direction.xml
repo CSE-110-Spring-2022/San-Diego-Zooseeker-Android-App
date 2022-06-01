@@ -139,10 +139,10 @@
         android:layout_width="150dp"
         android:layout_height="55dp"
         android:backgroundTint="#B2F194"
+        android:onClick="onBackClicked"
         android:text="BACK"
         android:textColor="#000000"
         android:textSize="24sp"
-        android:onClick="onBackClicked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.098"
@@ -175,13 +175,40 @@
         android:width="350dp"
         android:height="200dp"
         android:background="#9F9EB150"
+        android:scrollbars="vertical"
         android:text="The shortest path from 'elephant_odyssey' to 'entrance_exit_gate' is:   \n1. Walk 200 meters along Africa Rocks Street from 'Lions' to 'Elephant Odyssey'.   \n2. Walk 200 meters along Sharp Teeth Shortcut from 'Alligators' to 'Lions'.   \n3. Walk 100 meters along Reptile Road from 'Entrance Plaza' to 'Alligators'.  \n4. Walk 10 meters along Entrance Way from 'Entrance and Exit Gate' to 'Entrance Plaza'."
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:scrollbars="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/current_exhibit" />
+
+    <EditText
+        android:id="@+id/Location"
+        android:layout_width="119dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="456dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        android:text="Coordinates"
+        app:layout_constraintEnd_toStartOf="@+id/next_message"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/location_enter"
+        android:layout_width="107dp"
+        android:layout_height="54dp"
+        android:layout_marginBottom="221dp"
+        android:onClick="onEnterClicked"
+        android:text="Enter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintStart_toEndOf="@+id/next_message" />
 
     <Button
         android:id="@+id/Setting_btn"

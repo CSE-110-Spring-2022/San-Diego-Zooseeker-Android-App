@@ -58,7 +58,7 @@ public class RoutePlanningTest {
         assert(route.vertices.size() == route.edges.size() + 1);
 
         for(String exhibitId : exhibitIds){
-            assert(route.exhibits.contains(exhibitId));
+            assert(route.original.contains(exhibitId));
         }
         return;
     }
