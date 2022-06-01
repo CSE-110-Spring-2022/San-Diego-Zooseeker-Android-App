@@ -255,11 +255,16 @@ public class GetDirectionActivity extends AppCompatActivity {
 
         ImageView img = findViewById(R.id.skip_btn);
         img.setVisibility(View.VISIBLE);
-        current++;
-        if(!changeNeeded()){
-            current--;
-            return;
+        // current++;
+        if(current >= 0) {
+            if (!changeNeeded()) {
+                // current--;
+                return;
+            }
         }
+
+        current++;
+
         editor.putInt("current_index", current);
         if(current == route.getSize()){
             Button button = findViewById(R.id.next_btn);
