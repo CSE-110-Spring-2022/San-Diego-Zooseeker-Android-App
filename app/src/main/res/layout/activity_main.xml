@@ -90,14 +90,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.154" />
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        tools:layout_editor_absoluteX="24dp"
-        tools:layout_editor_absoluteY="22dp">
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="74dp">
 
     </androidx.appcompat.widget.SearchView>
 

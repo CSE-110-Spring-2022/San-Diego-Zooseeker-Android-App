@@ -9,6 +9,7 @@
         android:id="@+id/directions"
         android:layout_width="341dp"
         android:layout_height="160dp"
+        android:shape="rectangle"
         android:background="#C9CBDC95"
         android:text="Direction List"
         android:textSize="24sp"

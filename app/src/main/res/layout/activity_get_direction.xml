@@ -139,10 +139,10 @@
         android:layout_width="150dp"
         android:layout_height="55dp"
         android:backgroundTint="#B2F194"
+        android:onClick="onBackClicked"
         android:text="BACK"
         android:textColor="#000000"
         android:textSize="24sp"
-        android:onClick="onBackClicked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.098"
@@ -171,15 +171,17 @@
         android:layout_width="347dp"
         android:layout_height="295dp"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="31dp"
         android:width="350dp"
         android:height="200dp"
         android:background="#9F9EB150"
+        android:scrollbars="vertical"
         android:text="The shortest path from 'elephant_odyssey' to 'entrance_exit_gate' is:   \n1. Walk 200 meters along Africa Rocks Street from 'Lions' to 'Elephant Odyssey'.   \n2. Walk 200 meters along Sharp Teeth Shortcut from 'Alligators' to 'Lions'.   \n3. Walk 100 meters along Reptile Road from 'Entrance Plaza' to 'Alligators'.  \n4. Walk 10 meters along Entrance Way from 'Entrance and Exit Gate' to 'Entrance Plaza'."
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:scrollbars="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/current_exhibit" />
 
@@ -198,6 +200,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
