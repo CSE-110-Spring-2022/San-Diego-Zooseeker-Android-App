@@ -3,44 +3,30 @@ package com.example.zooapp44;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
-
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-
+import android.util.Pair;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-
-import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.ImageView;
-
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import android.util.Pair;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.zooapp44.utils.VertexCoord;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
 public class GetDirectionActivity extends AppCompatActivity {
@@ -84,6 +70,15 @@ public class GetDirectionActivity extends AppCompatActivity {
                         //implementation of replan goes here
                         show = false;
                         dialog.dismiss();
+
+                        // Get all the unvisited
+                        List<String> unvisited = new ArrayList<>();
+                        for(int i = current; i < route.exhibits.size(); i++){
+                            unvisited.add(route.exhibits.get(i));
+                        }
+                        route = Rerouter.Reroute(location.getLastKnownCoords(), GetDirectionActivity.this, unvisited);
+                        current = 0;
+                        location.mockLocation(route.current_coord);
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
