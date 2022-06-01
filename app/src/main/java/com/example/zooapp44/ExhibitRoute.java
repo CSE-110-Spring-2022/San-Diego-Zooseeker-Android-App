@@ -159,30 +159,7 @@ public class ExhibitRoute {
         String current_location;
         String target_location;
 
-        if(current == getSize()){
-            current_location = "entrance_exit_gate";
-        } else{
-            current_location = exhibits.get(current);
-        }
-
-        if(current == 0) {
-            target_location = vertices.get(0).id;   //set target location to entrance
-        } else{
-            target_location = exhibits.get(current - 1);
-        }
-        Pair<Double,String> length=this.findClosestForward(current_location,target_location, current_coord);
-        if(length.second==null){
-            //Replan
-            return null;
-        }
-        return findBackPathBetween(length.second, target_location, length.first, false);
-    }
-
-    public String getDetailedBackInstruction(int current) {
-        String current_location;
-        String target_location;
-
-        if(current == getSize()){
+        if(current == getSize() || current == 0){
             current_location = "entrance_exit_gate";
         } else{
             current_location = exhibits.get(current);
@@ -198,7 +175,30 @@ public class ExhibitRoute {
             //Replan
             return null;
         }
-        return findBackPathBetween(length.second, target_location, length.first, true);
+        return findBackPathBetween(length.second, target_location, length.first, false);
+    }
+
+    public String getDetailedBackInstruction(int current) {
+        String current_location;
+        String target_location;
+
+        if(current == getSize() || current == 0){
+            current_location = "entrance_exit_gate";
+        } else{
+            current_location = exhibits.get(current);
+        }
+
+        if(current == 0) {
+            target_location = vertices.get(0).id;   //set target location to entrance
+        } else{
+            target_location = exhibits.get(current - 1);
+        }
+        Pair<Double,String> length=this.findClosestBackward(current_location,target_location, current_coord);
+        if(length.second==null){
+            //Replan
+            return null;
+        }
+        return findBackPathBetween(length.second, current_location, length.first, true);
     }
 
     private String findForwardPathBetween(String current_location, String target_location, double distance, boolean detailed) {
@@ -299,10 +299,10 @@ public class ExhibitRoute {
 
     private String findBackPathBetween(String current_location, String target_location, double distance, boolean detailed) {
         int s = 0;
-        while (!vertices.get(s).id.equals(current_location))
+        while (!vertices.get(s).id.equals(target_location))
             s++;
         int t = 0;
-        while(!vertices.get(t).id.equals(target_location))
+        while(!vertices.get(t).id.equals(current_location))
             t++;
 
         if(current_location == "entrance_exit_gate"){
@@ -325,8 +325,15 @@ public class ExhibitRoute {
             for (int i = s; i > t; i--) {
                 num++;
                 ret += num + ". ";
-                ret += String.format("Walk %s along %s from %s to %s.\n\n",
-                        edges.get(i-1).weight + "ft", edges.get(i-1).street, vertices.get(i).name, vertices.get(i - 1).name);
+                if(i == s){
+                    ret += String.format("Walk %s along %s from %s to %s.\n\n",
+                            (int) distance + "ft", edges.get(i-1).street, vertices.get(i).name, vertices.get(i - 1).name);
+                } else{
+                    ret += String.format("Walk %s along %s from %s to %s.\n\n",
+                            edges.get(i-1).weight + "ft", edges.get(i-1).street, vertices.get(i).name, vertices.get(i - 1).name);
+                }
+//                ret += String.format("Walk %s along %s from %s to %s.\n\n",
+//                        edges.get(i-1).weight + "ft", edges.get(i-1).street, vertices.get(i).name, vertices.get(i - 1).name);
             }
         } else {
             int num = 0;
@@ -337,8 +344,10 @@ public class ExhibitRoute {
                 if (i == s) {
                     street = edges.get(i-1).street; //initialization
                     vert_temp = vertices.get(i).name;
+                    weight_temp += (int)distance;
+                } else {
+                    weight_temp += (float) edges.get(i - 1).weight;
                 }
-                weight_temp += (float)edges.get(i-1).weight;
                 if (i != t+1 && edges.get(i-1).street.equals(edges.get(i-2).street)) {
                     //skip if street does not change
                     continue;
@@ -418,15 +427,34 @@ public class ExhibitRoute {
         int first=-1;
         int second=-1;
         Pair<Double, String> toReturn = new Pair<>(distance, nearest);
+//        for(int j=0;j<vertices.size();j++){
+//            if(vertices.get(j).id.equals(current_location)&&first==-1){
+//                first=j;
+//            }
+//            if(vertices.get(j).id.equals(target_location)&&second==-1){
+//                second=j;
+//            }
+//        }
+
         for(int j=0;j<vertices.size();j++){
             if(vertices.get(j).id.equals(current_location)&&first==-1){
                 first=j;
             }
+            // if(vertices.get(j).id.equals(target_location)&&second==-1){
+            //    second=j;
+            //}
+        }
+
+        for(int j=first;j>=0;j--){
+//            if(vertices.get(j).id.equals(current_location)&&first==-1){
+//                first=j;
+//            }
             if(vertices.get(j).id.equals(target_location)&&second==-1){
                 second=j;
             }
         }
-        for (int i = first; i < second ; i++) {
+
+        for (int i = second; i <= first ; i++) {
             Coord tester1 = new Coord(vertices.get(i).lat, vertices.get(i).lng);
             Coord tester2 = new Coord(vertices.get(i + 1).lat, vertices.get(i + 1).lng);
             /*
